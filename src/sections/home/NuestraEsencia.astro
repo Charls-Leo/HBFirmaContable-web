@@ -1,0 +1,112 @@
+---
+import esenciaImage from "../../assets/images/home/home-esencia.png";
+import Icono from "../../components/shared/Icono.astro";
+---
+
+<section class="section essence" id="nosotros" aria-labelledby="essence-title">
+  <div class="container essence__grid">
+    <div class="essence__media reveal">
+      <div class="essence__frame">
+        <img src={esenciaImage.src} alt="Oficina profesional de HB Presentar con equipo de trabajo" loading="lazy" decoding="async" />
+      </div>
+    </div>
+    <div class="essence__copy reveal">
+      <span class="eyebrow">Nuestra esencia</span>
+      <h2 class="heading" id="essence-title">Más que registrar cifras, ayudamos a comprenderlas</h2>
+      <p class="lead">
+        En HB Presentar acompañamos a cada cliente en la organización de su información, el cumplimiento de sus obligaciones y la comprensión de sus resultados para facilitar decisiones más seguras.
+      </p>
+      <ul class="essence__list">
+        {["Acompañamiento cercano", "Explicaciones claras", "Manejo responsable", "Visión estratégica"].map((item) => (
+          <li><Icono name="check" /> <span>{item}</span></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .essence {
+    background: var(--color-white);
+  }
+
+  .essence__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(3rem, 6vw, 5.5rem);
+    align-items: center;
+  }
+
+  .essence__media {
+    position: relative;
+  }
+
+  .essence__media::before {
+    position: absolute;
+    inset: auto auto -1.2rem -1.2rem;
+    width: 60%;
+    height: 55%;
+    border-radius: var(--radius-card);
+    background: var(--color-ivory);
+    content: "";
+  }
+
+  .essence__frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(7, 21, 47, 0.06);
+    border-radius: var(--radius-card);
+    box-shadow: 0 24px 54px rgba(7, 21, 47, 0.14);
+  }
+
+  img {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .essence__media:hover img {
+    transform: scale(1.04);
+  }
+
+  .heading {
+    max-width: 43rem;
+    margin-bottom: 1.5rem;
+    font-size: var(--tamano-3xl);
+  }
+
+  .lead {
+    max-width: 34rem;
+  }
+
+  .essence__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 1rem;
+  }
+
+  li :global(svg) {
+    width: 1.2rem;
+    height: 1.2rem;
+    color: var(--color-gold);
+  }
+
+  @media (max-width: 860px) {
+    .essence__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

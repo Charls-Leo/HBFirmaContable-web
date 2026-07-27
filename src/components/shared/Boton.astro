@@ -1,0 +1,110 @@
+---
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "outline" | "ghost";
+  size?: "md" | "lg";
+  class?: string;
+  type?: "button" | "submit" | "reset";
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  class: className = "",
+  type = "button",
+  ariaLabel,
+} = Astro.props;
+
+const classes = ["btn", `btn--${variant}`, `btn--${size}`, className].filter(Boolean).join(" ");
+---
+
+{
+  href ? (
+    <a class={classes} href={href} aria-label={ariaLabel}>
+      <slot />
+    </a>
+  ) : (
+    <button class={classes} type={type} aria-label={ariaLabel}>
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    line-height: 1.1;
+    text-align: center;
+    transition:
+      transform 260ms ease,
+      background-color 260ms ease,
+      border-color 260ms ease,
+      color 260ms ease,
+      box-shadow 260ms ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn--md {
+    padding: 0.85rem 1.6rem;
+    font-size: 0.9375rem;
+  }
+
+  .btn--lg {
+    padding: 1rem 2.1rem;
+    font-size: 1.125rem;
+  }
+
+  .btn--primary {
+    background: var(--color-gold);
+    color: var(--color-navy);
+    box-shadow: var(--shadow-gold);
+  }
+
+  .btn--primary:hover {
+    background: var(--color-white);
+  }
+
+  .btn--secondary {
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .btn--secondary:hover {
+    background: var(--color-gold);
+    color: var(--color-navy);
+  }
+
+  .btn--outline {
+    border-color: rgba(255, 255, 255, 0.42);
+    color: var(--color-white);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .btn--outline:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .btn--ghost {
+    border-color: rgba(7, 21, 47, 0.12);
+    color: var(--color-navy);
+    background: transparent;
+  }
+
+  .btn--ghost:hover {
+    border-color: rgba(191, 145, 73, 0.42);
+    color: var(--color-gold);
+  }
+</style>

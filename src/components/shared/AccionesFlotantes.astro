@@ -1,0 +1,84 @@
+---
+import { rutas } from "../../config/site";
+import Icono from "./Icono.astro";
+---
+
+<div class="floating-actions" aria-label="Acciones rápidas">
+  <a href={rutas.contacto} class="floating-actions__item">
+    <span>Agendar</span>
+    <Icono name="calendar" />
+  </a>
+  <a href={rutas.preguntasFrecuentes} class="floating-actions__item floating-actions__item--light">
+    <span>FAQ</span>
+    <Icono name="document" />
+  </a>
+</div>
+
+<style>
+  .floating-actions {
+    position: fixed;
+    top: 50%;
+    right: clamp(1rem, 2vw, 1.7rem);
+    z-index: 80;
+    display: grid;
+    gap: 0.7rem;
+    transform: translateY(-50%);
+  }
+
+  .floating-actions__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    color: var(--color-white);
+  }
+
+  .floating-actions__item span {
+    border-radius: 999px;
+    background: var(--color-navy);
+    padding: 0.62rem 0.82rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    opacity: 0;
+    text-transform: uppercase;
+    transform: translateX(0.45rem);
+    transition:
+      opacity 220ms ease,
+      transform 220ms ease;
+  }
+
+  .floating-actions__item:hover span,
+  .floating-actions__item:focus-visible span {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .floating-actions__item :global(svg) {
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 999px;
+    background: var(--color-navy);
+    padding: 0.82rem;
+    box-shadow: 0 18px 38px rgba(7, 21, 47, 0.22);
+  }
+
+  .floating-actions__item--light :global(svg),
+  .floating-actions__item--light span {
+    background: var(--color-gold);
+    color: var(--color-navy);
+  }
+
+  @media (max-width: 760px) {
+    .floating-actions {
+      top: auto;
+      right: 1rem;
+      bottom: 1rem;
+      transform: none;
+    }
+
+    .floating-actions__item span {
+      display: none;
+    }
+  }
+</style>

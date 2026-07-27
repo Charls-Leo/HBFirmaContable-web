@@ -1,0 +1,116 @@
+---
+import { proceso } from "../../data/proceso";
+import Icono from "../../components/shared/Icono.astro";
+---
+
+<section class="section process" id="como-trabajamos" aria-labelledby="proceso-title">
+  <div class="container">
+    <div class="process__intro reveal">
+      <span class="eyebrow">Nuestro proceso</span>
+      <h2 class="heading" id="proceso-title">Una metodología clara desde el primer contacto</h2>
+      <p class="lead">Organizamos cada etapa para que el cliente conozca el proceso, los avances y la forma de acompañamiento.</p>
+    </div>
+
+    <div class="process__timeline reveal">
+      {
+        proceso.map((paso, index) => (
+          <article class="process__step">
+            <div class="process__head">
+              <span class="process__number">0{index + 1}</span>
+              <div class="process__icon">
+                <Icono name={paso.icono} />
+              </div>
+            </div>
+            <h3>{paso.titulo}</h3>
+            <p>{paso.descripcion}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .process {
+    background: var(--color-white);
+  }
+
+  .process__intro {
+    max-width: 56rem;
+    margin-inline: auto;
+    margin-bottom: clamp(3rem, 6vw, 4.5rem);
+    text-align: center;
+  }
+
+  .heading {
+    font-size: var(--tamano-3xl);
+  }
+
+  .lead {
+    margin-top: 1rem;
+  }
+
+  .process__timeline {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .process__step {
+    border: 1px solid rgba(7, 21, 47, 0.08);
+    border-radius: 0.875rem;
+    background: var(--color-white);
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 1px 0 rgba(7, 21, 47, 0.03);
+  }
+
+  .process__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .process__number {
+    color: var(--color-gold);
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+  }
+
+  .process__icon {
+    display: grid;
+    place-items: center;
+    color: var(--color-gold);
+  }
+
+  .process__icon :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  h3 {
+    margin: 0 0 0.55rem;
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+  }
+
+  .process__step p {
+    margin: 0;
+    color: rgba(7, 21, 47, 0.58);
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1.62;
+  }
+
+  @media (max-width: 760px) {
+    .process__timeline {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 520px) {
+    .process__timeline {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

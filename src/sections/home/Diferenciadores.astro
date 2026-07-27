@@ -1,0 +1,116 @@
+---
+import { atributos } from "../../data/atributos";
+import Icono from "../../components/shared/Icono.astro";
+
+const destacados = atributos.slice(0, 4);
+---
+
+<section class="section differentiators" aria-labelledby="diferenciadores-title">
+  <div class="container">
+    <div class="differentiators__copy reveal">
+      <span class="eyebrow">Por qué HB Presentar</span>
+      <h2 class="heading" id="diferenciadores-title">Una firma que acompaña, organiza y orienta</h2>
+    </div>
+    <div class="differentiators__cards stagger">
+      {
+        destacados.map((item, index) => (
+          <article class={`differentiators__card reveal ${index === 0 || index === 3 ? "is-light" : ""}`}>
+            <Icono name={item.icono} />
+            <h3>{item.titulo}</h3>
+            <p>
+              {index === 0 && "Escuchamos y nos adaptamos a la realidad de cada persona o negocio."}
+              {index === 1 && "Traducimos términos técnicos en información comprensible."}
+              {index === 2 && "Cuidamos la reserva y el manejo de cada soporte recibido."}
+              {index === 3 && "Cumplimos con procesos claros, fechas y seguimiento."}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .differentiators {
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .differentiators__copy {
+    max-width: 40rem;
+    margin-inline: auto;
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    text-align: center;
+  }
+
+  .heading {
+    margin: 0;
+  }
+
+  .differentiators__cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .differentiators__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 0.875rem;
+    background: rgba(255, 255, 255, 0.045);
+    padding: 1.75rem;
+    transition:
+      transform 260ms ease,
+      border-color 260ms ease,
+      background-color 260ms ease;
+  }
+
+  .differentiators__card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(191, 145, 73, 0.45);
+    background: rgba(255, 255, 255, 0.075);
+  }
+
+  .differentiators__card.is-light {
+    background: var(--color-white);
+    color: var(--color-navy);
+  }
+
+  .differentiators__card :global(svg) {
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--color-gold);
+  }
+
+  h3 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    line-height: 1.15;
+  }
+
+  .differentiators__card p {
+    margin: 0;
+    color: currentColor;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1.65;
+    opacity: 0.68;
+  }
+
+  @media (max-width: 860px) {
+    .differentiators__cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 520px) {
+    .differentiators__cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+import { site, rutas } from "../../config/site";
+import { navegacionFooter, navegacionLegal } from "../../data/navegacion";
+import { servicios } from "../../data/servicios";
+import Logo from "../shared/Logo.astro";
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href={rutas.inicio} aria-label="Ir al inicio">
+          <Logo tone="dark" />
+        </a>
+        <p>{site.descripcion}</p>
+      </div>
+
+      <nav aria-label="Navegación del pie de página">
+        <h2>Navegación</h2>
+        <ul>
+          {navegacionFooter.map((item) => <li><a href={item.href}>{item.etiqueta}</a></li>)}
+        </ul>
+      </nav>
+
+      <nav aria-label="Servicios destacados">
+        <h2>Servicios</h2>
+        <ul>
+          {servicios.slice(0, 4).map((item) => <li><a href={item.href}>{item.titulo}</a></li>)}
+        </ul>
+      </nav>
+
+      <nav aria-label="Legal">
+        <h2>Legal</h2>
+        <ul>
+          {navegacionLegal.map((item) => <li><a href={item.href}>{item.etiqueta}</a></li>)}
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© {site.anio} {site.nombreCorto} | Todos los derechos reservados</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-ivory);
+    color: rgba(7, 21, 47, 0.68);
+    padding: clamp(4rem, 8vw, 6rem) 0 2rem;
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(8rem, 1fr));
+    gap: clamp(2.4rem, 6vw, 5rem);
+    margin-bottom: clamp(3rem, 7vw, 5rem);
+  }
+
+  .footer__brand :global(img) {
+    width: 10rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .footer__brand p {
+    max-width: 18rem;
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
+  h2 {
+    margin: 0 0 1.45rem;
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.86rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    font-size: 0.9rem;
+    font-weight: 300;
+    transition: color 220ms ease;
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--color-gold);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid rgba(7, 21, 47, 0.09);
+    padding-top: 1.5rem;
+  }
+
+  .footer__bottom p {
+    margin: 0;
+    color: var(--color-navy);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 800px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

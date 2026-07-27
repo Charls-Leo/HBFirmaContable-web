@@ -1,0 +1,50 @@
+---
+interface Props {
+  ceja?: string;
+  titulo: string;
+  descripcion?: string;
+  align?: "left" | "center";
+  tone?: "light" | "dark";
+}
+
+const { ceja, titulo, descripcion, align = "center", tone = "dark" } = Astro.props;
+---
+
+<div class={`section-title section-title--${align} section-title--${tone} reveal`}>
+  {ceja && <span class="eyebrow">{ceja}</span>}
+  <h2 class="heading">{titulo}</h2>
+  {descripcion && <p class="lead">{descripcion}</p>}
+</div>
+
+<style>
+  .section-title {
+    max-width: 48rem;
+    margin-bottom: clamp(2.6rem, 5vw, 4.7rem);
+  }
+
+  .section-title--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .section-title--left {
+    text-align: left;
+  }
+
+  .heading {
+    font-size: var(--tamano-3xl);
+  }
+
+  .lead {
+    margin-top: 1.25rem;
+  }
+
+  .section-title--light .heading,
+  .section-title--light .lead {
+    color: var(--color-white);
+  }
+
+  .section-title--light .lead {
+    opacity: 0.68;
+  }
+</style>

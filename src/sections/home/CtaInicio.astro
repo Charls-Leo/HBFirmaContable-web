@@ -1,0 +1,68 @@
+---
+import Boton from "../../components/shared/Boton.astro";
+import { rutas } from "../../config/site";
+---
+
+<section class="home-cta" aria-labelledby="home-cta-title">
+  <div class="container home-cta__inner reveal">
+    <span class="eyebrow">Empecemos</span>
+    <h2 class="heading" id="home-cta-title">Estructure hoy el futuro <span class="gold">financiero</span> de su empresa</h2>
+    <p>Conversemos sobre las necesidades de su empresa y conozca cómo podemos acompañarle.</p>
+    <Boton href={rutas.contacto} size="lg">Agendar una cita</Boton>
+  </div>
+</section>
+
+<style>
+  .home-cta {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-navy);
+    color: var(--color-white);
+    padding-block: clamp(5rem, 9vw, 7.5rem);
+    text-align: center;
+  }
+
+  .home-cta::before,
+  .home-cta::after {
+    position: absolute;
+    width: 18rem;
+    height: 18rem;
+    border: 1px solid rgba(191, 145, 73, 0.13);
+    content: "";
+    pointer-events: none;
+  }
+
+  .home-cta::before {
+    top: -8rem;
+    right: -7rem;
+    border-bottom-left-radius: 999px;
+  }
+
+  .home-cta::after {
+    bottom: -9rem;
+    left: -8rem;
+    border-top-right-radius: 999px;
+  }
+
+  .home-cta__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 42rem;
+    gap: 1.25rem;
+  }
+
+  .heading {
+    font-size: var(--tamano-3xl);
+  }
+
+  p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+</style>

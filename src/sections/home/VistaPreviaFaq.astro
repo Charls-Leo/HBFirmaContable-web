@@ -1,0 +1,32 @@
+---
+import { preguntasFrecuentes } from "../../data/preguntasFrecuentes";
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+import AcordeonItem from "../../components/shared/AcordeonItem.astro";
+---
+
+<section class="section faq-preview" id="preguntas-frecuentes" aria-labelledby="faq-title">
+  <div class="container faq-preview__inner">
+    <TituloSeccion
+      titulo="Preguntas frecuentes"
+      descripcion="Resolvemos sus dudas iniciales sobre nuestro modelo de trabajo."
+    />
+    <div class="faq-preview__list reveal">
+      {preguntasFrecuentes.map((item) => <AcordeonItem {...item} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-preview {
+    background: var(--color-ivory);
+  }
+
+  .faq-preview__inner {
+    max-width: 56rem;
+  }
+
+  .faq-preview__list {
+    display: grid;
+    gap: 0.85rem;
+  }
+</style>

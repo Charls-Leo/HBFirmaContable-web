@@ -1,0 +1,253 @@
+---
+import heroImage from "../../assets/images/nosotros/nosotros1.png";
+import { rutas } from "../../config/site";
+---
+
+<section class="hero" id="inicio" aria-labelledby="hero-title">
+  <img class="hero__image" src={heroImage.src} alt="Oficina corporativa de HB Presentar con espacios de trabajo y ciudad al fondo" loading="eager" decoding="async" />
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <div class="hero__copy reveal is-visible">
+      <span class="hero__eyebrow">Firma contable y financiera</span>
+      <h1 class="hero__title" id="hero-title">
+        Contabilidad clara para decisiones más <span>seguras</span>.
+      </h1>
+      <p>
+        Acompañamos a empresas, negocios, emprendedores y personas naturales en la organización de sus procesos contables, tributarios, laborales y financieros.
+      </p>
+      <a class="hero__cta" href={rutas.contacto}>Agendar una cita</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    display: flex;
+    min-height: 100svh;
+    align-items: center;
+    overflow: hidden;
+    background: #080e1c;
+    color: #fbf9f5;
+  }
+
+  .hero__image,
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero__image {
+    object-fit: cover;
+    object-position: center center;
+    opacity: 0.96;
+  }
+
+  .hero__overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(8, 14, 28, 0.94) 0%,
+        rgba(8, 14, 28, 0.86) 38%,
+        rgba(10, 18, 36, 0.66) 68%,
+        rgba(10, 18, 36, 0.58) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(8, 14, 28, 0.32) 0%,
+        rgba(8, 14, 28, 0.18) 48%,
+        rgba(8, 14, 28, 0.42) 100%
+      );
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    width: min(1280px, 100%);
+    margin-inline: auto;
+    padding: 5.8rem clamp(1.25rem, 4vw, 2.5rem) 0;
+  }
+
+  .hero__copy {
+    display: grid;
+    width: min(100%, 42.5rem);
+    gap: 1.45rem;
+  }
+
+  .hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: #d3ac72;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .hero__eyebrow::before {
+    display: inline-block;
+    width: 2.35rem;
+    height: 1px;
+    background: rgba(211, 172, 114, 0.78);
+    content: "";
+  }
+
+  .hero__title {
+    max-width: 42.5rem;
+    margin: 0;
+    color: #fbf9f5;
+    font-family: var(--font-heading);
+    font-size: clamp(3.4rem, 6.2vw, 5.35rem);
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 0.96;
+  }
+
+  .hero__title span {
+    color: #d3ac72;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  p {
+    max-width: 37rem;
+    margin: 0;
+    color: #b7c0d4;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.35vw, 1.125rem);
+    font-weight: 300;
+    line-height: 1.72;
+  }
+
+  .hero__cta {
+    position: relative;
+    z-index: 0;
+    display: inline-flex;
+    overflow: hidden;
+    width: fit-content;
+    min-width: min(100%, 17rem);
+    min-height: 3.15rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(251, 249, 245, 0.44);
+    border-radius: 0.5rem;
+    background: rgba(251, 249, 245, 0.05);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 12px 28px rgba(8, 14, 28, 0.16);
+    color: #fbf9f5;
+    padding: 0.95rem 1.35rem;
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    transition:
+      transform 320ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 320ms cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 320ms cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 320ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hero__cta::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(
+        105deg,
+        transparent 0%,
+        rgba(211, 172, 114, 0.28) 38%,
+        rgba(255, 255, 255, 0.18) 50%,
+        transparent 64%
+      );
+    content: "";
+    transform: translateX(-115%);
+    transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero__cta:hover,
+  .hero__cta:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(211, 172, 114, 0.78);
+    background: rgba(211, 172, 114, 0.14);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 18px 42px rgba(8, 14, 28, 0.24);
+  }
+
+  .hero__cta:hover::before,
+  .hero__cta:focus-visible::before {
+    transform: translateX(115%);
+  }
+
+  @media (max-width: 860px) {
+    .hero {
+      min-height: 42rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .hero__content {
+      padding-top: 5.2rem;
+    }
+
+    .hero__copy {
+      width: min(100%, 38rem);
+    }
+
+    .hero__title {
+      font-size: clamp(2.75rem, 8.5vw, 4.25rem);
+    }
+  }
+
+  @media (max-width: 620px) {
+    .hero {
+      min-height: 41rem;
+      align-items: flex-end;
+      padding-bottom: 2.5rem;
+    }
+
+    .hero__content {
+      padding-top: calc(6rem + 2rem);
+    }
+
+    .hero__image {
+      object-position: 58% center;
+    }
+
+    .hero__overlay {
+      background:
+        linear-gradient(90deg, rgba(8, 14, 28, 0.9) 0%, rgba(8, 14, 28, 0.76) 100%),
+        linear-gradient(180deg, rgba(8, 14, 28, 0.22) 0%, rgba(8, 14, 28, 0.58) 100%);
+    }
+
+    .hero__eyebrow {
+      gap: 0.7rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+    }
+
+    .hero__eyebrow::before {
+      width: 1.6rem;
+    }
+
+    .hero__title {
+      font-size: clamp(2.55rem, 14vw, 3.4rem);
+      line-height: 1;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.66;
+    }
+
+    .hero__cta {
+      width: 100%;
+    }
+  }
+</style>

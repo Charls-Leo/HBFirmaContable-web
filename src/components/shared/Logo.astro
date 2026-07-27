@@ -1,0 +1,14 @@
+---
+import logoClaro from "../../assets/images/brand/Logoblancolineal.png";
+import logoOscuro from "../../assets/images/brand/logonegrolineal.png";
+
+interface Props {
+  tone?: "light" | "dark";
+  class?: string;
+}
+
+const { tone = "dark", class: className = "" } = Astro.props;
+const logo = tone === "light" ? logoClaro : logoOscuro;
+---
+
+<img class={`logo ${className}`} src={logo.src} alt="HB Presentar Firma Contable by H & B" loading="eager" decoding="async" />

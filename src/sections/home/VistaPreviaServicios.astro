@@ -1,0 +1,54 @@
+---
+import { servicios } from "../../data/servicios";
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+import TarjetaServicio from "../../components/shared/TarjetaServicio.astro";
+---
+
+<section class="section services" id="servicios" aria-labelledby="servicios-title">
+  <div class="container">
+    <TituloSeccion
+      ceja="Servicios"
+      titulo="Servicios pensados para necesidades reales"
+      descripcion="No creemos en soluciones genéricas. Nuestro enfoque se basa en el acompañamiento personalizado para que su gestión contable, tributaria y financiera esté siempre alineada con sus objetivos."
+    />
+    <div class="services__grid stagger">
+      {
+        servicios.slice(0, 3).map((servicio) => (
+          <TarjetaServicio class="reveal" {...servicio} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: color-mix(in srgb, var(--color-ivory) 72%, white);
+  }
+
+  .services :global(.section-title) {
+    margin-bottom: clamp(2rem, 4vw, 3.25rem);
+  }
+
+  .services :global(.lead) {
+    margin-top: 0.9rem;
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 920px) {
+    .services__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 620px) {
+    .services__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

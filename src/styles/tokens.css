@@ -1,0 +1,27 @@
+:root {
+  --color-navy: #07152f;
+  --color-navy-soft: #102242;
+  --color-gold: #bf9149;
+  --color-gold-soft: #d8ba78;
+  --color-ivory: #f8f6f1;
+  --color-white: #ffffff;
+  --color-ink: #172033;
+  --color-muted: #6d7280;
+  --shadow-card: 0 24px 60px rgba(7, 21, 47, 0.1);
+  --shadow-gold: 0 20px 44px rgba(191, 145, 73, 0.18);
+  --radius-card: 20px;
+  --container: 1180px;
+  --section-y: clamp(4.75rem, 8vw, 7.5rem);
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --tamano-xs: 0.8125rem;
+  --tamano-sm: 0.9375rem;
+  --tamano-base: 1rem;
+  --tamano-md: 1.125rem;
+  --tamano-lg: 1.375rem;
+  --tamano-xl: 1.75rem;
+  --tamano-2xl: clamp(1.875rem, 1.6rem + 1.2vw, 2.5rem);
+  --tamano-3xl: clamp(2.25rem, 1.8rem + 2vw, 3.25rem);
+  --tamano-4xl: clamp(2.75rem, 2.1rem + 3vw, 4.25rem);
+}
