@@ -1,21 +1,85 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroLegal from "../components/shared/HeroLegal.astro";
+import DocumentoLegal from "../components/shared/DocumentoLegal.astro";
+import { site, rutas } from "../config/site";
+import { getEnlaceWhatsapp } from "../utils/whatsapp";
+
+const indice = [
+  { id: "responsable", etiqueta: "Responsable del tratamiento" },
+  { id: "informacion", etiqueta: "Información que recopilamos" },
+  { id: "uso", etiqueta: "Cómo utilizamos su información" },
+  { id: "terceros", etiqueta: "Con quién compartimos su información" },
+  { id: "proteccion", etiqueta: "Cómo protegemos su información" },
+  { id: "derechos", etiqueta: "Sus derechos" },
+  { id: "cambios", etiqueta: "Cambios a esta política" },
+];
 ---
 
-<BaseLayout title="Privacidad" showFloatingActions={false}>
-  <section class="placeholder">
-    <div class="container">
-      <span class="eyebrow">Legal</span>
-      <h1 class="heading">Privacidad</h1>
-      <p class="lead">Esta página quedará desarrollada en la siguiente etapa.</p>
-    </div>
-  </section>
-</BaseLayout>
+<BaseLayout
+  title="Política de privacidad"
+  description="Conozca cómo HB Presentar recopila, usa y protege la información personal de quienes visitan y contactan este sitio."
+>
+  <HeroLegal
+    eyebrow="Legal"
+    titulo="Política de privacidad"
+    descripcion="Esta política explica qué información recopilamos a través de este sitio, cómo la utilizamos y qué derechos tiene usted sobre sus datos personales."
+  />
 
-<style>
-  .placeholder {
-    min-height: 62vh;
-    padding-top: 9rem;
-    background: var(--color-ivory);
-  }
-</style>
+  <DocumentoLegal indice={indice}>
+    <p slot="aviso">
+      Esta política describe, de forma general, el tratamiento de la información a través de este sitio web. Para consultas puntuales sobre un caso particular, contáctenos directamente.
+    </p>
+
+    <h2 id="responsable">Responsable del tratamiento</h2>
+    <p>
+      El responsable del tratamiento de los datos personales recopilados a través de este sitio es <strong>{site.nombre}</strong>. Puede comunicarse con nosotros a través de los siguientes canales:
+    </p>
+    <ul>
+      <li>Correo electrónico: <a href={`mailto:${site.correo}`}>{site.correo}</a></li>
+      <li>
+        WhatsApp:{" "}
+        <a href={getEnlaceWhatsapp()} target="_blank" rel="noopener noreferrer">
+          {site.whatsappDisplay}
+        </a>
+      </li>
+    </ul>
+
+    <h2 id="informacion">Información que recopilamos</h2>
+    <p>Recopilamos únicamente la información que usted nos proporciona de forma directa y voluntaria, principalmente a través de:</p>
+    <ul>
+      <li>El formulario de contacto del sitio (nombre completo, correo electrónico, teléfono, servicio de interés y mensaje).</li>
+      <li>Conversaciones iniciadas por WhatsApp o correo electrónico.</li>
+    </ul>
+    <p>Este sitio no utiliza cookies de seguimiento ni herramientas de analítica de terceros para recopilar información de navegación.</p>
+
+    <h2 id="uso">Cómo utilizamos su información</h2>
+    <p>La información suministrada se utiliza exclusivamente para:</p>
+    <ul>
+      <li>Responder sus solicitudes de información o de cita.</li>
+      <li>Orientarle sobre el servicio contable, tributario, laboral o financiero adecuado a su necesidad.</li>
+      <li>Dar continuidad a la relación de servicio, en caso de que decida contratarnos.</li>
+    </ul>
+
+    <h2 id="terceros">Con quién compartimos su información</h2>
+    <p>
+      No vendemos, alquilamos ni compartimos su información personal con terceros para fines comerciales o publicitarios. La información que usted comparte es utilizada únicamente por el equipo de {site.nombreCorto} para dar respuesta a su solicitud.
+    </p>
+
+    <h2 id="proteccion">Cómo protegemos su información</h2>
+    <p>
+      Los datos ingresados en el formulario de contacto se envían directamente por correo electrónico a {site.correo}; este sitio no almacena dicha información en bases de datos ni servidores propios. Las conversaciones por WhatsApp se gestionan a través de la plataforma oficial de WhatsApp.
+    </p>
+
+    <h2 id="derechos">Sus derechos</h2>
+    <p>
+      Conforme a la normativa colombiana de protección de datos personales (artículo 15 de la Constitución Política y Ley 1581 de 2012), usted tiene derecho a conocer, actualizar, rectificar y solicitar la supresión de sus datos personales, así como a revocar la autorización otorgada para su tratamiento.
+    </p>
+    <p>
+      Para ejercer estos derechos, puede escribirnos a <a href={`mailto:${site.correo}`}>{site.correo}</a> o por WhatsApp. Encontrará más detalle sobre el tratamiento de sus datos en nuestra <a href={rutas.tratamientoDatos}>política de tratamiento de datos</a>.
+    </p>
+
+    <h2 id="cambios">Cambios a esta política</h2>
+    <p>Esta política podrá actualizarse para reflejar cambios en nuestros canales de contacto o en la normativa aplicable. Le recomendamos consultarla periódicamente.</p>
+  </DocumentoLegal>
+</BaseLayout>

@@ -1,6 +1,4 @@
 ---
-import Boton from "./Boton.astro";
-
 interface Props {
   imageSrc: string;
   imageAlt: string;
@@ -37,14 +35,14 @@ const {
       {(ctaLabel || ctaSecundarioLabel) && (
         <div class="hero-interno__actions">
           {ctaLabel && ctaHref && (
-            <Boton href={ctaHref} size="lg" class="hero-interno__cta">
+            <a class="hero-interno__cta" href={ctaHref}>
               {ctaLabel}
-            </Boton>
+            </a>
           )}
           {ctaSecundarioLabel && ctaSecundarioHref && (
-            <Boton href={ctaSecundarioHref} variant="outline" size="lg" class="hero-interno__cta">
+            <a class="hero-interno__cta hero-interno__cta--outline" href={ctaSecundarioHref}>
               {ctaSecundarioLabel}
-            </Boton>
+            </a>
           )}
         </div>
       )}
@@ -56,12 +54,12 @@ const {
   .hero-interno {
     position: relative;
     display: flex;
-    min-height: 32rem;
+    min-height: 38rem;
     align-items: center;
     overflow: hidden;
     background: #080e1c;
     color: #fbf9f5;
-    padding-top: 5.4rem;
+    padding-top: 7.5rem;
   }
 
   .hero-interno__image,
@@ -102,7 +100,7 @@ const {
     z-index: 1;
     width: min(1280px, 100%);
     margin-inline: auto;
-    padding: 3rem clamp(1.25rem, 4vw, 2.5rem);
+    padding: 3rem clamp(1.25rem, 4vw, 2.5rem) 3.5rem;
   }
 
   .hero-interno__copy {
@@ -163,13 +161,77 @@ const {
     gap: 1rem;
   }
 
-  :global(.hero-interno__cta) {
+  .hero-interno__cta {
+    position: relative;
+    z-index: 0;
+    display: inline-flex;
+    overflow: hidden;
     width: fit-content;
+    min-width: min(100%, 17rem);
+    min-height: 3.15rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(251, 249, 245, 0.44);
+    border-radius: 0.5rem;
+    background: rgba(251, 249, 245, 0.05);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 12px 28px rgba(8, 14, 28, 0.16);
+    color: #fbf9f5;
+    padding: 0.95rem 1.35rem;
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    text-transform: uppercase;
     animation: hero-interno-item-in 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
     animation-delay: 500ms;
+    transition:
+      transform 240ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 240ms cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 240ms cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 240ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .hero-interno__actions :global(.hero-interno__cta:nth-child(2)) {
+  .hero-interno__cta::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(
+        105deg,
+        transparent 0%,
+        rgba(211, 172, 114, 0.28) 38%,
+        rgba(255, 255, 255, 0.18) 50%,
+        transparent 64%
+      );
+    content: "";
+    transform: translateX(-115%);
+    transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-interno__cta:hover,
+  .hero-interno__cta:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(211, 172, 114, 0.78);
+    background: rgba(211, 172, 114, 0.14);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 18px 42px rgba(8, 14, 28, 0.24);
+  }
+
+  .hero-interno__cta:hover::before,
+  .hero-interno__cta:focus-visible::before {
+    transform: translateX(115%);
+  }
+
+  .hero-interno__cta--outline {
+    background: rgba(251, 249, 245, 0.02);
+    border-color: rgba(251, 249, 245, 0.3);
+  }
+
+  .hero-interno__actions .hero-interno__cta--outline {
     animation-delay: 600ms;
   }
 
@@ -197,8 +259,8 @@ const {
 
   @media (max-width: 620px) {
     .hero-interno {
-      min-height: 28rem;
-      padding-top: 5rem;
+      min-height: 30rem;
+      padding-top: 6rem;
     }
 
     .hero-interno__title {
@@ -210,7 +272,7 @@ const {
       width: 100%;
     }
 
-    :global(.hero-interno__cta) {
+    .hero-interno__cta {
       width: 100%;
     }
   }

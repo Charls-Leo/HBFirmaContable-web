@@ -1,21 +1,74 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroLegal from "../components/shared/HeroLegal.astro";
+import DocumentoLegal from "../components/shared/DocumentoLegal.astro";
+import { site, rutas } from "../config/site";
+import { getEnlaceWhatsapp } from "../utils/whatsapp";
+
+const indice = [
+  { id: "objeto", etiqueta: "Objeto" },
+  { id: "uso", etiqueta: "Uso del sitio" },
+  { id: "servicios", etiqueta: "Servicios ofrecidos" },
+  { id: "propiedad", etiqueta: "Propiedad intelectual" },
+  { id: "canales", etiqueta: "Canales de contacto externos" },
+  { id: "responsabilidad", etiqueta: "Limitación de responsabilidad" },
+  { id: "modificaciones", etiqueta: "Modificaciones" },
+  { id: "contacto", etiqueta: "Contacto" },
+];
 ---
 
-<BaseLayout title="Términos" showFloatingActions={false}>
-  <section class="placeholder">
-    <div class="container">
-      <span class="eyebrow">Legal</span>
-      <h1 class="heading">Términos</h1>
-      <p class="lead">Esta página quedará desarrollada en la siguiente etapa.</p>
-    </div>
-  </section>
-</BaseLayout>
+<BaseLayout
+  title="Términos del servicio"
+  description="Condiciones bajo las cuales HB Presentar ofrece información y contacto a través de este sitio web."
+>
+  <HeroLegal
+    eyebrow="Legal"
+    titulo="Términos del servicio"
+    descripcion="Estos términos describen las condiciones bajo las cuales HB Presentar ofrece información y contacto a través de este sitio web."
+  />
 
-<style>
-  .placeholder {
-    min-height: 62vh;
-    padding-top: 9rem;
-    background: var(--color-ivory);
-  }
-</style>
+  <DocumentoLegal indice={indice}>
+    <p slot="aviso">
+      Estos términos describen de forma general las condiciones de uso de este sitio web informativo. No constituyen un contrato de prestación de servicios, el cual se formaliza de manera independiente con cada cliente.
+    </p>
+
+    <h2 id="objeto">Objeto</h2>
+    <p>
+      Este sitio web es un canal informativo y de contacto de <strong>{site.nombre}</strong>. Su propósito es dar a conocer nuestros servicios contables, tributarios, laborales y financieros, y facilitar el contacto con personas naturales, negocios y empresas interesadas.
+    </p>
+
+    <h2 id="uso">Uso del sitio</h2>
+    <p>
+      El contenido publicado tiene fines informativos generales. El uso de los formularios de contacto, WhatsApp o correo electrónico dispuestos en el sitio inicia una comunicación directa con nuestro equipo; no implica la prestación automática de un servicio.
+    </p>
+
+    <h2 id="servicios">Servicios ofrecidos</h2>
+    <p>
+      El alcance, las condiciones y las tarifas de cada servicio se definen de manera particular con cada cliente, una vez conocida su situación específica. Puede conocer el detalle de nuestra oferta en la sección de <a href={rutas.servicios}>servicios</a>.
+    </p>
+
+    <h2 id="propiedad">Propiedad intelectual</h2>
+    <p>
+      Los textos, imágenes, el diseño y demás contenidos de este sitio son propiedad de {site.nombre}, salvo que se indique lo contrario, y no pueden reproducirse total o parcialmente sin autorización previa.
+    </p>
+
+    <h2 id="canales">Canales de contacto externos</h2>
+    <p>
+      Los canales de WhatsApp y correo electrónico enlazados desde este sitio son gestionados directamente por {site.nombreCorto}. Su uso está sujeto adicionalmente a los términos y condiciones propios de dichas plataformas.
+    </p>
+
+    <h2 id="responsabilidad">Limitación de responsabilidad</h2>
+    <p>
+      La información publicada en este sitio es de carácter general y no sustituye una asesoría contable, tributaria o laboral personalizada. Cualquier compromiso formal de servicio se define en una propuesta o acuerdo específico entre {site.nombreCorto} y el cliente.
+    </p>
+
+    <h2 id="modificaciones">Modificaciones</h2>
+    <p>{site.nombreCorto} podrá actualizar estos términos en cualquier momento para reflejar cambios en sus servicios o canales de atención. Le recomendamos revisarlos periódicamente.</p>
+
+    <h2 id="contacto">Contacto</h2>
+    <p>
+      Para dudas sobre estos términos, escríbanos a <a href={`mailto:${site.correo}`}>{site.correo}</a> o por{" "}
+      <a href={getEnlaceWhatsapp()} target="_blank" rel="noopener noreferrer">WhatsApp</a>.
+    </p>
+  </DocumentoLegal>
+</BaseLayout>

@@ -6,7 +6,7 @@ const items = [...atributos, ...atributos];
 ---
 
 <section class="marquee reveal reveal--fade" aria-label="Atributos de la firma">
-  <div class="marquee__track" data-marquee-track tabindex="0">
+  <div class="marquee__track">
     {
       items.map((item) => (
         <div class="marquee__item">
@@ -16,21 +16,7 @@ const items = [...atributos, ...atributos];
       ))
     }
   </div>
-  <button type="button" class="marquee__toggle" data-marquee-toggle aria-pressed="false">
-    Pausar animación
-  </button>
 </section>
-
-<script>
-  const track = document.querySelector<HTMLElement>("[data-marquee-track]");
-  const toggle = document.querySelector<HTMLButtonElement>("[data-marquee-toggle]");
-
-  toggle?.addEventListener("click", () => {
-    const isPaused = track?.classList.toggle("is-paused");
-    toggle.setAttribute("aria-pressed", String(Boolean(isPaused)));
-    toggle.textContent = isPaused ? "Reanudar animación" : "Pausar animación";
-  });
-</script>
 
 <style>
   .marquee {
@@ -41,37 +27,12 @@ const items = [...atributos, ...atributos];
     padding-block: 2.5rem;
   }
 
-  .marquee__toggle {
-    position: absolute;
-    right: 1.25rem;
-    bottom: 0.4rem;
-    z-index: 1;
-    border: none;
-    background: none;
-    color: color-mix(in srgb, var(--color-navy) 55%, transparent);
-    font-family: var(--font-body);
-    font-size: 0.8125rem;
-  }
-
-  .marquee__toggle:hover {
-    color: var(--color-gold);
-  }
-
-  .marquee__track.is-paused {
-    animation-play-state: paused;
-  }
-
   .marquee__track {
     display: flex;
     width: max-content;
     min-width: 200%;
     gap: clamp(2rem, 5vw, 3.5rem);
     animation: marquee-left 34s linear infinite;
-  }
-
-  .marquee__track:hover,
-  .marquee__track:focus-visible {
-    animation-play-state: paused;
   }
 
   .marquee__item {

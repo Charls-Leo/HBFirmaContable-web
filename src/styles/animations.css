@@ -29,6 +29,15 @@
   transform: translateX(0);
 }
 
+/* Mirror of reveal--left — for content entering from the right (e.g. timeline panels). */
+.reveal.reveal--right {
+  transform: translateX(32px);
+}
+
+.reveal.reveal--right.is-visible {
+  transform: translateX(0);
+}
+
 /* Fade-up with a whisper of scale — for cards/tiles, feels slightly more refined than plain fade-up. */
 .reveal.reveal--scale {
   transform: translateY(24px) scale(0.97);
@@ -94,6 +103,10 @@
     transform: translateX(-14px);
   }
 
+  .reveal.reveal--right {
+    transform: translateX(18px);
+  }
+
   .reveal.reveal--scale {
     transform: translateY(16px) scale(0.985);
   }
@@ -120,6 +133,7 @@
   .reveal,
   .reveal--fade,
   .reveal--left,
+  .reveal--right,
   .reveal--scale,
   .reveal--image {
     opacity: 1 !important;

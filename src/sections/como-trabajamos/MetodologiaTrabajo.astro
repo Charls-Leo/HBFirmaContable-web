@@ -1,34 +1,12 @@
 ---
+import { proceso } from "../../data/proceso";
 import TituloSeccion from "../../components/shared/TituloSeccion.astro";
 import Icono from "../../components/shared/Icono.astro";
-
-const pasos = [
-  {
-    titulo: "Diagnóstico",
-    descripcion: "Escuchamos antes de proponer. Entendemos el contexto de su negocio, la situación actual y los procesos que requieren acompañamiento.",
-    icono: "compass",
-  },
-  {
-    titulo: "Propuesta",
-    descripcion: "Explicamos con claridad. Definimos el alcance del servicio, las responsabilidades, las entregas y la forma de trabajo, sin letra pequeña.",
-    icono: "document",
-  },
-  {
-    titulo: "Organización",
-    descripcion: "Trabajamos con responsabilidad. Recopilamos, revisamos y estructuramos la información necesaria para avanzar con rigor.",
-    icono: "folder",
-  },
-  {
-    titulo: "Acompañamiento",
-    descripcion: "Acompañamos cada etapa. Realizamos seguimiento, presentamos la información correspondiente y resolvemos sus inquietudes en el camino.",
-    icono: "handshake",
-  },
-];
 ---
 
 <section class="section metodologia" aria-labelledby="metodologia-title">
   <div class="container">
-    <TituloSeccion id="metodologia-title" ceja="Metodología" titulo="Nuestra metodología de trabajo" align="left" />
+    <TituloSeccion id="metodologia-title" ceja="Metodología" titulo="Nuestra metodología de trabajo" />
 
     <div class="metodologia__flow reveal">
       <div class="metodologia__rail" aria-hidden="true">
@@ -37,12 +15,12 @@ const pasos = [
       </div>
       <ol class="metodologia__steps">
         {
-          pasos.map((paso, index) => (
-            <li class="metodologia__step">
-              <span class="metodologia__node">
+          proceso.map((paso, index) => (
+            <li class="metodologia__step reveal reveal--right">
+              <span class="metodologia__marcador">
                 <Icono name={paso.icono} />
               </span>
-              <div class="metodologia__content">
+              <div class="metodologia__panel">
                 <span class="metodologia__numero">0{index + 1}</span>
                 <h3>{paso.titulo}</h3>
                 <p>{paso.descripcion}</p>
@@ -66,21 +44,22 @@ const pasos = [
 
   .metodologia__flow {
     position: relative;
-    max-width: 44rem;
+    max-width: 42rem;
+    margin-inline: auto;
   }
 
   .metodologia__rail {
     position: absolute;
-    top: 1.4rem;
-    bottom: 1.4rem;
-    left: 1.4rem;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
     width: 2px;
   }
 
   .metodologia__rail-base {
     position: absolute;
     inset: 0;
-    background: rgba(191, 145, 73, 0.2);
+    background: rgba(191, 145, 73, 0.22);
     opacity: 0;
     transition: opacity 500ms ease 120ms;
   }
@@ -104,7 +83,7 @@ const pasos = [
   .metodologia__steps {
     position: relative;
     display: grid;
-    gap: 2.25rem;
+    gap: 2rem;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -112,92 +91,99 @@ const pasos = [
 
   .metodologia__step {
     display: flex;
+    align-items: flex-start;
     gap: 1.5rem;
   }
 
-  .metodologia__node {
-    display: grid;
-    width: 2.85rem;
-    height: 2.85rem;
-    flex: 0 0 auto;
-    place-items: center;
-    border: 1px solid rgba(191, 145, 73, 0.32);
-    border-radius: 999px;
-    background: var(--color-white);
-    color: var(--color-gold);
-    box-shadow: 0 12px 28px rgba(191, 145, 73, 0.14);
-    transition:
-      border-color 420ms ease,
-      background-color 420ms ease,
-      color 420ms ease;
+  .metodologia__step:nth-child(1) {
+    transition-delay: 120ms;
   }
 
-  .metodologia__node :global(svg) {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  .metodologia__step:nth-child(1) .metodologia__node {
+  .metodologia__step:nth-child(2) {
     transition-delay: 260ms;
   }
 
-  .metodologia__step:nth-child(2) .metodologia__node {
-    transition-delay: 460ms;
+  .metodologia__step:nth-child(3) {
+    transition-delay: 400ms;
   }
 
-  .metodologia__step:nth-child(3) .metodologia__node {
-    transition-delay: 660ms;
+  .metodologia__step:nth-child(4) {
+    transition-delay: 540ms;
   }
 
-  .metodologia__step:nth-child(4) .metodologia__node {
-    transition-delay: 860ms;
-  }
-
-  .metodologia__flow.is-visible .metodologia__node {
-    border-color: var(--color-gold);
+  .metodologia__marcador {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 999px;
     background: var(--color-navy);
-    color: var(--color-white);
+    color: var(--color-gold);
+    box-shadow: 0 12px 28px rgba(7, 21, 47, 0.18);
   }
 
-  .metodologia__content {
-    padding-top: 0.3rem;
+  .metodologia__marcador :global(svg) {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .metodologia__panel {
+    flex: 1;
+    border: 1px solid rgba(7, 21, 47, 0.08);
+    border-radius: 0.875rem;
+    background: var(--color-white);
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 1px 0 rgba(7, 21, 47, 0.03);
   }
 
   .metodologia__numero {
     display: block;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
     color: var(--color-gold);
     font-family: var(--font-heading);
     font-size: 0.9375rem;
   }
 
-  .metodologia__content h3 {
+  .metodologia__panel h3 {
     margin: 0 0 0.4rem;
     font-family: var(--font-heading);
     font-size: 1.25rem;
   }
 
-  .metodologia__content p {
-    max-width: 32rem;
+  .metodologia__panel p {
     margin: 0;
     color: color-mix(in srgb, var(--color-navy) 62%, transparent);
     font-size: 0.9375rem;
     font-weight: 300;
-    line-height: 1.65;
+    line-height: 1.6;
   }
 
   @media (max-width: 620px) {
-    .metodologia__step {
-      gap: 1.1rem;
+    .metodologia__steps {
+      gap: 1.5rem;
     }
 
-    .metodologia__node {
-      width: 2.4rem;
-      height: 2.4rem;
+    .metodologia__step {
+      gap: 1rem;
+    }
+
+    .metodologia__marcador {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .metodologia__marcador :global(svg) {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+
+    .metodologia__panel {
+      padding: 1rem 1.15rem;
     }
 
     .metodologia__rail {
-      left: 1.15rem;
+      left: 1.25rem;
     }
   }
 

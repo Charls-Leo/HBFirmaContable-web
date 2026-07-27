@@ -1,21 +1,80 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroLegal from "../components/shared/HeroLegal.astro";
+import DocumentoLegal from "../components/shared/DocumentoLegal.astro";
+import { site } from "../config/site";
+import { getEnlaceWhatsapp } from "../utils/whatsapp";
+
+const indice = [
+  { id: "marco", etiqueta: "Marco normativo" },
+  { id: "responsable", etiqueta: "Responsable del tratamiento" },
+  { id: "datos", etiqueta: "Datos que recopilamos y su finalidad" },
+  { id: "autorizacion", etiqueta: "Autorización" },
+  { id: "derechos", etiqueta: "Derechos del titular" },
+  { id: "vigencia", etiqueta: "Vigencia y modificaciones" },
+];
 ---
 
-<BaseLayout title="Tratamiento de datos" showFloatingActions={false}>
-  <section class="placeholder">
-    <div class="container">
-      <span class="eyebrow">Legal</span>
-      <h1 class="heading">Tratamiento de datos</h1>
-      <p class="lead">Esta página quedará desarrollada en la siguiente etapa.</p>
-    </div>
-  </section>
-</BaseLayout>
+<BaseLayout
+  title="Tratamiento de datos personales"
+  description="Cómo HB Presentar trata los datos personales recopilados a través de sus canales de contacto, conforme a la normativa colombiana vigente."
+>
+  <HeroLegal
+    eyebrow="Legal"
+    titulo="Tratamiento de datos personales"
+    descripcion="Esta página resume cómo recopilamos, usamos y protegemos los datos personales que usted comparte a través de nuestros canales de contacto."
+  />
 
-<style>
-  .placeholder {
-    min-height: 62vh;
-    padding-top: 9rem;
-    background: var(--color-ivory);
-  }
-</style>
+  <DocumentoLegal indice={indice}>
+    <p slot="aviso">
+      Este resumen aplica a la información recopilada a través de este sitio web.
+    </p>
+
+    <h2 id="marco">Marco normativo</h2>
+    <p>
+      El tratamiento de datos personales en Colombia está regulado principalmente por el artículo 15 de la Constitución Política (derecho de hábeas data), la Ley 1581 de 2012 y el Decreto 1377 de 2013 que la reglamenta. Esta página resume cómo {site.nombreCorto} aplica dicha normativa en sus canales de contacto.
+    </p>
+
+    <h2 id="responsable">Responsable del tratamiento</h2>
+    <p>
+      El responsable del tratamiento de los datos personales es <strong>{site.nombre}</strong>. Los canales dispuestos para ejercer sus derechos o resolver dudas son:
+    </p>
+    <ul>
+      <li>Correo electrónico: <a href={`mailto:${site.correo}`}>{site.correo}</a></li>
+      <li>
+        WhatsApp:{" "}
+        <a href={getEnlaceWhatsapp()} target="_blank" rel="noopener noreferrer">
+          {site.whatsappDisplay}
+        </a>
+      </li>
+    </ul>
+
+    <h2 id="datos">Datos que recopilamos y su finalidad</h2>
+    <p>A través del formulario de contacto y de nuestros canales de atención recopilamos:</p>
+    <ul>
+      <li><strong>Nombre completo, correo electrónico y teléfono/WhatsApp</strong>, para identificarle y poder responder su solicitud.</li>
+      <li><strong>Servicio de interés y mensaje</strong>, para orientar la atención hacia el área contable, tributaria, laboral o financiera correspondiente.</li>
+    </ul>
+    <p>Estos datos se utilizan únicamente para gestionar su solicitud y, si usted lo autoriza, dar continuidad a la prestación del servicio contratado.</p>
+
+    <h2 id="autorizacion">Autorización</h2>
+    <p>
+      Al diligenciar el formulario de contacto y marcar la casilla de aceptación, usted autoriza a {site.nombreCorto} para el tratamiento de sus datos personales conforme a esta política. La autorización es libre, previa, expresa e informada.
+    </p>
+
+    <h2 id="derechos">Derechos del titular</h2>
+    <p>Como titular de los datos, usted puede en cualquier momento:</p>
+    <ul>
+      <li>Conocer, actualizar y rectificar su información.</li>
+      <li>Solicitar prueba de la autorización otorgada.</li>
+      <li>Solicitar la supresión de sus datos cuando no exista un deber legal o contractual que impida hacerlo.</li>
+      <li>Revocar la autorización otorgada para el tratamiento de sus datos.</li>
+    </ul>
+    <p>
+      Puede ejercer estos derechos escribiendo a <a href={`mailto:${site.correo}`}>{site.correo}</a> o por WhatsApp al {site.whatsappDisplay}.
+    </p>
+
+    <h2 id="vigencia">Vigencia y modificaciones</h2>
+    <p>Esta política rige a partir de su publicación en este sitio y podrá modificarse para ajustarse a cambios normativos o en nuestros canales de atención.</p>
+  </DocumentoLegal>
+</BaseLayout>
