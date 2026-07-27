@@ -13,10 +13,11 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
         Cuéntenos cuál es su inquietud o caso específico. Nuestro equipo está listo para brindarle una asesoría personalizada y adaptada a sus necesidades.
       </p>
       <div class="sin-respuesta__actions">
-        <Boton href={rutas.contacto} size="lg">Agendar una cita</Boton>
+        <Boton href={rutas.contacto} size="lg" surface="light">Agendar una cita</Boton>
         <Boton
           href={getEnlaceWhatsapp()}
-          variant="ghost"
+          variant="outline"
+          surface="light"
           size="lg"
           target="_blank"
           ariaLabel="Contactar por WhatsApp (se abre en una pestaña nueva)"
@@ -36,12 +37,12 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
   }
 
   .sin-respuesta__panel {
-    max-width: 42rem;
+    max-width: 74rem;
     margin-inline: auto;
     border: 1px solid rgba(7, 21, 47, 0.08);
     border-radius: var(--radius-card);
     background: var(--color-white);
-    padding: clamp(2.5rem, 5vw, 3.5rem);
+    padding: clamp(3rem, 6vw, 4.5rem) clamp(2rem, 7vw, 5rem);
     text-align: center;
     box-shadow: 0 24px 54px rgba(7, 21, 47, 0.1);
   }
@@ -53,7 +54,7 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
   }
 
   .sin-respuesta__panel p {
-    max-width: 34rem;
+    max-width: 46rem;
     margin: 1.1rem auto 0;
     color: color-mix(in srgb, var(--color-navy) 64%, transparent);
     font-size: 0.9375rem;
@@ -71,8 +72,8 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
   }
 
   :global(.sin-respuesta__whatsapp-icon) {
-    width: 1.1rem;
-    height: 1.1rem;
+    width: 1.15rem;
+    height: 1.15rem;
     flex: 0 0 auto;
   }
 

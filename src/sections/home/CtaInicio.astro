@@ -11,14 +11,14 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
     <h2 class="heading reveal" id="home-cta-title">Estructure hoy el futuro <span class="gold">financiero</span> de su empresa</h2>
     <p class="reveal">Conversemos sobre las necesidades de su empresa y conozca cómo podemos acompañarle.</p>
     <div class="home-cta__actions">
-      <Boton href={rutas.contacto} size="lg" class="home-cta__button home-cta__button--agenda reveal">Agendar una cita</Boton>
+      <Boton href={rutas.contacto} size="lg" class="reveal">Agendar una cita</Boton>
       <Boton
         href={getEnlaceWhatsapp()}
         variant="outline"
         size="lg"
         target="_blank"
         ariaLabel="Contactar por WhatsApp (se abre en una pestaña nueva)"
-        class="home-cta__button home-cta__button--whatsapp reveal"
+        class="reveal"
       >
         <IconoWhatsapp class="home-cta__whatsapp-icon" />
         WhatsApp
@@ -90,95 +90,10 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
     margin-top: 0.25rem;
   }
 
-  .home-cta__actions :global(.home-cta__button) {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    min-width: 14.75rem;
-    min-height: 4.15rem;
-    border-radius: 0.7rem;
-    padding-inline: 1.9rem;
-    font-size: 1.02rem;
-    font-weight: 750;
-    letter-spacing: 0;
-    transition:
-      border-color 280ms cubic-bezier(0.4, 0, 0.2, 1),
-      background-color 280ms cubic-bezier(0.4, 0, 0.2, 1),
-      color 280ms cubic-bezier(0.4, 0, 0.2, 1),
-      box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .home-cta__actions :global(.home-cta__button::before) {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background:
-      linear-gradient(
-        110deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.24) 42%,
-        rgba(211, 172, 114, 0.34) 50%,
-        transparent 62%
-      );
-    content: "";
-    transform: translateX(-120%);
-    transition: transform 460ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .home-cta__actions :global(.home-cta__button:hover::before),
-  .home-cta__actions :global(.home-cta__button:focus-visible::before) {
-    transform: translateX(120%);
-  }
-
-  .home-cta__actions :global(.home-cta__button--agenda) {
-    border-color: rgba(211, 172, 114, 0.7);
-    background:
-      linear-gradient(135deg, #d3ac72 0%, #bd9257 100%);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.24),
-      0 16px 36px rgba(8, 14, 28, 0.24),
-      0 0 0 1px rgba(211, 172, 114, 0.14);
-    color: #080e1c;
-  }
-
-  .home-cta__actions :global(.home-cta__button--agenda:hover),
-  .home-cta__actions :global(.home-cta__button--agenda:focus-visible) {
-    border-color: rgba(211, 172, 114, 0.92);
-    background:
-      linear-gradient(135deg, #d9b87f 0%, #d3ac72 42%, #a67c40 100%);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.3),
-      0 18px 40px rgba(211, 172, 114, 0.18),
-      0 0 0 1px rgba(236, 220, 190, 0.18);
-  }
-
-  .home-cta__actions :global(.home-cta__button--whatsapp) {
-    border-color: rgba(251, 249, 245, 0.34);
-    background: rgba(251, 249, 245, 0.045);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.08),
-      0 14px 34px rgba(8, 14, 28, 0.16);
-    color: #fbf9f5;
-    backdrop-filter: blur(8px);
-  }
-
-  .home-cta__actions :global(.home-cta__button--whatsapp:hover),
-  .home-cta__actions :global(.home-cta__button--whatsapp:focus-visible) {
-    border-color: rgba(211, 172, 114, 0.72);
-    background: rgba(211, 172, 114, 0.12);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.12),
-      0 18px 40px rgba(8, 14, 28, 0.26);
-  }
-
   :global(.home-cta__whatsapp-icon) {
     width: 1.15rem;
     height: 1.15rem;
     flex: 0 0 auto;
-  }
-
-  .home-cta :global(.reveal) {
-    transition-duration: 680ms;
   }
 
   .home-cta__inner > .reveal:nth-child(1) {
@@ -186,22 +101,22 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
   }
 
   .home-cta__inner > .reveal:nth-child(2) {
-    transition-delay: 100ms;
+    transition-delay: 110ms;
   }
 
   .home-cta__inner > .reveal:nth-child(3) {
-    transition-delay: 190ms;
+    transition-delay: 220ms;
   }
 
   .home-cta__actions :global(.reveal:nth-child(1)) {
-    transition-delay: 280ms;
+    transition-delay: 340ms;
   }
 
   .home-cta__actions :global(.reveal:nth-child(2)) {
-    transition-delay: 360ms;
+    transition-delay: 430ms;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 540px) {
     .home-cta__actions {
       flex-direction: column;
       width: 100%;
