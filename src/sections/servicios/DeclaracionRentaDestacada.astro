@@ -1,0 +1,150 @@
+---
+import rentaImage from "../../assets/images/servicios/servicios2.png";
+import Icono from "../../components/shared/Icono.astro";
+import Boton from "../../components/shared/Boton.astro";
+import { rutas } from "../../config/site";
+
+const puntos = [
+  {
+    titulo: "Revisión minuciosa de información",
+    descripcion: "Analizamos cada soporte para garantizar la exactitud de su declaración.",
+  },
+  {
+    titulo: "Identificación de obligaciones",
+    descripcion: "Determinamos con precisión su relación frente a la obligación tributaria.",
+  },
+  {
+    titulo: "Preparación y proyección",
+    descripcion: "Elaboramos su declaración con la máxima confiabilidad.",
+  },
+];
+---
+
+<section class="section renta-destacada" id="declaracion-renta" aria-labelledby="renta-destacada-title">
+  <div class="container renta-destacada__grid">
+    <div class="renta-destacada__copy reveal">
+      <span class="eyebrow">Servicio destacado</span>
+      <h2 class="heading" id="renta-destacada-title">Declaración de renta para personas naturales</h2>
+      <p class="lead">
+        Brindamos una orientación integral para la preparación de su declaración de renta, asegurando el cumplimiento normativo y optimizando los beneficios tributarios disponibles.
+      </p>
+      <ul class="renta-destacada__list">
+        {puntos.map((punto) => (
+          <li>
+            <Icono name="check" />
+            <div>
+              <strong>{punto.titulo}</strong>
+              <span>{punto.descripcion}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <Boton href={rutas.declaracionRenta}>Conocer más sobre declaración de renta</Boton>
+    </div>
+    <div class="renta-destacada__media reveal reveal--image">
+      <div class="renta-destacada__frame">
+        <img src={rentaImage.src} alt="Documentos y proceso de declaración de renta en HB Presentar" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .renta-destacada {
+    background: color-mix(in srgb, var(--color-ivory) 72%, white);
+  }
+
+  .renta-destacada__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(3rem, 6vw, 5.5rem);
+    align-items: center;
+  }
+
+  .renta-destacada__copy {
+    max-width: 34rem;
+  }
+
+  .heading {
+    margin-bottom: 1.25rem;
+    font-size: var(--tamano-3xl);
+  }
+
+  .lead {
+    margin: 0 0 1.75rem;
+  }
+
+  .renta-destacada__list {
+    display: grid;
+    gap: 1rem;
+    margin: 0 0 2rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .renta-destacada__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .renta-destacada__list :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: 0 0 auto;
+    margin-top: 0.2rem;
+    color: var(--color-gold);
+  }
+
+  .renta-destacada__list div {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .renta-destacada__list strong {
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  .renta-destacada__list span {
+    color: color-mix(in srgb, var(--color-navy) 64%, transparent);
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  .renta-destacada__frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(7, 21, 47, 0.06);
+    border-radius: var(--radius-card);
+    box-shadow: 0 24px 54px rgba(7, 21, 47, 0.14);
+  }
+
+  .renta-destacada__frame img {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .renta-destacada__media:hover img {
+    transform: scale(1.04);
+  }
+
+  @media (max-width: 900px) {
+    .renta-destacada__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .renta-destacada__media {
+      order: -1;
+    }
+
+    .renta-destacada__copy {
+      max-width: none;
+    }
+  }
+</style>

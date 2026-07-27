@@ -1,0 +1,138 @@
+---
+import Boton from "./Boton.astro";
+import IconoWhatsapp from "./IconoWhatsapp.astro";
+import { rutas } from "../../config/site";
+import { getEnlaceWhatsapp } from "../../utils/whatsapp";
+
+interface Props {
+  eyebrow?: string;
+  titulo: string;
+  descripcion: string;
+  mensajeWhatsapp?: string;
+}
+
+const { eyebrow, titulo, descripcion, mensajeWhatsapp } = Astro.props;
+---
+
+<section class="cta-final" aria-labelledby="cta-final-title">
+  <div class="container cta-final__inner">
+    {eyebrow && <span class="eyebrow reveal">{eyebrow}</span>}
+    <h2 class="heading reveal" id="cta-final-title">{titulo}</h2>
+    <p class="reveal">{descripcion}</p>
+    <div class="cta-final__actions">
+      <Boton href={rutas.contacto} size="lg" class="reveal">Agendar una cita</Boton>
+      <Boton
+        href={getEnlaceWhatsapp(mensajeWhatsapp)}
+        variant="outline"
+        size="lg"
+        target="_blank"
+        ariaLabel="Contactar por WhatsApp (se abre en una pestaña nueva)"
+        class="reveal"
+      >
+        <IconoWhatsapp class="cta-final__whatsapp-icon" />
+        WhatsApp
+      </Boton>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-final {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-navy);
+    color: var(--color-white);
+    padding-block: clamp(5rem, 9vw, 7.5rem);
+    text-align: center;
+  }
+
+  .cta-final::before,
+  .cta-final::after {
+    position: absolute;
+    width: 18rem;
+    height: 18rem;
+    border: 1px solid rgba(191, 145, 73, 0.13);
+    content: "";
+    pointer-events: none;
+  }
+
+  .cta-final::before {
+    top: -8rem;
+    right: -7rem;
+    border-bottom-left-radius: 999px;
+  }
+
+  .cta-final::after {
+    bottom: -9rem;
+    left: -8rem;
+    border-top-right-radius: 999px;
+  }
+
+  .cta-final__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 42rem;
+    gap: 1.25rem;
+  }
+
+  .heading {
+    font-size: var(--tamano-3xl);
+  }
+
+  p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .cta-final__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  :global(.cta-final__whatsapp-icon) {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: 0 0 auto;
+  }
+
+  .cta-final__inner > .reveal:nth-child(1) {
+    transition-delay: 0ms;
+  }
+
+  .cta-final__inner > .reveal:nth-child(2) {
+    transition-delay: 110ms;
+  }
+
+  .cta-final__inner > .reveal:nth-child(3) {
+    transition-delay: 220ms;
+  }
+
+  .cta-final__actions :global(.reveal:nth-child(1)) {
+    transition-delay: 340ms;
+  }
+
+  .cta-final__actions :global(.reveal:nth-child(2)) {
+    transition-delay: 430ms;
+  }
+
+  @media (max-width: 540px) {
+    .cta-final__actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .cta-final__actions :global(.btn) {
+      width: 100%;
+    }
+  }
+</style>

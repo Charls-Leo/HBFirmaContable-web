@@ -33,9 +33,10 @@ import MenuMovil from "./MenuMovil.astro";
   const closeButtons = document.querySelectorAll("[data-menu-close], #mobile-panel a");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const hasDarkHero = document.querySelector(".hero, .hero-interno");
+
   const syncHeader = () => {
-    const isHome = window.location.pathname === "/";
-    header?.classList.toggle("is-scrolled", !isHome || window.scrollY > 88);
+    header?.classList.toggle("is-scrolled", !hasDarkHero || window.scrollY > 88);
   };
 
   const setMenu = (isOpen) => {

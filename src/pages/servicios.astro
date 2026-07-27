@@ -1,21 +1,27 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroServicios from "../sections/servicios/HeroServicios.astro";
+import IntroduccionServicios from "../sections/servicios/IntroduccionServicios.astro";
+import DeclaracionRentaDestacada from "../sections/servicios/DeclaracionRentaDestacada.astro";
+import ServiciosEmpresas from "../sections/servicios/ServiciosEmpresas.astro";
+import ServiciosLaborales from "../sections/servicios/ServiciosLaborales.astro";
+import AdaptacionServicio from "../sections/servicios/AdaptacionServicio.astro";
+import BeneficiosServicios from "../sections/servicios/BeneficiosServicios.astro";
+import FaqServicios from "../sections/servicios/FaqServicios.astro";
+import CtaServicios from "../sections/servicios/CtaServicios.astro";
 ---
 
-<BaseLayout title="Servicios" showFloatingActions={false}>
-  <section class="placeholder">
-    <div class="container">
-      <span class="eyebrow">Próximamente</span>
-      <h1 class="heading">Servicios</h1>
-      <p class="lead">Esta página quedará desarrollada en la siguiente etapa.</p>
-    </div>
-  </section>
+<BaseLayout
+  title="Servicios"
+  description="Soluciones contables, tributarias, laborales y financieras para personas, negocios y empresas."
+>
+  <HeroServicios />
+  <IntroduccionServicios />
+  <DeclaracionRentaDestacada />
+  <ServiciosEmpresas />
+  <ServiciosLaborales />
+  <AdaptacionServicio />
+  <BeneficiosServicios />
+  <FaqServicios />
+  <CtaServicios />
 </BaseLayout>
-
-<style>
-  .placeholder {
-    min-height: 62vh;
-    padding-top: 9rem;
-    background: var(--color-ivory);
-  }
-</style>

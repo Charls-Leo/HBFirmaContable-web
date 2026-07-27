@@ -1,0 +1,116 @@
+---
+import { serviciosLaborales } from "../../data/serviciosLaborales";
+import Icono from "../../components/shared/Icono.astro";
+import Boton from "../../components/shared/Boton.astro";
+import { rutas } from "../../config/site";
+---
+
+<section class="section laborales" aria-labelledby="laborales-title">
+  <div class="container laborales__grid">
+    <div class="laborales__copy reveal">
+      <span class="eyebrow">Apoyo laboral y de seguridad social</span>
+      <h2 class="heading" id="laborales-title">Gestión profesional del talento humano</h2>
+      <p>
+        Aseguramos el cumplimiento de todas las normativas laborales vigentes, con procesos claros para cada etapa de la relación con sus colaboradores.
+      </p>
+      <Boton href={rutas.contacto} variant="outline">Consultar sobre nómina</Boton>
+    </div>
+    <div class="laborales__chips stagger">
+      {
+        serviciosLaborales.map((item) => (
+          <div class="laborales__chip reveal reveal--scale">
+            <Icono name={item.icono} />
+            <span>{item.titulo}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .laborales {
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .laborales__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .laborales__copy {
+    max-width: 28rem;
+  }
+
+  .heading {
+    margin: 1rem 0 1.25rem;
+    font-size: var(--tamano-3xl);
+  }
+
+  .laborales__copy p {
+    margin: 0 0 1.75rem;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .laborales__chips {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .laborales__chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 0.875rem;
+    background: rgba(255, 255, 255, 0.045);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition:
+      transform 260ms ease,
+      border-color 260ms ease,
+      background-color 260ms ease;
+  }
+
+  .laborales__chip:hover {
+    transform: translateY(-4px);
+    border-color: rgba(191, 145, 73, 0.45);
+    background: rgba(255, 255, 255, 0.075);
+  }
+
+  .laborales__chip :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--color-gold);
+  }
+
+  .laborales__chip span {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  @media (max-width: 860px) {
+    .laborales__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .laborales__copy {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .laborales__chips {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

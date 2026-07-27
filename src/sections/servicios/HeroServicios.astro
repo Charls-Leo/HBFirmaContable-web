@@ -1,0 +1,15 @@
+---
+import heroImage from "../../assets/images/servicios/servicios.png";
+import HeroInterno from "../../components/shared/HeroInterno.astro";
+import { rutas } from "../../config/site";
+---
+
+<HeroInterno
+  imageSrc={heroImage.src}
+  imageAlt="Equipo de HB Presentar trabajando en soluciones contables para clientes"
+  eyebrow="Servicios"
+  titulo="Soluciones contables para personas, negocios y empresas"
+  descripcion="Acompañamos a cada cliente de acuerdo con sus necesidades contables, tributarias, laborales y financieras, con un enfoque en la claridad y la precisión."
+  ctaLabel="Agendar una cita"
+  ctaHref={rutas.contacto}
+/>

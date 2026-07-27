@@ -1,0 +1,24 @@
+---
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+---
+
+<section class="section intro-servicios" aria-labelledby="intro-servicios-title">
+  <div class="container">
+    <TituloSeccion
+      id="intro-servicios-title"
+      ceja="Cómo trabajamos su caso"
+      titulo="Servicios pensados para necesidades reales"
+      descripcion="No creemos en soluciones genéricas. Cada servicio se organiza según la actividad, el volumen de información y los objetivos particulares de cada cliente, para que el acompañamiento se sienta cercano y claro desde el primer contacto."
+    />
+  </div>
+</section>
+
+<style>
+  .intro-servicios {
+    background: var(--color-white);
+  }
+
+  .intro-servicios :global(.section-title) {
+    max-width: 44rem;
+  }
+</style>

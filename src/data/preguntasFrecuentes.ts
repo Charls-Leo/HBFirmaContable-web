@@ -16,6 +16,19 @@ export const preguntasFrecuentes = [
     respuesta:
       "Incluye el registro y organización de la información contable, la preparación de estados financieros y el acompañamiento en las obligaciones tributarias del período.",
     vistaPrevia: true,
+    serviciosPreview: true,
+  },
+  {
+    pregunta: "¿Pueden ayudarme con contabilidades atrasadas?",
+    respuesta:
+      "Sí. Realizamos un diagnóstico inicial para organizar y poner al día la información contable pendiente, antes de continuar con el proceso mensual.",
+    serviciosPreview: true,
+  },
+  {
+    pregunta: "¿Manejan la gestión de nómina electrónica?",
+    respuesta:
+      "Sí. Apoyamos la generación y el reporte de nómina electrónica conforme a los requisitos vigentes, como parte del servicio de nómina y seguridad social.",
+    serviciosPreview: true,
   },
   {
     pregunta: "¿Cómo sé si estoy obligado a declarar renta?",

@@ -1,0 +1,147 @@
+---
+import comoTrabajamosImage from "../../assets/images/servicios/servicios3.png";
+import Icono from "../../components/shared/Icono.astro";
+
+const criterios = [
+  { texto: "Volumen de transacciones", icono: "chart" },
+  { texto: "Frecuencia de reportes", icono: "calendar" },
+  { texto: "Tipo de actividad económica", icono: "compass" },
+  { texto: "Complejidad y necesidades particulares", icono: "target" },
+];
+---
+
+<section class="section adaptacion" aria-labelledby="adaptacion-title">
+  <div class="container adaptacion__grid">
+    <div class="adaptacion__media reveal reveal--image">
+      <div class="adaptacion__frame">
+        <img src={comoTrabajamosImage.src} alt="Equipo de HB Presentar definiendo el alcance de un servicio a la medida" loading="lazy" decoding="async" />
+      </div>
+    </div>
+    <div class="adaptacion__copy">
+      <span class="eyebrow reveal">A la medida</span>
+      <h2 class="heading reveal" id="adaptacion-title">Cada servicio se adapta a las necesidades del cliente</h2>
+      <p class="lead reveal">
+        Entendemos que un pequeño emprendimiento tiene dinámicas distintas a las de una empresa consolidada. Por eso, personalizamos nuestra propuesta considerando:
+      </p>
+      <ul class="adaptacion__list">
+        {
+          criterios.map((criterio) => (
+            <li class="reveal">
+              <Icono name={criterio.icono} />
+              <span>{criterio.texto}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .adaptacion {
+    background: color-mix(in srgb, var(--color-ivory) 72%, white);
+  }
+
+  .adaptacion__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(3rem, 6vw, 5.5rem);
+    align-items: center;
+  }
+
+  .adaptacion__frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(7, 21, 47, 0.06);
+    border-radius: var(--radius-card);
+    box-shadow: 0 24px 54px rgba(7, 21, 47, 0.14);
+  }
+
+  .adaptacion__frame img {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .adaptacion__media:hover img {
+    transform: scale(1.04);
+  }
+
+  .heading {
+    max-width: 30rem;
+    margin: 1rem 0 1.25rem;
+    font-size: var(--tamano-3xl);
+  }
+
+  .lead {
+    max-width: 30rem;
+  }
+
+  .adaptacion__list {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .adaptacion__list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid rgba(7, 21, 47, 0.08);
+    border-radius: 0.7rem;
+    background: var(--color-white);
+    padding: 0.85rem 1.1rem;
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+  }
+
+  .adaptacion__list :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: 0 0 auto;
+    color: var(--color-gold);
+  }
+
+  .adaptacion__copy > .reveal:nth-child(1) {
+    transition-delay: 0ms;
+  }
+
+  .adaptacion__copy > .reveal:nth-child(2) {
+    transition-delay: 100ms;
+  }
+
+  .adaptacion__copy > .reveal:nth-child(3) {
+    transition-delay: 200ms;
+  }
+
+  .adaptacion__list li:nth-child(1) {
+    transition-delay: 300ms;
+  }
+
+  .adaptacion__list li:nth-child(2) {
+    transition-delay: 370ms;
+  }
+
+  .adaptacion__list li:nth-child(3) {
+    transition-delay: 440ms;
+  }
+
+  .adaptacion__list li:nth-child(4) {
+    transition-delay: 510ms;
+  }
+
+  @media (max-width: 900px) {
+    .adaptacion__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .heading,
+    .lead {
+      max-width: none;
+    }
+  }
+</style>

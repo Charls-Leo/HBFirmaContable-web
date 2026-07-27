@@ -1,0 +1,71 @@
+---
+import { atributos } from "../../data/atributos";
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+import Icono from "../../components/shared/Icono.astro";
+
+const destacados = atributos.slice(0, 4);
+---
+
+<section class="section beneficios" aria-labelledby="beneficios-title">
+  <div class="container">
+    <TituloSeccion
+      id="beneficios-title"
+      ceja="Nuestro compromiso"
+      titulo="Un acompañamiento claro y organizado"
+      tone="light"
+    />
+    <div class="beneficios__grid stagger">
+      {
+        destacados.map((item) => (
+          <div class="beneficios__item reveal reveal--scale">
+            <Icono name={item.icono} />
+            <span>{item.titulo}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .beneficios {
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .beneficios :global(.section-title) {
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .beneficios__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .beneficios__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    text-align: center;
+  }
+
+  .beneficios__item :global(svg) {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: var(--color-gold);
+  }
+
+  .beneficios__item span {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  @media (max-width: 760px) {
+    .beneficios__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

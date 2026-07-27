@@ -1,0 +1,45 @@
+---
+import { preguntasFrecuentes } from "../../data/preguntasFrecuentes";
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+import AcordeonItem from "../../components/shared/AcordeonItem.astro";
+
+const destacadas = preguntasFrecuentes.filter((item) => item.serviciosPreview);
+---
+
+<section class="section faq-servicios" aria-labelledby="faq-servicios-title">
+  <div class="container faq-servicios__inner">
+    <TituloSeccion
+      id="faq-servicios-title"
+      ceja="Dudas comunes"
+      titulo="Preguntas frecuentes"
+    />
+    <div class="faq-servicios__list">
+      {
+        destacadas.map((item, index) => (
+          <AcordeonItem
+            pregunta={item.pregunta}
+            respuesta={item.respuesta}
+            mostrarEnlace
+            class="reveal"
+            style={`transition-delay: ${index * 90}ms`}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-servicios {
+    background: var(--color-ivory);
+  }
+
+  .faq-servicios__inner {
+    max-width: 56rem;
+  }
+
+  .faq-servicios__list {
+    display: grid;
+    gap: 0.85rem;
+  }
+</style>
