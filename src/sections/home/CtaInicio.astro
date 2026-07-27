@@ -1,14 +1,29 @@
 ---
 import Boton from "../../components/shared/Boton.astro";
+import IconoWhatsapp from "../../components/shared/IconoWhatsapp.astro";
 import { rutas } from "../../config/site";
+import { getEnlaceWhatsapp } from "../../utils/whatsapp";
 ---
 
 <section class="home-cta" aria-labelledby="home-cta-title">
-  <div class="container home-cta__inner reveal">
-    <span class="eyebrow">Empecemos</span>
-    <h2 class="heading" id="home-cta-title">Estructure hoy el futuro <span class="gold">financiero</span> de su empresa</h2>
-    <p>Conversemos sobre las necesidades de su empresa y conozca cómo podemos acompañarle.</p>
-    <Boton href={rutas.contacto} size="lg">Agendar una cita</Boton>
+  <div class="container home-cta__inner">
+    <span class="eyebrow reveal">Empecemos</span>
+    <h2 class="heading reveal" id="home-cta-title">Estructure hoy el futuro <span class="gold">financiero</span> de su empresa</h2>
+    <p class="reveal">Conversemos sobre las necesidades de su empresa y conozca cómo podemos acompañarle.</p>
+    <div class="home-cta__actions">
+      <Boton href={rutas.contacto} size="lg" class="reveal">Agendar una cita</Boton>
+      <Boton
+        href={getEnlaceWhatsapp()}
+        variant="outline"
+        size="lg"
+        target="_blank"
+        ariaLabel="Contactar por WhatsApp (se abre en una pestaña nueva)"
+        class="reveal"
+      >
+        <IconoWhatsapp class="home-cta__whatsapp-icon" />
+        WhatsApp
+      </Boton>
+    </div>
   </div>
 </section>
 
@@ -64,5 +79,51 @@ import { rutas } from "../../config/site";
     font-size: 1.125rem;
     font-weight: 300;
     line-height: 1.6;
+  }
+
+  .home-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  :global(.home-cta__whatsapp-icon) {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: 0 0 auto;
+  }
+
+  .home-cta__inner > .reveal:nth-child(1) {
+    transition-delay: 0ms;
+  }
+
+  .home-cta__inner > .reveal:nth-child(2) {
+    transition-delay: 110ms;
+  }
+
+  .home-cta__inner > .reveal:nth-child(3) {
+    transition-delay: 220ms;
+  }
+
+  .home-cta__actions :global(.reveal:nth-child(1)) {
+    transition-delay: 340ms;
+  }
+
+  .home-cta__actions :global(.reveal:nth-child(2)) {
+    transition-delay: 430ms;
+  }
+
+  @media (max-width: 540px) {
+    .home-cta__actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .home-cta__actions :global(.btn) {
+      width: 100%;
+    }
   }
 </style>

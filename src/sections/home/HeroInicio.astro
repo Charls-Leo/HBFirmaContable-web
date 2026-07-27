@@ -7,7 +7,7 @@ import { rutas } from "../../config/site";
   <img class="hero__image" src={heroImage.src} alt="Oficina corporativa de HB Presentar con espacios de trabajo y ciudad al fondo" loading="eager" decoding="async" />
   <div class="hero__overlay"></div>
   <div class="hero__content">
-    <div class="hero__copy reveal is-visible">
+    <div class="hero__copy">
       <span class="hero__eyebrow">Firma contable y financiera</span>
       <h1 class="hero__title" id="hero-title">
         Contabilidad clara para decisiones más <span>seguras</span>.
@@ -43,6 +43,53 @@ import { rutas } from "../../config/site";
     object-fit: cover;
     object-position: center center;
     opacity: 0.96;
+    transform: scale(1.015);
+    animation: hero-image-settle 1800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes hero-image-settle {
+    from {
+      transform: scale(1.015);
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes hero-item-in {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero__eyebrow,
+  .hero__title,
+  .hero__copy p,
+  .hero__cta {
+    animation: hero-item-in 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero__eyebrow {
+    animation-delay: 120ms;
+  }
+
+  .hero__title {
+    animation-delay: 240ms;
+  }
+
+  .hero__copy p {
+    animation-delay: 440ms;
+  }
+
+  .hero__cta {
+    animation-delay: 580ms;
   }
 
   .hero__overlay {

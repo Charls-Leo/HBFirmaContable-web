@@ -68,7 +68,7 @@ button {
 }
 
 .container {
-  width: min(var(--container), calc(100% - clamp(2rem, 7vw, 8rem)));
+  width: min(var(--container), calc(100% - clamp(1.5rem, 5vw, 5.5rem)));
   margin-inline: auto;
 }
 

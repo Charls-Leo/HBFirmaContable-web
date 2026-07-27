@@ -11,24 +11,49 @@ import Icono from "../../components/shared/Icono.astro";
       <p class="lead">Organizamos cada etapa para que el cliente conozca el proceso, los avances y la forma de acompañamiento.</p>
     </div>
 
-    <div class="process__timeline reveal">
-      {
-        proceso.map((paso, index) => (
-          <article class="process__step">
-            <div class="process__head">
-              <span class="process__number">0{index + 1}</span>
-              <div class="process__icon">
+    <div class="process__flow reveal">
+      <div class="process__rail" aria-hidden="true">
+        <span class="process__rail-base"></span>
+        <span class="process__rail-progress"></span>
+      </div>
+      <ol class="process__steps stagger">
+        {
+          proceso.map((paso) => (
+            <li class="process__step reveal" data-process-step tabindex="0">
+              <div class="process__node">
                 <Icono name={paso.icono} />
               </div>
-            </div>
-            <h3>{paso.titulo}</h3>
-            <p>{paso.descripcion}</p>
-          </article>
-        ))
-      }
+              <div class="process__panel">
+                <h3>{paso.titulo}</h3>
+                <p>{paso.descripcion}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
     </div>
   </div>
 </section>
+
+<script>
+  const steps = document.querySelectorAll<HTMLElement>("[data-process-step]");
+
+  const setActive = (target: HTMLElement) => {
+    const alreadyActive = target.classList.contains("is-active");
+    steps.forEach((step) => step.classList.remove("is-active"));
+    if (!alreadyActive) target.classList.add("is-active");
+  };
+
+  steps.forEach((step) => {
+    step.addEventListener("click", () => setActive(step));
+    step.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        setActive(step);
+      }
+    });
+  });
+</script>
 
 <style>
   .process {
@@ -38,7 +63,7 @@ import Icono from "../../components/shared/Icono.astro";
   .process__intro {
     max-width: 56rem;
     margin-inline: auto;
-    margin-bottom: clamp(3rem, 6vw, 4.5rem);
+    margin-bottom: clamp(3.5rem, 7vw, 5.5rem);
     text-align: center;
   }
 
@@ -50,67 +75,220 @@ import Icono from "../../components/shared/Icono.astro";
     margin-top: 1rem;
   }
 
-  .process__timeline {
+  .process__flow {
+    position: relative;
+  }
+
+  .process__rail {
+    position: absolute;
+    top: 1.75rem;
+    right: 12.5%;
+    left: 12.5%;
+    height: 2px;
+  }
+
+  .process__rail-base {
+    position: absolute;
+    inset: 0;
+    background: rgba(191, 145, 73, 0.2);
+    opacity: 0;
+    transition: opacity 500ms ease 120ms;
+  }
+
+  .process__flow.is-visible .process__rail-base {
+    opacity: 1;
+  }
+
+  .process__rail-progress {
+    position: absolute;
+    inset: 0;
+    background: var(--color-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .process__flow.is-visible .process__rail-progress {
+    animation: timeline-fill 1.2s cubic-bezier(0.16, 1, 0.3, 1) 220ms forwards;
+  }
+
+  .process__steps {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   .process__step {
-    border: 1px solid rgba(7, 21, 47, 0.08);
-    border-radius: 0.875rem;
-    background: var(--color-white);
-    padding: 1.75rem 1.5rem;
-    box-shadow: 0 1px 0 rgba(7, 21, 47, 0.03);
-  }
-
-  .process__head {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+    outline: none;
   }
 
-  .process__number {
-    color: var(--color-gold);
-    font-family: var(--font-heading);
-    font-size: 1.75rem;
-  }
-
-  .process__icon {
+  .process__node {
+    position: relative;
     display: grid;
+    width: 3.5rem;
+    height: 3.5rem;
+    flex: 0 0 auto;
     place-items: center;
+    border: 1px solid rgba(191, 145, 73, 0.3);
+    border-radius: 999px;
+    background: var(--color-white);
     color: var(--color-gold);
+    box-shadow: 0 12px 30px rgba(191, 145, 73, 0.12);
+    transition:
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 320ms ease,
+      border-color 420ms ease 260ms,
+      background-color 420ms ease 260ms;
   }
 
-  .process__icon :global(svg) {
-    width: 1.5rem;
-    height: 1.5rem;
+  .process__step:nth-child(2) .process__node {
+    transition:
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 320ms ease,
+      border-color 420ms ease 370ms,
+      background-color 420ms ease 370ms;
+  }
+
+  .process__step:nth-child(3) .process__node {
+    transition:
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 320ms ease,
+      border-color 420ms ease 480ms,
+      background-color 420ms ease 480ms;
+  }
+
+  .process__step:nth-child(4) .process__node {
+    transition:
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 320ms ease,
+      border-color 420ms ease 590ms,
+      background-color 420ms ease 590ms;
+  }
+
+  .process__step.is-visible .process__node {
+    border-color: var(--color-gold);
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .process__node :global(svg) {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .process__panel {
+    width: 100%;
+    margin-top: 1.4rem;
+    padding: 1.4rem 1.1rem;
+    border: 1px solid transparent;
+    border-radius: 0.875rem;
+    text-align: center;
+    transition:
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 280ms ease,
+      box-shadow 280ms ease,
+      background-color 280ms ease;
   }
 
   h3 {
-    margin: 0 0 0.55rem;
+    margin: 0 0 0.5rem;
     font-family: var(--font-heading);
     font-size: 1.125rem;
   }
 
-  .process__step p {
-    margin: 0;
-    color: rgba(7, 21, 47, 0.58);
+  .process__panel p {
+    margin: 0 auto;
+    max-width: 15rem;
+    color: rgba(7, 21, 47, 0.6);
     font-size: 0.9375rem;
     font-weight: 300;
     line-height: 1.62;
   }
 
+  .process__step:hover .process__node,
+  .process__step:focus-visible .process__node,
+  .process__step.is-active .process__node {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 34px rgba(191, 145, 73, 0.28);
+  }
+
+  .process__step:hover .process__panel,
+  .process__step:focus-visible .process__panel,
+  .process__step.is-active .process__panel {
+    border-color: rgba(191, 145, 73, 0.28);
+    background: var(--color-ivory);
+    box-shadow: 0 18px 40px rgba(7, 21, 47, 0.08);
+    transform: translateY(-2px);
+  }
+
   @media (max-width: 760px) {
-    .process__timeline {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .process__rail {
+      top: 0;
+      bottom: 0;
+      left: 1.75rem;
+      width: 2px;
+      height: auto;
+      right: auto;
+    }
+
+    .process__rail-progress {
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+
+    .process__flow.is-visible .process__rail-progress {
+      animation-name: timeline-fill-vertical;
+    }
+
+    .process__steps {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+    }
+
+    .process__step {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .process__node {
+      margin-right: 1.25rem;
+    }
+
+    .process__panel {
+      margin-top: 0;
+      padding: 0;
+      text-align: left;
+    }
+
+    .process__panel p {
+      margin: 0;
+      max-width: none;
+    }
+
+    .process__step:hover .process__panel,
+    .process__step:focus-visible .process__panel,
+    .process__step.is-active .process__panel {
+      background: none;
+      box-shadow: none;
+      border-color: transparent;
+      transform: none;
     }
   }
 
-  @media (max-width: 520px) {
-    .process__timeline {
-      grid-template-columns: 1fr;
+  @keyframes timeline-fill-vertical {
+    from {
+      transform: scaleY(0);
+    }
+
+    to {
+      transform: scaleY(1);
     }
   }
 </style>

@@ -2,6 +2,8 @@
 import { preguntasFrecuentes } from "../../data/preguntasFrecuentes";
 import TituloSeccion from "../../components/shared/TituloSeccion.astro";
 import AcordeonItem from "../../components/shared/AcordeonItem.astro";
+
+const destacadas = preguntasFrecuentes.filter((item) => item.vistaPrevia);
 ---
 
 <section class="section faq-preview" id="preguntas-frecuentes" aria-labelledby="faq-title">
@@ -10,8 +12,18 @@ import AcordeonItem from "../../components/shared/AcordeonItem.astro";
       titulo="Preguntas frecuentes"
       descripcion="Resolvemos sus dudas iniciales sobre nuestro modelo de trabajo."
     />
-    <div class="faq-preview__list reveal">
-      {preguntasFrecuentes.map((item) => <AcordeonItem {...item} />)}
+    <div class="faq-preview__list">
+      {
+        destacadas.map((item, index) => (
+          <AcordeonItem
+            pregunta={item.pregunta}
+            respuesta={item.respuesta}
+            mostrarEnlace
+            class="reveal"
+            style={`transition-delay: ${index * 90}ms`}
+          />
+        ))
+      }
     </div>
   </div>
 </section>

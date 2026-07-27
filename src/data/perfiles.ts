@@ -1,38 +1,26 @@
 export const perfiles = [
   {
-    titulo: "Comercio",
+    titulo: "Emprendedores",
     descripcion:
-      "Organización de registros de ventas, inventarios y cumplimiento tributario comercial.",
-    icono: "store",
-  },
-  {
-    titulo: "Servicios profesionales",
-    descripcion:
-      "Especialistas independientes, médicos, abogados y consultores con necesidades específicas.",
-    icono: "briefcase",
-  },
-  {
-    titulo: "Alimentos",
-    descripcion:
-      "Control preciso de costos operativos, nóminas y gestión de insumos para restaurantes.",
-    icono: "utensils",
-  },
-  {
-    titulo: "Emprendimientos / Pymes",
-    descripcion:
-      "Estructuración desde cero para un crecimiento sostenible y escalable en el mercado.",
+      "Acompañamiento para organizar sus procesos contables, tributarios y financieros desde las primeras etapas del negocio.",
     icono: "rocket",
   },
   {
-    titulo: "Personas naturales",
+    titulo: "Profesionales independientes",
     descripcion:
-      "Declaraciones de renta, gestión de patrimonio personal y trámites tributarios individuales.",
-    icono: "person",
+      "Apoyo en obligaciones tributarias, seguridad social, facturación, ingresos y organización financiera.",
+    icono: "briefcase",
   },
   {
-    titulo: "Empresas en formalización",
+    titulo: "Empresas",
     descripcion:
-      "Asesoría integral para avanzar hacia la formalidad legal y contable.",
-    icono: "clipboard",
+      "Servicios contables, tributarios, laborales y financieros adaptados a la operación y necesidades de cada empresa.",
+    icono: "bank",
+  },
+  {
+    titulo: "Empleados",
+    descripcion:
+      "Orientación para declaración de renta, certificados, trámites tributarios y otros requerimientos relacionados con sus ingresos personales.",
+    icono: "badge",
   },
 ];

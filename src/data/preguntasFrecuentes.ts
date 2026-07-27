@@ -1,13 +1,32 @@
 export const preguntasFrecuentes = [
   {
+    pregunta: "¿Atienden a personas naturales y jurídicas?",
+    respuesta:
+      "Sí. Acompañamos tanto a personas naturales como a personas jurídicas, adaptando el servicio a las obligaciones y necesidades de cada caso.",
+    vistaPrevia: true,
+  },
+  {
+    pregunta: "¿Ofrecen atención virtual en todo el país?",
+    respuesta:
+      "Sí. El acompañamiento puede realizarse de forma virtual, manteniendo reuniones, revisión documental y seguimiento por canales digitales.",
+    vistaPrevia: true,
+  },
+  {
+    pregunta: "¿Qué incluye el servicio de contabilidad mensual?",
+    respuesta:
+      "Incluye el registro y organización de la información contable, la preparación de estados financieros y el acompañamiento en las obligaciones tributarias del período.",
+    vistaPrevia: true,
+  },
+  {
+    pregunta: "¿Cómo sé si estoy obligado a declarar renta?",
+    respuesta:
+      "La obligación depende de los topes de ingresos, patrimonio y demás criterios que la autoridad tributaria define cada año. En la asesoría inicial revisamos su situación para confirmarlo.",
+    vistaPrevia: true,
+  },
+  {
     pregunta: "¿Cómo es el proceso de entrega de información?",
     respuesta:
       "Se definen canales digitales y una lista clara de soportes para que cada documento sea recibido, revisado y organizado según el servicio contratado.",
-  },
-  {
-    pregunta: "¿Brindan asesoría virtual a nivel nacional?",
-    respuesta:
-      "Sí. El acompañamiento puede realizarse de forma virtual, manteniendo reuniones, revisión documental y seguimiento por canales digitales.",
   },
   {
     pregunta: "¿Qué documentos necesito para iniciar?",

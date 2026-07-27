@@ -6,6 +6,8 @@ interface Props {
   class?: string;
   type?: "button" | "submit" | "reset";
   ariaLabel?: string;
+  target?: "_blank" | "_self";
+  rel?: string;
 }
 
 const {
@@ -15,14 +17,17 @@ const {
   class: className = "",
   type = "button",
   ariaLabel,
+  target,
+  rel,
 } = Astro.props;
 
 const classes = ["btn", `btn--${variant}`, `btn--${size}`, className].filter(Boolean).join(" ");
+const relValue = rel ?? (target === "_blank" ? "noopener noreferrer" : undefined);
 ---
 
 {
   href ? (
-    <a class={classes} href={href} aria-label={ariaLabel}>
+    <a class={classes} href={href} aria-label={ariaLabel} target={target} rel={relValue}>
       <slot />
     </a>
   ) : (

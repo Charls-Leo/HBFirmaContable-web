@@ -11,12 +11,12 @@ export const proceso = [
   },
   {
     titulo: "Organización",
-    descripcion: "Reunimos, revisamos y clasificamos la información necesaria.",
+    descripcion: "Recopilamos, revisamos y estructuramos la información necesaria.",
     icono: "folder",
   },
   {
     titulo: "Acompañamiento",
-    descripcion: "Realizamos seguimiento, entregas periódicas y decisiones oportunas.",
-    icono: "heart",
+    descripcion: "Realizamos seguimiento, entregamos información y resolvemos inquietudes.",
+    icono: "team",
   },
 ];

@@ -5,6 +5,10 @@ export const site = {
     "Firma contable enfocada en brindar claridad y seguridad financiera a través de procesos organizados y acompañamiento humano cercano.",
   url: "https://hb-presentar.com",
   anio: 2026,
+  whatsapp: "573186057841",
+  whatsappDisplay: "+57 318 605 7841",
+  correo: "kellyhernandezcontadora@gmail.com",
+  horario: "Lunes a viernes, 8:00 a.m. - 6:00 p.m.",
 };
 
 export const rutas = {

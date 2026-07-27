@@ -14,7 +14,7 @@ import TarjetaServicio from "../../components/shared/TarjetaServicio.astro";
     <div class="services__grid stagger">
       {
         servicios.slice(0, 3).map((servicio) => (
-          <TarjetaServicio class="reveal" {...servicio} />
+          <TarjetaServicio class="reveal reveal--scale" {...servicio} />
         ))
       }
     </div>
