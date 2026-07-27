@@ -9,9 +9,10 @@ interface Props {
   titulo: string;
   descripcion: string;
   mensajeWhatsapp?: string;
+  ctaLabel?: string;
 }
 
-const { eyebrow, titulo, descripcion, mensajeWhatsapp } = Astro.props;
+const { eyebrow, titulo, descripcion, mensajeWhatsapp, ctaLabel = "Agendar una cita" } = Astro.props;
 ---
 
 <section class="cta-final" aria-labelledby="cta-final-title">
@@ -20,7 +21,7 @@ const { eyebrow, titulo, descripcion, mensajeWhatsapp } = Astro.props;
     <h2 class="heading reveal" id="cta-final-title">{titulo}</h2>
     <p class="reveal">{descripcion}</p>
     <div class="cta-final__actions">
-      <Boton href={rutas.contacto} size="lg" class="reveal">Agendar una cita</Boton>
+      <Boton href={rutas.contacto} size="lg" class="reveal">{ctaLabel}</Boton>
       <Boton
         href={getEnlaceWhatsapp(mensajeWhatsapp)}
         variant="outline"

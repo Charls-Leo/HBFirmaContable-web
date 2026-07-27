@@ -1,21 +1,17 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroContactoFormulario from "../sections/contacto/HeroContactoFormulario.astro";
+import PasosDespuesSolicitud from "../sections/contacto/PasosDespuesSolicitud.astro";
+import CanalesDirectos from "../sections/contacto/CanalesDirectos.astro";
+import AvisoDocumentos from "../sections/contacto/AvisoDocumentos.astro";
 ---
 
-<BaseLayout title="Contacto" showFloatingActions={false}>
-  <section class="placeholder">
-    <div class="container">
-      <span class="eyebrow">Próximamente</span>
-      <h1 class="heading">Contacto</h1>
-      <p class="lead">Esta página quedará desarrollada en la siguiente etapa.</p>
-    </div>
-  </section>
+<BaseLayout
+  title="Contacto"
+  description="Solicite una cita con HB Presentar y conversemos sobre las necesidades contables, tributarias, laborales y financieras de su caso."
+>
+  <HeroContactoFormulario />
+  <PasosDespuesSolicitud />
+  <CanalesDirectos />
+  <AvisoDocumentos />
 </BaseLayout>
-
-<style>
-  .placeholder {
-    min-height: 62vh;
-    padding-top: 9rem;
-    background: var(--color-ivory);
-  }
-</style>

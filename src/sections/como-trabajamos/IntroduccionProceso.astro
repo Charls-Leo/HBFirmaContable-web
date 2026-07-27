@@ -1,0 +1,54 @@
+---
+---
+
+<section class="section intro-proceso" aria-labelledby="intro-proceso-title">
+  <div class="container intro-proceso__grid">
+    <p class="intro-proceso__texto reveal" id="intro-proceso-title">
+      Cada cliente tiene necesidades diferentes. Por eso, antes de iniciar, conocemos su situación, revisamos la información disponible y definimos una propuesta de trabajo ajustada al servicio requerido.
+    </p>
+    <blockquote class="intro-proceso__cita reveal reveal--left">
+      "Claridad desde el inicio, organización durante el proceso y acompañamiento en cada etapa."
+    </blockquote>
+  </div>
+</section>
+
+<style>
+  .intro-proceso {
+    background: var(--color-white);
+    padding-block: clamp(3.5rem, 6vw, 5rem);
+  }
+
+  .intro-proceso__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: clamp(2.5rem, 6vw, 4.5rem);
+    align-items: center;
+  }
+
+  .intro-proceso__texto {
+    margin: 0;
+    color: var(--color-navy);
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .intro-proceso__cita {
+    margin: 0;
+    border-left: 2px solid rgba(191, 145, 73, 0.5);
+    padding-left: 1.35rem;
+    color: color-mix(in srgb, var(--color-navy) 62%, transparent);
+    font-family: var(--font-heading);
+    font-size: 1.0625rem;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 800px) {
+    .intro-proceso__grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+  }
+</style>

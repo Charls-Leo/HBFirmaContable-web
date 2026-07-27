@@ -9,9 +9,21 @@ interface Props {
   descripcion: string;
   ctaLabel?: string;
   ctaHref?: string;
+  ctaSecundarioLabel?: string;
+  ctaSecundarioHref?: string;
 }
 
-const { imageSrc, imageAlt, eyebrow, titulo, descripcion, ctaLabel, ctaHref } = Astro.props;
+const {
+  imageSrc,
+  imageAlt,
+  eyebrow,
+  titulo,
+  descripcion,
+  ctaLabel,
+  ctaHref,
+  ctaSecundarioLabel,
+  ctaSecundarioHref,
+} = Astro.props;
 ---
 
 <section class="hero-interno" aria-labelledby="hero-interno-title">
@@ -22,10 +34,19 @@ const { imageSrc, imageAlt, eyebrow, titulo, descripcion, ctaLabel, ctaHref } = 
       <span class="hero-interno__eyebrow">{eyebrow}</span>
       <h1 class="hero-interno__title" id="hero-interno-title">{titulo}</h1>
       <p>{descripcion}</p>
-      {ctaLabel && ctaHref && (
-        <Boton href={ctaHref} size="lg" class="hero-interno__cta">
-          {ctaLabel}
-        </Boton>
+      {(ctaLabel || ctaSecundarioLabel) && (
+        <div class="hero-interno__actions">
+          {ctaLabel && ctaHref && (
+            <Boton href={ctaHref} size="lg" class="hero-interno__cta">
+              {ctaLabel}
+            </Boton>
+          )}
+          {ctaSecundarioLabel && ctaSecundarioHref && (
+            <Boton href={ctaSecundarioHref} variant="outline" size="lg" class="hero-interno__cta">
+              {ctaSecundarioLabel}
+            </Boton>
+          )}
+        </div>
       )}
     </div>
   </div>
@@ -136,10 +157,20 @@ const { imageSrc, imageAlt, eyebrow, titulo, descripcion, ctaLabel, ctaHref } = 
     animation-delay: 380ms;
   }
 
+  .hero-interno__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
   :global(.hero-interno__cta) {
     width: fit-content;
     animation: hero-interno-item-in 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
     animation-delay: 500ms;
+  }
+
+  .hero-interno__actions :global(.hero-interno__cta:nth-child(2)) {
+    animation-delay: 600ms;
   }
 
   @keyframes hero-interno-settle {
@@ -172,6 +203,11 @@ const { imageSrc, imageAlt, eyebrow, titulo, descripcion, ctaLabel, ctaHref } = 
 
     .hero-interno__title {
       font-size: clamp(2.35rem, 10vw, 3rem);
+    }
+
+    .hero-interno__actions {
+      flex-direction: column;
+      width: 100%;
     }
 
     :global(.hero-interno__cta) {

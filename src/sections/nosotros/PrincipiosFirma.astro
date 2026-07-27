@@ -1,0 +1,75 @@
+---
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+import Icono from "../../components/shared/Icono.astro";
+
+const principios = [
+  { titulo: "Responsabilidad", icono: "check" },
+  { titulo: "Confidencialidad", icono: "lock" },
+  { titulo: "Claridad", icono: "chart" },
+  { titulo: "Cercanía", icono: "handshake" },
+  { titulo: "Organización", icono: "folder" },
+];
+---
+
+<section class="section principios" aria-labelledby="principios-title">
+  <div class="container">
+    <TituloSeccion id="principios-title" ceja="Lo que nos define" titulo="Principios de la firma" tone="light" />
+    <div class="principios__row stagger">
+      {
+        principios.map((principio) => (
+          <div class="principios__item reveal reveal--scale">
+            <Icono name={principio.icono} />
+            <span>{principio.titulo}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .principios {
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .principios :global(.section-title) {
+    margin-bottom: clamp(2.5rem, 5vw, 3.25rem);
+  }
+
+  .principios__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+  }
+
+  .principios__item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    padding: 0.75rem 1.35rem;
+    transition:
+      border-color 220ms ease,
+      background-color 220ms ease;
+  }
+
+  .principios__item:hover {
+    border-color: rgba(191, 145, 73, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .principios__item :global(svg) {
+    width: 1.1rem;
+    height: 1.1rem;
+    color: var(--color-gold);
+  }
+
+  .principios__item span {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+</style>

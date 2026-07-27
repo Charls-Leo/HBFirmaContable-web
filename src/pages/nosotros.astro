@@ -1,21 +1,25 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroNosotros from "../sections/nosotros/HeroNosotros.astro";
+import QuienesSomos from "../sections/nosotros/QuienesSomos.astro";
+import NuestroProposito from "../sections/nosotros/NuestroProposito.astro";
+import LiderazgoKelly from "../sections/nosotros/LiderazgoKelly.astro";
+import FormaAcompanamiento from "../sections/nosotros/FormaAcompanamiento.astro";
+import PrincipiosFirma from "../sections/nosotros/PrincipiosFirma.astro";
+import ValorAportado from "../sections/nosotros/ValorAportado.astro";
+import CtaNosotros from "../sections/nosotros/CtaNosotros.astro";
 ---
 
-<BaseLayout title="Nosotros" showFloatingActions={false}>
-  <section class="placeholder">
-    <div class="container">
-      <span class="eyebrow">Próximamente</span>
-      <h1 class="heading">Nosotros</h1>
-      <p class="lead">Esta página quedará desarrollada en la siguiente etapa.</p>
-    </div>
-  </section>
+<BaseLayout
+  title="Nosotros"
+  description="Conozca a HB Presentar: una firma contable cercana, organizada y comprometida con cada cliente."
+>
+  <HeroNosotros />
+  <QuienesSomos />
+  <NuestroProposito />
+  <LiderazgoKelly />
+  <FormaAcompanamiento />
+  <PrincipiosFirma />
+  <ValorAportado />
+  <CtaNosotros />
 </BaseLayout>
-
-<style>
-  .placeholder {
-    min-height: 62vh;
-    padding-top: 9rem;
-    background: var(--color-ivory);
-  }
-</style>

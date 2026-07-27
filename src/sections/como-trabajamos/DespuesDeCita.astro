@@ -1,0 +1,99 @@
+---
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+
+const pasos = [
+  "Nos cuenta cuál es su necesidad",
+  "Revisamos la información inicial",
+  "Identificamos el servicio adecuado",
+  "Presentamos una propuesta",
+  "Acordamos la forma de trabajo",
+  "Iniciamos el acompañamiento",
+];
+---
+
+<section class="section despues-cita" aria-labelledby="despues-cita-title">
+  <div class="container">
+    <TituloSeccion
+      id="despues-cita-title"
+      ceja="Primeros pasos"
+      titulo="¿Qué sucede después de solicitar una cita?"
+    />
+    <ol class="despues-cita__flow stagger">
+      {
+        pasos.map((paso, index) => (
+          <li class="despues-cita__step reveal reveal--scale">
+            <span class="despues-cita__numero">0{index + 1}</span>
+            <span class="despues-cita__titulo">{paso}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .despues-cita {
+    background: var(--color-white);
+  }
+
+  .despues-cita__flow {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .despues-cita__step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem 1.75rem;
+    border-top: 2px solid rgba(191, 145, 73, 0.4);
+  }
+
+  .despues-cita__numero {
+    color: var(--color-gold);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+  }
+
+  .despues-cita__titulo {
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  @media (min-width: 760px) {
+    .despues-cita__step:not(:nth-child(3n))::after {
+      position: absolute;
+      top: -1px;
+      right: -0.6rem;
+      width: 1.2rem;
+      height: 2px;
+      background: rgba(191, 145, 73, 0.4);
+      content: "";
+    }
+  }
+
+  @media (max-width: 759px) {
+    .despues-cita__flow {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .despues-cita__step {
+      padding: 1.25rem 0;
+      border-top: none;
+      border-bottom: 1px solid rgba(7, 21, 47, 0.08);
+    }
+
+    .despues-cita__step:last-child {
+      border-bottom: none;
+    }
+  }
+</style>

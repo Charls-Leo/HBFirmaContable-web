@@ -1,0 +1,110 @@
+---
+import Icono from "../../components/shared/Icono.astro";
+
+const columnas = [
+  {
+    titulo: "Solicitudes organizadas",
+    descripcion: "Canalizamos los requerimientos de forma estructurada para evitar confusiones.",
+    icono: "folder",
+  },
+  {
+    titulo: "Explicaciones comprensibles",
+    descripcion: "Transformamos términos técnicos en conceptos claros para su toma de decisiones.",
+    icono: "chart",
+  },
+  {
+    titulo: "Seguimiento según el servicio",
+    descripcion: "Establecemos hitos de control periódicos para garantizar el cumplimiento.",
+    icono: "compass",
+  },
+];
+---
+
+<section class="section comunicacion" aria-labelledby="comunicacion-title">
+  <div class="container">
+    <div class="comunicacion__header reveal">
+      <h2 class="heading" id="comunicacion-title">Comunicación clara durante todo el proceso</h2>
+      <p>
+        Mantenemos una comunicación directa para solicitar información, explicar resultados, resolver inquietudes y realizar el seguimiento correspondiente.
+      </p>
+    </div>
+    <div class="comunicacion__row stagger">
+      {
+        columnas.map((columna) => (
+          <div class="comunicacion__col reveal reveal--scale">
+            <span class="comunicacion__linea" aria-hidden="true"></span>
+            <Icono name={columna.icono} />
+            <h3>{columna.titulo}</h3>
+            <p>{columna.descripcion}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .comunicacion {
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .comunicacion__header {
+    max-width: 34rem;
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .heading {
+    font-size: var(--tamano-3xl);
+  }
+
+  .comunicacion__header p {
+    margin: 1.25rem 0 0;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .comunicacion__row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .comunicacion__linea {
+    display: block;
+    width: 2.35rem;
+    height: 1px;
+    margin-bottom: 1.25rem;
+    background: rgba(211, 172, 114, 0.78);
+  }
+
+  .comunicacion__col :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-gold);
+  }
+
+  .comunicacion__col h3 {
+    margin: 0 0 0.6rem;
+    font-family: var(--font-heading);
+    font-size: 1.0625rem;
+  }
+
+  .comunicacion__col p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 760px) {
+    .comunicacion__row {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

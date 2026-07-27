@@ -1,0 +1,15 @@
+---
+import heroImage from "../../assets/images/faq/faq.png";
+import HeroInterno from "../../components/shared/HeroInterno.astro";
+import { rutas } from "../../config/site";
+---
+
+<HeroInterno
+  imageSrc={heroImage.src}
+  imageAlt="Espacio de trabajo de HB Presentar"
+  eyebrow="Preguntas frecuentes"
+  titulo="Resolvemos sus principales inquietudes"
+  descripcion="Encuentre información general sobre nuestros servicios, el proceso de atención y la forma de trabajar con HB Presentar."
+  ctaLabel="Agendar una cita"
+  ctaHref={rutas.contacto}
+/>

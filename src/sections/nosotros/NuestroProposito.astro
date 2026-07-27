@@ -1,0 +1,117 @@
+---
+import Icono from "../../components/shared/Icono.astro";
+
+const pilares = [
+  {
+    titulo: "Claridad",
+    descripcion: "Transformar datos brutos en visiones útiles para su futuro financiero.",
+    icono: "chart",
+  },
+  {
+    titulo: "Organización",
+    descripcion: "Estructurar cada proceso para garantizar eficiencia y tranquilidad absoluta.",
+    icono: "folder",
+  },
+  {
+    titulo: "Acompañamiento",
+    descripcion: "Caminar al lado del cliente en el cumplimiento de sus metas de crecimiento.",
+    icono: "handshake",
+  },
+];
+---
+
+<section class="section proposito" aria-labelledby="proposito-title">
+  <div class="container">
+    <div class="proposito__header reveal">
+      <span class="eyebrow">Nuestro propósito</span>
+      <h2 class="heading" id="proposito-title">Claridad, organización y acompañamiento</h2>
+    </div>
+    <div class="proposito__row stagger">
+      {
+        pilares.map((pilar) => (
+          <div class="proposito__pilar reveal reveal--scale">
+            <Icono name={pilar.icono} />
+            <h3>{pilar.titulo}</h3>
+            <p>{pilar.descripcion}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .proposito {
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .proposito__header {
+    max-width: 34rem;
+    margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
+    text-align: center;
+  }
+
+  .proposito__header .heading {
+    margin-top: 1rem;
+    font-size: var(--tamano-3xl);
+  }
+
+  .proposito__row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .proposito__pilar {
+    padding: 0 2rem;
+    text-align: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .proposito__pilar:first-child {
+    border-left: none;
+  }
+
+  .proposito__pilar :global(svg) {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-bottom: 1rem;
+    color: var(--color-gold);
+  }
+
+  .proposito__pilar h3 {
+    margin: 0 0 0.65rem;
+    color: var(--color-gold);
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .proposito__pilar p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 760px) {
+    .proposito__row {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .proposito__pilar {
+      border-left: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 2rem 1rem 0;
+    }
+
+    .proposito__pilar:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+  }
+</style>

@@ -1,0 +1,115 @@
+---
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+
+const principios = [
+  {
+    titulo: "Escuchar antes de proponer",
+    descripcion: "Entendemos profundamente el contexto de cada negocio antes de cualquier diagnóstico.",
+  },
+  {
+    titulo: "Explicar con claridad",
+    descripcion: "Traducimos la normativa tributaria para que usted siempre sepa qué está pasando.",
+  },
+  {
+    titulo: "Trabajar con responsabilidad",
+    descripcion: "Cada vencimiento y reporte se trabaja con máxima precisión y rigor.",
+  },
+  {
+    titulo: "Acompañar el proceso",
+    descripcion: "No somos un proveedor externo, somos un aliado estratégico en su crecimiento.",
+  },
+];
+---
+
+<section class="section forma-acompanar" aria-labelledby="forma-acompanar-title">
+  <div class="container">
+    <TituloSeccion
+      id="forma-acompanar-title"
+      ceja="Nuestra forma de acompañar"
+      titulo="Principios que rigen cada relación de trabajo"
+    />
+    <ol class="forma-acompanar__lista stagger">
+      {
+        principios.map((principio, index) => (
+          <li class="reveal reveal--scale">
+            <span class="forma-acompanar__numero">0{index + 1}</span>
+            <div>
+              <h3>{principio.titulo}</h3>
+              <p>{principio.descripcion}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .forma-acompanar {
+    background: var(--color-white);
+  }
+
+  .forma-acompanar__lista {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .forma-acompanar__lista li {
+    padding: 0 1.75rem 0 0;
+    border-right: 1px solid rgba(7, 21, 47, 0.08);
+  }
+
+  .forma-acompanar__lista li:last-child {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .forma-acompanar__lista li + li {
+    padding-left: 1.75rem;
+  }
+
+  .forma-acompanar__numero {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-gold);
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+  }
+
+  .forma-acompanar__lista h3 {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.0625rem;
+    line-height: 1.2;
+  }
+
+  .forma-acompanar__lista p {
+    margin: 0;
+    color: color-mix(in srgb, var(--color-navy) 60%, transparent);
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 760px) {
+    .forma-acompanar__lista {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .forma-acompanar__lista li {
+      border-right: none;
+      padding: 0 0 1.5rem !important;
+      border-bottom: 1px solid rgba(7, 21, 47, 0.08);
+    }
+
+    .forma-acompanar__lista li:last-child {
+      padding-bottom: 0 !important;
+      border-bottom: none;
+    }
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import { preguntasFrecuentes } from "../../data/preguntasFrecuentes";
+import Icono from "../../components/shared/Icono.astro";
+import AcordeonItem from "../../components/shared/AcordeonItem.astro";
+
+const ordenCategorias = [
+  { nombre: "Sobre HB Presentar", icono: "bank" },
+  { nombre: "Sobre nuestros servicios", icono: "folder" },
+  { nombre: "Declaración de renta", icono: "receipt" },
+  { nombre: "Proceso y entrega de información", icono: "check" },
+];
+
+const grupos = ordenCategorias.map((categoria) => ({
+  ...categoria,
+  preguntas: preguntasFrecuentes.filter((item) => item.categoria === categoria.nombre),
+}));
+---
+
+<section class="section listado-faq" aria-label="Listado de preguntas frecuentes por categoría">
+  <div class="container listado-faq__inner">
+    {
+      grupos.map((grupo) => (
+        <div class="listado-faq__grupo reveal">
+          <div class="listado-faq__grupo-header">
+            <Icono name={grupo.icono} />
+            <h2>{grupo.nombre}</h2>
+          </div>
+          <div class="listado-faq__lista">
+            {grupo.preguntas.map((item, index) => (
+              <AcordeonItem
+                pregunta={item.pregunta}
+                respuesta={item.respuesta}
+                class="reveal"
+                style={`transition-delay: ${index * 80}ms`}
+              />
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .listado-faq {
+    background: color-mix(in srgb, var(--color-ivory) 55%, white);
+  }
+
+  .listado-faq__inner {
+    max-width: 52rem;
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .listado-faq__grupo-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid rgba(7, 21, 47, 0.1);
+  }
+
+  .listado-faq__grupo-header :global(svg) {
+    width: 1.35rem;
+    height: 1.35rem;
+    color: var(--color-gold);
+  }
+
+  .listado-faq__grupo-header h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
+  }
+
+  .listado-faq__lista {
+    display: grid;
+    gap: 0.75rem;
+  }
+</style>

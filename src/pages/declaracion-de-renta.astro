@@ -1,21 +1,23 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroDeclaracionRenta from "../sections/declaracion-renta/HeroDeclaracionRenta.astro";
+import AsesoriaPersonalizada from "../sections/declaracion-renta/AsesoriaPersonalizada.astro";
+import TopesDeclaracion from "../sections/declaracion-renta/TopesDeclaracion.astro";
+import CalendarioVencimientos from "../sections/declaracion-renta/CalendarioVencimientos.astro";
+import DocumentosNecesarios from "../sections/declaracion-renta/DocumentosNecesarios.astro";
+import FaqDeclaracion from "../sections/declaracion-renta/FaqDeclaracion.astro";
+import CtaDeclaracion from "../sections/declaracion-renta/CtaDeclaracion.astro";
 ---
 
-<BaseLayout title="Declaración de renta" showFloatingActions={false}>
-  <section class="placeholder">
-    <div class="container">
-      <span class="eyebrow">Próximamente</span>
-      <h1 class="heading">Declaración de renta</h1>
-      <p class="lead">Esta página quedará desarrollada en la siguiente etapa.</p>
-    </div>
-  </section>
+<BaseLayout
+  title="Declaración de renta"
+  description="Acompañamiento en la preparación de su declaración de renta 2026, año gravable 2025."
+>
+  <HeroDeclaracionRenta />
+  <AsesoriaPersonalizada />
+  <TopesDeclaracion />
+  <CalendarioVencimientos />
+  <DocumentosNecesarios />
+  <FaqDeclaracion />
+  <CtaDeclaracion />
 </BaseLayout>
-
-<style>
-  .placeholder {
-    min-height: 62vh;
-    padding-top: 9rem;
-    background: var(--color-ivory);
-  }
-</style>

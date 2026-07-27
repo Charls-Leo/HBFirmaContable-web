@@ -1,0 +1,15 @@
+---
+import heroImage from "../../assets/images/nosotros/nosotros1.png";
+import HeroInterno from "../../components/shared/HeroInterno.astro";
+import { rutas } from "../../config/site";
+---
+
+<HeroInterno
+  imageSrc={heroImage.src}
+  imageAlt="Equipo de HB Presentar en su oficina"
+  eyebrow="Nosotros"
+  titulo="Una firma cercana para decisiones más claras"
+  descripcion="En HB Presentar acompañamos a empresas, negocios, emprendedores y personas naturales en la organización y comprensión de su información contable, tributaria, laboral y financiera."
+  ctaLabel="Agendar una cita"
+  ctaHref={rutas.contacto}
+/>

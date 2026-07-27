@@ -1,0 +1,180 @@
+---
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+import Icono from "../../components/shared/Icono.astro";
+import Boton from "../../components/shared/Boton.astro";
+import { rutas } from "../../config/site";
+
+const topes = [
+  {
+    etiqueta: "Patrimonio bruto",
+    valor: "$224.096.000",
+    descripcion: "Al cierre del año gravable 2025, superior a 4.500 UVT.",
+    icono: "bank",
+  },
+  {
+    etiqueta: "Ingresos brutos",
+    valor: "$69.719.000",
+    descripcion: "Durante 2025, iguales o superiores a 1.400 UVT.",
+    icono: "chart",
+  },
+  {
+    etiqueta: "Consumos con tarjeta de crédito",
+    valor: "$69.719.000",
+    descripcion: "Consumos mediante tarjeta de crédito superiores a 1.400 UVT.",
+    icono: "wallet",
+  },
+  {
+    etiqueta: "Compras y consumos",
+    valor: "$69.719.000",
+    descripcion: "Valor total de compras y consumos superior a 1.400 UVT.",
+    icono: "store",
+  },
+  {
+    etiqueta: "Consignaciones bancarias",
+    valor: "$69.719.000",
+    descripcion: "Consignaciones, depósitos e inversiones financieras superiores a 1.400 UVT.",
+    icono: "receipt",
+  },
+  {
+    etiqueta: "Responsabilidad de IVA",
+    valor: "Según condición",
+    descripcion: "Haber sido responsable de IVA al 31 de diciembre de 2025.",
+    icono: "shield",
+  },
+];
+---
+
+<section class="section topes" aria-labelledby="topes-title">
+  <div class="container">
+    <TituloSeccion
+      id="topes-title"
+      ceja="Año gravable 2025"
+      titulo="¿Quiénes deben revisar si están obligados a declarar?"
+      descripcion="Estos son los criterios que, según la norma vigente, determinan si una persona natural debe presentar declaración de renta."
+    />
+    <div class="topes__grid stagger">
+      {
+        topes.map((tope) => (
+          <div class="topes__tile reveal reveal--scale">
+            <Icono name={tope.icono} />
+            <span class="topes__label">{tope.etiqueta}</span>
+            <strong class="topes__value">{tope.valor}</strong>
+            <p>{tope.descripcion}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="topes__footer reveal">
+      <p>
+        Los topes de obligación de declarar renta del año gravable 2025 se calculan con el UVT vigente ($49.799 COP), y con estos valores puede determinar si tiene la obligación de declarar.
+      </p>
+      <Boton href={rutas.contacto}>Revisar mi caso</Boton>
+    </div>
+  </div>
+</section>
+
+<style>
+  .topes {
+    background: color-mix(in srgb, var(--color-ivory) 72%, white);
+  }
+
+  .topes :global(.section-title) {
+    max-width: 46rem;
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .topes__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .topes__tile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid rgba(7, 21, 47, 0.08);
+    border-radius: 0.875rem;
+    background: var(--color-white);
+    padding: 1.6rem 1.5rem;
+    transition:
+      transform 260ms ease,
+      border-color 260ms ease,
+      box-shadow 260ms ease;
+  }
+
+  .topes__tile:hover {
+    transform: translateY(-4px);
+    border-color: rgba(191, 145, 73, 0.32);
+    box-shadow: var(--shadow-card);
+  }
+
+  .topes__tile :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-bottom: 0.4rem;
+    color: var(--color-gold);
+  }
+
+  .topes__label {
+    color: color-mix(in srgb, var(--color-navy) 62%, transparent);
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .topes__value {
+    font-family: var(--font-body);
+    font-size: 1.625rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-navy);
+  }
+
+  .topes__tile p {
+    margin: 0.15rem 0 0;
+    color: color-mix(in srgb, var(--color-navy) 62%, transparent);
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .topes__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 2.25rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(7, 21, 47, 0.08);
+  }
+
+  .topes__footer p {
+    margin: 0;
+    max-width: 38rem;
+    color: color-mix(in srgb, var(--color-navy) 64%, transparent);
+    font-size: 0.875rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 920px) {
+    .topes__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .topes__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .topes__footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

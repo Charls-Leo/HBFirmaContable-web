@@ -1,0 +1,146 @@
+---
+import asesoriaImage from "../../assets/images/declaracion-renta/declaracion2.png";
+import Icono from "../../components/shared/Icono.astro";
+
+const beneficios = [
+  "Escuchamos y conocemos su situación",
+  "Le explicamos con claridad lo que necesita",
+  "Organizamos y verificamos la información",
+  "Preparamos la declaración con cuidado y responsabilidad",
+  "Le acompañamos durante todo el proceso",
+];
+---
+
+<section class="section asesoria" aria-labelledby="asesoria-title">
+  <div class="container asesoria__grid">
+    <div class="asesoria__media reveal reveal--image">
+      <div class="asesoria__frame">
+        <img src={asesoriaImage.src} alt="Asesor de HB Presentar revisando la declaración de renta de un cliente" loading="lazy" decoding="async" />
+      </div>
+    </div>
+    <div class="asesoria__copy">
+      <span class="eyebrow reveal">Acompañamiento personalizado</span>
+      <h2 class="heading reveal" id="asesoria-title">Su declaración, revisada según su situación</h2>
+      <p class="lead reveal">
+        Cada persona tiene ingresos, bienes y responsabilidades diferentes. Por eso, nuestro enfoque no es una simple liquidación de impuestos, sino una asesoría que protege su patrimonio y garantiza el cumplimiento normativo.
+      </p>
+      <ul class="asesoria__list">
+        {
+          beneficios.map((beneficio) => (
+            <li class="reveal">
+              <Icono name="check" />
+              <span>{beneficio}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .asesoria {
+    background: var(--color-white);
+  }
+
+  .asesoria__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(3rem, 6vw, 5.5rem);
+    align-items: center;
+  }
+
+  .asesoria__frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(7, 21, 47, 0.06);
+    border-radius: var(--radius-card);
+    box-shadow: 0 24px 54px rgba(7, 21, 47, 0.14);
+  }
+
+  .asesoria__frame img {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .asesoria__media:hover img {
+    transform: scale(1.04);
+  }
+
+  .asesoria__copy {
+    max-width: 32rem;
+  }
+
+  .heading {
+    margin: 1rem 0 1.25rem;
+    font-size: var(--tamano-3xl);
+  }
+
+  .asesoria__list {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .asesoria__list li {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+  }
+
+  .asesoria__list :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: 0 0 auto;
+    color: var(--color-gold);
+  }
+
+  .asesoria__copy > .reveal:nth-child(1) {
+    transition-delay: 0ms;
+  }
+
+  .asesoria__copy > .reveal:nth-child(2) {
+    transition-delay: 100ms;
+  }
+
+  .asesoria__copy > .reveal:nth-child(3) {
+    transition-delay: 200ms;
+  }
+
+  .asesoria__list li:nth-child(1) {
+    transition-delay: 300ms;
+  }
+
+  .asesoria__list li:nth-child(2) {
+    transition-delay: 370ms;
+  }
+
+  .asesoria__list li:nth-child(3) {
+    transition-delay: 440ms;
+  }
+
+  .asesoria__list li:nth-child(4) {
+    transition-delay: 510ms;
+  }
+
+  .asesoria__list li:nth-child(5) {
+    transition-delay: 580ms;
+  }
+
+  @media (max-width: 900px) {
+    .asesoria__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .asesoria__copy {
+      max-width: none;
+    }
+  }
+</style>

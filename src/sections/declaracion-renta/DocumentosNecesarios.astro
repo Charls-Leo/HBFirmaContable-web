@@ -1,0 +1,100 @@
+---
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+import Icono from "../../components/shared/Icono.astro";
+
+const documentos = [
+  { texto: "Cédula y RUT actualizado", icono: "badge" },
+  { texto: "Certificados de ingresos", icono: "receipt" },
+  { texto: "Extractos bancarios", icono: "bank" },
+  { texto: "Soportes de activos", icono: "folder" },
+  { texto: "Declaración anterior", icono: "document" },
+  { texto: "Otros, según su perfil", icono: "clipboard" },
+];
+---
+
+<section class="section documentos" aria-labelledby="documentos-title">
+  <div class="container documentos__inner">
+    <TituloSeccion
+      id="documentos-title"
+      ceja="Antes de comenzar"
+      titulo="Información necesaria para comenzar"
+      descripcion="Para realizar una liquidación precisa, es fundamental contar con la documentación soporte. Aquí listamos lo más básico."
+    />
+    <ul class="documentos__list stagger">
+      {
+        documentos.map((doc) => (
+          <li class="reveal reveal--scale">
+            <Icono name={doc.icono} />
+            <span>{doc.texto}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="documentos__nota reveal">Algunos documentos pueden variar según cada caso particular.</p>
+  </div>
+</section>
+
+<style>
+  .documentos {
+    background: color-mix(in srgb, var(--color-ivory) 72%, white);
+  }
+
+  .documentos__inner {
+    max-width: 56rem;
+  }
+
+  .documentos__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .documentos__list li {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    border: 1px solid rgba(7, 21, 47, 0.08);
+    border-radius: 0.7rem;
+    background: var(--color-white);
+    padding: 0.95rem 1.15rem;
+    transition:
+      border-color 220ms ease,
+      background-color 220ms ease;
+  }
+
+  .documentos__list li:hover {
+    border-color: rgba(191, 145, 73, 0.32);
+    background: var(--color-ivory);
+  }
+
+  .documentos__list :global(svg) {
+    width: 1.2rem;
+    height: 1.2rem;
+    flex: 0 0 auto;
+    color: var(--color-gold);
+  }
+
+  .documentos__list span {
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+
+  .documentos__nota {
+    margin: 1.5rem 0 0;
+    color: color-mix(in srgb, var(--color-navy) 58%, transparent);
+    font-size: 0.8125rem;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  @media (max-width: 620px) {
+    .documentos__list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

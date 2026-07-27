@@ -1,0 +1,15 @@
+---
+import heroImage from "../../assets/images/como-trabajamos/como-trabajamos.png";
+import HeroInterno from "../../components/shared/HeroInterno.astro";
+import { rutas } from "../../config/site";
+---
+
+<HeroInterno
+  imageSrc={heroImage.src}
+  imageAlt="Equipo de HB Presentar definiendo el plan de trabajo con un cliente"
+  eyebrow="Cómo trabajamos"
+  titulo="Un proceso claro desde el primer contacto"
+  descripcion="Organizamos cada etapa del servicio para que usted conozca el alcance, las responsabilidades y la forma en que le acompañaremos."
+  ctaLabel="Agendar una cita"
+  ctaHref={rutas.contacto}
+/>

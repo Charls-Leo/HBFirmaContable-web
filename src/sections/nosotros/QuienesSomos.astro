@@ -1,0 +1,99 @@
+---
+import Icono from "../../components/shared/Icono.astro";
+
+const valores = [
+  { texto: "Trabajo en equipo", icono: "team" },
+  { texto: "Comunicación clara", icono: "chart" },
+  { texto: "Manejo responsable de la información", icono: "lock" },
+  { texto: "Compromiso con cada cliente", icono: "handshake" },
+];
+---
+
+<section class="section quienes-somos" aria-labelledby="quienes-somos-title">
+  <div class="container quienes-somos__inner">
+    <span class="eyebrow reveal">Quiénes somos</span>
+    <h2 class="heading reveal" id="quienes-somos-title">Una firma que trabaja de cerca con cada cliente</h2>
+    <p class="lead reveal">
+      HB Presentar es un equipo dedicado a la organización contable, tributaria, laboral y financiera de empresas, negocios y personas naturales. Creemos en la responsabilidad, la dedicación y la atención cercana como base de cada relación de trabajo, y en que la información financiera solo es útil cuando se comunica con claridad.
+    </p>
+    <ul class="quienes-somos__valores stagger">
+      {
+        valores.map((valor) => (
+          <li class="reveal reveal--scale">
+            <Icono name={valor.icono} />
+            <span>{valor.texto}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .quienes-somos {
+    background: var(--color-white);
+  }
+
+  .quienes-somos__inner {
+    max-width: 46rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .heading {
+    margin: 1rem 0 1.25rem;
+    font-size: var(--tamano-3xl);
+  }
+
+  .lead {
+    margin: 0 auto;
+  }
+
+  .quienes-somos__valores {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .quienes-somos__valores li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid rgba(7, 21, 47, 0.08);
+    border-radius: 0.7rem;
+    background: var(--color-ivory);
+    padding: 0.95rem 1.15rem;
+    text-align: left;
+    transition:
+      border-color 220ms ease,
+      background-color 220ms ease;
+  }
+
+  .quienes-somos__valores li:hover {
+    border-color: rgba(191, 145, 73, 0.32);
+    background: color-mix(in srgb, var(--color-ivory) 60%, white);
+  }
+
+  .quienes-somos__valores :global(svg) {
+    width: 1.2rem;
+    height: 1.2rem;
+    flex: 0 0 auto;
+    color: var(--color-gold);
+  }
+
+  .quienes-somos__valores span {
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 620px) {
+    .quienes-somos__valores {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

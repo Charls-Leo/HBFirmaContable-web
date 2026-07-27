@@ -1,0 +1,171 @@
+---
+import { CALENDARIO_VENCIMIENTOS, NOTA_CALENDARIO } from "../../data/calendarioRenta";
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+---
+
+<section class="section calendario" id="calendario-vencimientos" aria-labelledby="calendario-title">
+  <div class="container">
+    <TituloSeccion
+      id="calendario-title"
+      ceja="Calendario DIAN 2026"
+      titulo="Consulte la fecha de su declaración"
+      descripcion="El vencimiento se determina según los dos últimos dígitos del NIT o cédula, sin incluir el dígito de verificación."
+    />
+    <div class="calendario__grid">
+      {
+        CALENDARIO_VENCIMIENTOS.map((mesData) => (
+          <div class="calendario__mes reveal reveal--scale">
+            <div class="calendario__mes-header">
+              <h3>{mesData.mes}</h3>
+              <span>{mesData.anio}</span>
+            </div>
+            <div class="calendario__lista">
+              <div class="calendario__fila calendario__fila--head">
+                <span>Dígitos</span>
+                <span>Fecha límite</span>
+              </div>
+              {mesData.rangos.map((rango) => (
+                <div class="calendario__fila">
+                  <strong>{rango.digitos}</strong>
+                  <span>{rango.fecha}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <p class="calendario__nota reveal">{NOTA_CALENDARIO}</p>
+  </div>
+</section>
+
+<style>
+  .calendario {
+    background: var(--color-white);
+  }
+
+  .calendario__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .calendario__mes {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(7, 21, 47, 0.08);
+    border-radius: 0.875rem;
+    background: var(--color-ivory);
+    box-shadow: 0 1px 0 rgba(7, 21, 47, 0.03);
+  }
+
+  .calendario__grid > .reveal:nth-child(1) {
+    transition-delay: 0ms;
+  }
+
+  .calendario__grid > .reveal:nth-child(2) {
+    transition-delay: 140ms;
+  }
+
+  .calendario__grid > .reveal:nth-child(3) {
+    transition-delay: 280ms;
+  }
+
+  .calendario__mes-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    background: var(--color-navy);
+    padding: 1.1rem 1.4rem;
+    color: var(--color-white);
+  }
+
+  .calendario__mes-header h3 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+  }
+
+  .calendario__mes-header span {
+    color: rgba(255, 255, 255, 0.55);
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .calendario__lista {
+    max-height: 24rem;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+    scrollbar-color: var(--color-gold) rgba(7, 21, 47, 0.08);
+    scrollbar-width: thin;
+  }
+
+  .calendario__fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.65rem 1.4rem;
+    border-bottom: 1px solid rgba(7, 21, 47, 0.06);
+    transition: background-color 180ms ease;
+  }
+
+  .calendario__fila:last-child {
+    border-bottom: none;
+  }
+
+  .calendario__fila:not(.calendario__fila--head):nth-child(even) {
+    background: rgba(7, 21, 47, 0.02);
+  }
+
+  .calendario__fila:not(.calendario__fila--head):hover {
+    background: rgba(191, 145, 73, 0.1);
+  }
+
+  .calendario__fila--head {
+    color: color-mix(in srgb, var(--color-navy) 55%, transparent);
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .calendario__fila strong {
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  .calendario__fila span {
+    color: color-mix(in srgb, var(--color-navy) 62%, transparent);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+
+  .calendario__nota {
+    max-width: 46rem;
+    margin: 2rem auto 0;
+    color: color-mix(in srgb, var(--color-navy) 60%, transparent);
+    font-size: 0.8125rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .calendario__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .calendario__lista {
+      max-height: none;
+      overflow-y: visible;
+    }
+  }
+</style>

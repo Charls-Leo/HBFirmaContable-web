@@ -1,0 +1,374 @@
+---
+import contactoImage from "../../assets/images/contacto/contacto.png";
+import Icono from "../../components/shared/Icono.astro";
+import IconoWhatsapp from "../../components/shared/IconoWhatsapp.astro";
+import Boton from "../../components/shared/Boton.astro";
+import { site, rutas } from "../../config/site";
+
+const servicios = [
+  "Declaración de renta",
+  "Contabilidad para negocios y empresas",
+  "Nómina y seguridad social",
+  "Otro",
+];
+---
+
+<section class="hero-contacto" aria-labelledby="hero-contacto-title">
+  <img class="hero-contacto__image" src={contactoImage.src} alt="Oficina de HB Presentar" loading="eager" decoding="async" />
+  <div class="hero-contacto__overlay"></div>
+  <div class="hero-contacto__content">
+    <div class="hero-contacto__copy">
+      <span class="hero-contacto__eyebrow">Contacto</span>
+      <h1 class="hero-contacto__title" id="hero-contacto-title">Conversemos sobre sus necesidades</h1>
+      <p>
+        Cuéntenos qué tipo de acompañamiento necesita y nos pondremos en contacto para conocer su situación y orientarle sobre el servicio adecuado.
+      </p>
+      <ul class="hero-contacto__datos">
+        <li>
+          <IconoWhatsapp />
+          <span>{site.whatsappDisplay}</span>
+        </li>
+        <li>
+          <Icono name="mail" />
+          <span>{site.correo}</span>
+        </li>
+        <li>
+          <Icono name="clock" />
+          <span>Atención virtual y presencial con cita previa</span>
+        </li>
+      </ul>
+      <blockquote>"Cada solicitud es revisada de manera personalizada antes de presentar una propuesta."</blockquote>
+    </div>
+
+    <div class="hero-contacto__form-card">
+      <h2>Solicite una cita</h2>
+      <p class="hero-contacto__form-intro">Complete sus datos y cuéntenos brevemente cómo podemos ayudarle.</p>
+      <form id="form-contacto" novalidate data-destino={site.correo}>
+        <div class="campo">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="name" required />
+        </div>
+        <div class="campo-grupo">
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" autocomplete="email" required />
+          </div>
+          <div class="campo">
+            <label for="telefono">Teléfono / WhatsApp</label>
+            <input type="tel" id="telefono" name="telefono" autocomplete="tel" required />
+          </div>
+        </div>
+        <div class="campo">
+          <label for="servicio">Servicio de interés</label>
+          <select id="servicio" name="servicio" required>
+            <option value="" selected disabled>Seleccione una opción</option>
+            {servicios.map((servicio) => <option value={servicio}>{servicio}</option>)}
+          </select>
+        </div>
+        <div class="campo">
+          <label for="mensaje">¿En qué podemos ayudarle?</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+        </div>
+        <label class="campo-check">
+          <input type="checkbox" id="tratamiento" name="tratamiento" required />
+          <span>
+            Acepto el tratamiento de mis datos personales según la <a href={rutas.tratamientoDatos}>política de tratamiento de datos</a>.
+          </span>
+        </label>
+        <Boton type="submit" size="lg" class="hero-contacto__submit">Solicitar cita</Boton>
+        <p class="hero-contacto__form-nota" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("#form-contacto");
+  const nota = form?.querySelector<HTMLParagraphElement>(".hero-contacto__form-nota");
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const datos = new FormData(form);
+    const nombre = String(datos.get("nombre") ?? "");
+    const correo = String(datos.get("correo") ?? "");
+    const telefono = String(datos.get("telefono") ?? "");
+    const servicio = String(datos.get("servicio") ?? "");
+    const mensaje = String(datos.get("mensaje") ?? "");
+
+    const asunto = encodeURIComponent(`Solicitud de cita — ${nombre}`);
+    const cuerpo = encodeURIComponent(
+      `Nombre: ${nombre}\nCorreo: ${correo}\nTeléfono / WhatsApp: ${telefono}\nServicio de interés: ${servicio}\n\nMensaje:\n${mensaje}`,
+    );
+
+    if (nota) {
+      nota.textContent = "Abriendo su cliente de correo para enviar la solicitud a HB Presentar…";
+    }
+
+    const destino = form.dataset.destino;
+    window.location.href = `mailto:${destino}?subject=${asunto}&body=${cuerpo}`;
+  });
+</script>
+
+<style>
+  .hero-contacto {
+    position: relative;
+    display: flex;
+    min-height: 40rem;
+    align-items: center;
+    overflow: hidden;
+    background: #080e1c;
+    color: #fbf9f5;
+    padding-block: 6.5rem 3rem;
+  }
+
+  .hero-contacto__image,
+  .hero-contacto__overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-contacto__image {
+    object-fit: cover;
+    object-position: center center;
+    opacity: 0.96;
+  }
+
+  .hero-contacto__overlay {
+    background:
+      linear-gradient(90deg, rgba(8, 14, 28, 0.94) 0%, rgba(8, 14, 28, 0.88) 45%, rgba(10, 18, 36, 0.72) 100%),
+      linear-gradient(180deg, rgba(8, 14, 28, 0.3) 0%, rgba(8, 14, 28, 0.16) 48%, rgba(8, 14, 28, 0.42) 100%);
+  }
+
+  .hero-contacto__content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: start;
+    width: min(1280px, 100%);
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  .hero-contacto__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: #d3ac72;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .hero-contacto__eyebrow::before {
+    display: inline-block;
+    width: 2.35rem;
+    height: 1px;
+    background: rgba(211, 172, 114, 0.78);
+    content: "";
+  }
+
+  .hero-contacto__title {
+    max-width: 24rem;
+    margin: 1.1rem 0 1.1rem;
+    color: #fbf9f5;
+    font-family: var(--font-heading);
+    font-size: var(--tamano-4xl);
+    font-weight: 600;
+    line-height: 1.06;
+  }
+
+  .hero-contacto__copy > p {
+    max-width: 26rem;
+    margin: 0 0 1.75rem;
+    color: #b7c0d4;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .hero-contacto__datos {
+    display: grid;
+    gap: 0.85rem;
+    margin: 0 0 1.75rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .hero-contacto__datos li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: #d7dee9;
+    font-size: 0.9rem;
+  }
+
+  .hero-contacto__datos :global(svg) {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: 0 0 auto;
+    color: var(--color-gold);
+  }
+
+  .hero-contacto__copy blockquote {
+    max-width: 24rem;
+    margin: 0;
+    border-left: 2px solid rgba(211, 172, 114, 0.6);
+    padding-left: 1.1rem;
+    color: #b7c0d4;
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .hero-contacto__form-card {
+    border-radius: var(--radius-card);
+    background: var(--color-ivory);
+    padding: clamp(1.75rem, 3vw, 2.25rem);
+    box-shadow: 0 30px 64px rgba(7, 21, 47, 0.3);
+  }
+
+  .hero-contacto__form-card h2 {
+    margin: 0 0 0.35rem;
+    color: var(--color-navy);
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
+  }
+
+  .hero-contacto__form-intro {
+    margin: 0 0 1.5rem;
+    color: color-mix(in srgb, var(--color-navy) 62%, transparent);
+    font-size: 0.875rem;
+    font-weight: 300;
+  }
+
+  form {
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  .campo-grupo {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem;
+  }
+
+  .campo {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  label {
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  input,
+  select,
+  textarea {
+    border: 1px solid rgba(7, 21, 47, 0.15);
+    border-radius: 0.6rem;
+    background: var(--color-white);
+    padding: 0.75rem 0.9rem;
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(191, 145, 73, 0.18);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 6rem;
+  }
+
+  .campo-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .campo-check input {
+    width: 1.05rem;
+    height: 1.05rem;
+    margin-top: 0.15rem;
+    flex: 0 0 auto;
+    accent-color: var(--color-gold);
+  }
+
+  .campo-check span {
+    color: color-mix(in srgb, var(--color-navy) 68%, transparent);
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .campo-check a {
+    color: var(--color-gold);
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  :global(.hero-contacto__submit) {
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+
+  .hero-contacto__form-nota {
+    margin: 0;
+    min-height: 1em;
+    color: var(--color-gold);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  @media (max-width: 960px) {
+    .hero-contacto__content {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-contacto__title,
+    .hero-contacto__copy > p,
+    .hero-contacto__copy blockquote {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .hero-contacto {
+      min-height: auto;
+      padding-block: 5.5rem 2.5rem;
+    }
+
+    .campo-grupo {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

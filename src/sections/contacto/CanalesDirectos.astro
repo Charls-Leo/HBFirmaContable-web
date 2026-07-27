@@ -1,0 +1,77 @@
+---
+import Boton from "../../components/shared/Boton.astro";
+import IconoWhatsapp from "../../components/shared/IconoWhatsapp.astro";
+import Icono from "../../components/shared/Icono.astro";
+import { site } from "../../config/site";
+import { getEnlaceWhatsapp } from "../../utils/whatsapp";
+---
+
+<section class="section canales" aria-labelledby="canales-title">
+  <div class="container canales__inner">
+    <span class="eyebrow reveal">Otra opción</span>
+    <h2 class="heading reveal" id="canales-title">También puede comunicarse directamente</h2>
+    <p class="reveal">Seleccione el canal que le resulte más cómodo para iniciar la conversación con nuestro equipo.</p>
+    <div class="canales__actions reveal">
+      <Boton href={getEnlaceWhatsapp()} target="_blank" ariaLabel="Contactar por WhatsApp (se abre en una pestaña nueva)">
+        <IconoWhatsapp class="canales__icon" />
+        Contactar por WhatsApp
+      </Boton>
+      <Boton href={`mailto:${site.correo}`} variant="outline">
+        <Icono name="mail" class="canales__icon" />
+        Enviar correo electrónico
+      </Boton>
+    </div>
+  </div>
+</section>
+
+<style>
+  .canales {
+    background: var(--color-navy);
+    color: var(--color-white);
+    text-align: center;
+  }
+
+  .canales__inner {
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+
+  .heading {
+    margin: 1rem 0 1.25rem;
+    font-size: var(--tamano-3xl);
+  }
+
+  .canales__inner > p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .canales__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  :global(.canales__icon) {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 540px) {
+    .canales__actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .canales__actions :global(.btn) {
+      width: 100%;
+    }
+  }
+</style>

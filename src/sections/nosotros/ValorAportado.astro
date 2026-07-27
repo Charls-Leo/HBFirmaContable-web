@@ -1,0 +1,172 @@
+---
+import Icono from "../../components/shared/Icono.astro";
+
+const beneficios = [
+  "Mejor organización administrativa y documental",
+  "Comprensión profunda de sus obligaciones tributarias",
+  "Identificación oportuna de riesgos financieros",
+  "Base sólida para la planeación y el crecimiento",
+];
+---
+
+<section class="section valor-aportado" aria-labelledby="valor-aportado-title">
+  <div class="container valor-aportado__grid">
+    <div class="valor-aportado__copy">
+      <span class="eyebrow reveal">Nuestro enfoque</span>
+      <h2 class="heading reveal" id="valor-aportado-title">Más que cumplir, buscamos aportar claridad</h2>
+      <p class="lead reveal">
+        Nuestra gestión no termina en el envío de una declaración. El verdadero valor está en su capacidad de interpretar esos resultados para mejorar.
+      </p>
+      <ul class="valor-aportado__lista">
+        {
+          beneficios.map((beneficio) => (
+            <li class="reveal">
+              <Icono name="check" />
+              <span>{beneficio}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="valor-aportado__panel reveal reveal--scale">
+      <span class="eyebrow">Acompañamiento HB Presentar</span>
+      <h3>Información útil para quienes deciden</h3>
+      <p>
+        Organizamos cada resultado contable para que se convierta en una herramienta de decisión, no solo en un requisito de cumplimiento.
+      </p>
+      <div class="valor-aportado__panel-footer">
+        <Icono name="chart" />
+        <span>Claridad financiera, paso a paso</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .valor-aportado {
+    background: var(--color-white);
+  }
+
+  .valor-aportado__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(3rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .heading {
+    margin: 1rem 0 1.25rem;
+    font-size: var(--tamano-3xl);
+  }
+
+  .lead {
+    margin: 0 0 1.75rem;
+    max-width: 32rem;
+  }
+
+  .valor-aportado__lista {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .valor-aportado__lista li {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+  }
+
+  .valor-aportado__lista :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: 0 0 auto;
+    color: var(--color-gold);
+  }
+
+  .valor-aportado__copy > .reveal:nth-child(1) {
+    transition-delay: 0ms;
+  }
+
+  .valor-aportado__copy > .reveal:nth-child(2) {
+    transition-delay: 100ms;
+  }
+
+  .valor-aportado__copy > .reveal:nth-child(3) {
+    transition-delay: 200ms;
+  }
+
+  .valor-aportado__lista li:nth-child(1) {
+    transition-delay: 300ms;
+  }
+
+  .valor-aportado__lista li:nth-child(2) {
+    transition-delay: 360ms;
+  }
+
+  .valor-aportado__lista li:nth-child(3) {
+    transition-delay: 420ms;
+  }
+
+  .valor-aportado__lista li:nth-child(4) {
+    transition-delay: 480ms;
+  }
+
+  .valor-aportado__panel {
+    display: grid;
+    gap: 1rem;
+    border: 1px solid rgba(7, 21, 47, 0.08);
+    border-radius: var(--radius-card);
+    background: var(--color-ivory);
+    padding: clamp(2rem, 4vw, 2.75rem);
+    box-shadow: 0 24px 54px rgba(7, 21, 47, 0.1);
+  }
+
+  .valor-aportado__panel h3 {
+    margin: 0.5rem 0 0;
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
+    line-height: 1.2;
+  }
+
+  .valor-aportado__panel p {
+    margin: 0;
+    color: color-mix(in srgb, var(--color-navy) 64%, transparent);
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .valor-aportado__panel-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: 0.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(7, 21, 47, 0.08);
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .valor-aportado__panel-footer :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-gold);
+  }
+
+  @media (max-width: 900px) {
+    .valor-aportado__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .lead {
+      max-width: none;
+    }
+  }
+</style>

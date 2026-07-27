@@ -1,21 +1,17 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroFaq from "../sections/faq/HeroFaq.astro";
+import IntroduccionFaq from "../sections/faq/IntroduccionFaq.astro";
+import ListadoFaq from "../sections/faq/ListadoFaq.astro";
+import SinRespuesta from "../sections/faq/SinRespuesta.astro";
 ---
 
-<BaseLayout title="Preguntas frecuentes" showFloatingActions={false}>
-  <section class="placeholder">
-    <div class="container">
-      <span class="eyebrow">Próximamente</span>
-      <h1 class="heading">Preguntas frecuentes</h1>
-      <p class="lead">Esta página quedará desarrollada en la siguiente etapa.</p>
-    </div>
-  </section>
+<BaseLayout
+  title="Preguntas frecuentes"
+  description="Resolvemos las principales dudas sobre los servicios y el modelo de trabajo de HB Presentar."
+>
+  <HeroFaq />
+  <IntroduccionFaq />
+  <ListadoFaq />
+  <SinRespuesta />
 </BaseLayout>
-
-<style>
-  .placeholder {
-    min-height: 62vh;
-    padding-top: 9rem;
-    background: var(--color-ivory);
-  }
-</style>

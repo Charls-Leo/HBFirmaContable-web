@@ -1,21 +1,25 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroComoTrabajamos from "../sections/como-trabajamos/HeroComoTrabajamos.astro";
+import IntroduccionProceso from "../sections/como-trabajamos/IntroduccionProceso.astro";
+import MetodologiaTrabajo from "../sections/como-trabajamos/MetodologiaTrabajo.astro";
+import DespuesDeCita from "../sections/como-trabajamos/DespuesDeCita.astro";
+import TrabajoConjunto from "../sections/como-trabajamos/TrabajoConjunto.astro";
+import ComunicacionSeguimiento from "../sections/como-trabajamos/ComunicacionSeguimiento.astro";
+import FaqProceso from "../sections/como-trabajamos/FaqProceso.astro";
+import CtaComoTrabajamos from "../sections/como-trabajamos/CtaComoTrabajamos.astro";
 ---
 
-<BaseLayout title="Cómo trabajamos" showFloatingActions={false}>
-  <section class="placeholder">
-    <div class="container">
-      <span class="eyebrow">Próximamente</span>
-      <h1 class="heading">Cómo trabajamos</h1>
-      <p class="lead">Esta página quedará desarrollada en la siguiente etapa.</p>
-    </div>
-  </section>
+<BaseLayout
+  title="Cómo trabajamos"
+  description="Conozca el proceso de trabajo de HB Presentar, desde el primer contacto hasta el acompañamiento continuo."
+>
+  <HeroComoTrabajamos />
+  <IntroduccionProceso />
+  <MetodologiaTrabajo />
+  <DespuesDeCita />
+  <TrabajoConjunto />
+  <ComunicacionSeguimiento />
+  <FaqProceso />
+  <CtaComoTrabajamos />
 </BaseLayout>
-
-<style>
-  .placeholder {
-    min-height: 62vh;
-    padding-top: 9rem;
-    background: var(--color-ivory);
-  }
-</style>

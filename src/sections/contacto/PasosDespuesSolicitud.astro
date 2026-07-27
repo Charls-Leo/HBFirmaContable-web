@@ -1,0 +1,112 @@
+---
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+import Icono from "../../components/shared/Icono.astro";
+
+const pasos = [
+  {
+    titulo: "Revisamos su mensaje",
+    descripcion: "Conocemos de manera general su necesidad y el servicio de interés para asignar al especialista adecuado.",
+    icono: "document",
+  },
+  {
+    titulo: "Nos comunicamos con usted",
+    descripcion: "Coordinamos una conversación inicial, virtual o presencial, para ampliar la información necesaria.",
+    icono: "handshake",
+  },
+  {
+    titulo: "Definimos el siguiente paso",
+    descripcion: "Le orientamos sobre el servicio adecuado y, cuando corresponda, presentamos una propuesta formal de trabajo.",
+    icono: "check",
+  },
+];
+---
+
+<section class="section pasos-solicitud" aria-labelledby="pasos-solicitud-title">
+  <div class="container">
+    <TituloSeccion
+      id="pasos-solicitud-title"
+      ceja="Qué sigue"
+      titulo="¿Qué sucede después de enviar su solicitud?"
+    />
+    <div class="pasos-solicitud__grid stagger">
+      {
+        pasos.map((paso, index) => (
+          <div class="pasos-solicitud__tile reveal reveal--scale">
+            <span class="pasos-solicitud__numero">0{index + 1}</span>
+            <Icono name={paso.icono} />
+            <h3>{paso.titulo}</h3>
+            <p>{paso.descripcion}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .pasos-solicitud {
+    background: color-mix(in srgb, var(--color-ivory) 72%, white);
+  }
+
+  .pasos-solicitud__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .pasos-solicitud__tile {
+    position: relative;
+    border: 1px solid rgba(7, 21, 47, 0.08);
+    border-radius: 0.875rem;
+    background: var(--color-white);
+    padding: 1.85rem;
+    transition:
+      transform 260ms ease,
+      border-color 260ms ease,
+      box-shadow 260ms ease;
+  }
+
+  .pasos-solicitud__tile:hover {
+    transform: translateY(-4px);
+    border-color: rgba(191, 145, 73, 0.32);
+    box-shadow: var(--shadow-card);
+  }
+
+  .pasos-solicitud__numero {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.75rem;
+    color: rgba(191, 145, 73, 0.4);
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
+  }
+
+  .pasos-solicitud__tile :global(svg) {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-bottom: 1.1rem;
+    color: var(--color-gold);
+  }
+
+  .pasos-solicitud__tile h3 {
+    max-width: 12rem;
+    margin: 0 0 0.6rem;
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    line-height: 1.2;
+  }
+
+  .pasos-solicitud__tile p {
+    margin: 0;
+    color: color-mix(in srgb, var(--color-navy) 62%, transparent);
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 760px) {
+    .pasos-solicitud__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

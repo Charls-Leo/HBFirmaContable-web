@@ -1,0 +1,213 @@
+---
+import TituloSeccion from "../../components/shared/TituloSeccion.astro";
+import Icono from "../../components/shared/Icono.astro";
+
+const pasos = [
+  {
+    titulo: "Diagnóstico",
+    descripcion: "Escuchamos antes de proponer. Entendemos el contexto de su negocio, la situación actual y los procesos que requieren acompañamiento.",
+    icono: "compass",
+  },
+  {
+    titulo: "Propuesta",
+    descripcion: "Explicamos con claridad. Definimos el alcance del servicio, las responsabilidades, las entregas y la forma de trabajo, sin letra pequeña.",
+    icono: "document",
+  },
+  {
+    titulo: "Organización",
+    descripcion: "Trabajamos con responsabilidad. Recopilamos, revisamos y estructuramos la información necesaria para avanzar con rigor.",
+    icono: "folder",
+  },
+  {
+    titulo: "Acompañamiento",
+    descripcion: "Acompañamos cada etapa. Realizamos seguimiento, presentamos la información correspondiente y resolvemos sus inquietudes en el camino.",
+    icono: "handshake",
+  },
+];
+---
+
+<section class="section metodologia" aria-labelledby="metodologia-title">
+  <div class="container">
+    <TituloSeccion id="metodologia-title" ceja="Metodología" titulo="Nuestra metodología de trabajo" align="left" />
+
+    <div class="metodologia__flow reveal">
+      <div class="metodologia__rail" aria-hidden="true">
+        <span class="metodologia__rail-base"></span>
+        <span class="metodologia__rail-progress"></span>
+      </div>
+      <ol class="metodologia__steps">
+        {
+          pasos.map((paso, index) => (
+            <li class="metodologia__step">
+              <span class="metodologia__node">
+                <Icono name={paso.icono} />
+              </span>
+              <div class="metodologia__content">
+                <span class="metodologia__numero">0{index + 1}</span>
+                <h3>{paso.titulo}</h3>
+                <p>{paso.descripcion}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .metodologia {
+    background: color-mix(in srgb, var(--color-ivory) 72%, white);
+  }
+
+  .metodologia :global(.section-title) {
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .metodologia__flow {
+    position: relative;
+    max-width: 44rem;
+  }
+
+  .metodologia__rail {
+    position: absolute;
+    top: 1.4rem;
+    bottom: 1.4rem;
+    left: 1.4rem;
+    width: 2px;
+  }
+
+  .metodologia__rail-base {
+    position: absolute;
+    inset: 0;
+    background: rgba(191, 145, 73, 0.2);
+    opacity: 0;
+    transition: opacity 500ms ease 120ms;
+  }
+
+  .metodologia__flow.is-visible .metodologia__rail-base {
+    opacity: 1;
+  }
+
+  .metodologia__rail-progress {
+    position: absolute;
+    inset: 0;
+    background: var(--color-gold);
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  .metodologia__flow.is-visible .metodologia__rail-progress {
+    animation: metodologia-fill 1.3s cubic-bezier(0.16, 1, 0.3, 1) 220ms forwards;
+  }
+
+  .metodologia__steps {
+    position: relative;
+    display: grid;
+    gap: 2.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .metodologia__step {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .metodologia__node {
+    display: grid;
+    width: 2.85rem;
+    height: 2.85rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid rgba(191, 145, 73, 0.32);
+    border-radius: 999px;
+    background: var(--color-white);
+    color: var(--color-gold);
+    box-shadow: 0 12px 28px rgba(191, 145, 73, 0.14);
+    transition:
+      border-color 420ms ease,
+      background-color 420ms ease,
+      color 420ms ease;
+  }
+
+  .metodologia__node :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .metodologia__step:nth-child(1) .metodologia__node {
+    transition-delay: 260ms;
+  }
+
+  .metodologia__step:nth-child(2) .metodologia__node {
+    transition-delay: 460ms;
+  }
+
+  .metodologia__step:nth-child(3) .metodologia__node {
+    transition-delay: 660ms;
+  }
+
+  .metodologia__step:nth-child(4) .metodologia__node {
+    transition-delay: 860ms;
+  }
+
+  .metodologia__flow.is-visible .metodologia__node {
+    border-color: var(--color-gold);
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .metodologia__content {
+    padding-top: 0.3rem;
+  }
+
+  .metodologia__numero {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--color-gold);
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+  }
+
+  .metodologia__content h3 {
+    margin: 0 0 0.4rem;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+  }
+
+  .metodologia__content p {
+    max-width: 32rem;
+    margin: 0;
+    color: color-mix(in srgb, var(--color-navy) 62%, transparent);
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 620px) {
+    .metodologia__step {
+      gap: 1.1rem;
+    }
+
+    .metodologia__node {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+
+    .metodologia__rail {
+      left: 1.15rem;
+    }
+  }
+
+  @keyframes metodologia-fill {
+    from {
+      transform: scaleY(0);
+    }
+
+    to {
+      transform: scaleY(1);
+    }
+  }
+</style>

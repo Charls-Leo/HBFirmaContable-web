@@ -1,0 +1,89 @@
+---
+import Boton from "../../components/shared/Boton.astro";
+import IconoWhatsapp from "../../components/shared/IconoWhatsapp.astro";
+import { rutas } from "../../config/site";
+import { getEnlaceWhatsapp } from "../../utils/whatsapp";
+---
+
+<section class="section sin-respuesta" aria-labelledby="sin-respuesta-title">
+  <div class="container">
+    <div class="sin-respuesta__panel reveal reveal--scale">
+      <h2 id="sin-respuesta-title">¿No encontró la respuesta que buscaba?</h2>
+      <p>
+        Cuéntenos cuál es su inquietud o caso específico. Nuestro equipo está listo para brindarle una asesoría personalizada y adaptada a sus necesidades.
+      </p>
+      <div class="sin-respuesta__actions">
+        <Boton href={rutas.contacto} size="lg">Agendar una cita</Boton>
+        <Boton
+          href={getEnlaceWhatsapp()}
+          variant="ghost"
+          size="lg"
+          target="_blank"
+          ariaLabel="Contactar por WhatsApp (se abre en una pestaña nueva)"
+        >
+          <IconoWhatsapp class="sin-respuesta__whatsapp-icon" />
+          Hablar por WhatsApp
+        </Boton>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sin-respuesta {
+    background: color-mix(in srgb, var(--color-ivory) 55%, white);
+    padding-top: 0;
+  }
+
+  .sin-respuesta__panel {
+    max-width: 42rem;
+    margin-inline: auto;
+    border: 1px solid rgba(7, 21, 47, 0.08);
+    border-radius: var(--radius-card);
+    background: var(--color-white);
+    padding: clamp(2.5rem, 5vw, 3.5rem);
+    text-align: center;
+    box-shadow: 0 24px 54px rgba(7, 21, 47, 0.1);
+  }
+
+  .sin-respuesta__panel h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: var(--tamano-2xl);
+  }
+
+  .sin-respuesta__panel p {
+    max-width: 34rem;
+    margin: 1.1rem auto 0;
+    color: color-mix(in srgb, var(--color-navy) 64%, transparent);
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .sin-respuesta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.75rem;
+  }
+
+  :global(.sin-respuesta__whatsapp-icon) {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 540px) {
+    .sin-respuesta__actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .sin-respuesta__actions :global(.btn) {
+      width: 100%;
+    }
+  }
+</style>
