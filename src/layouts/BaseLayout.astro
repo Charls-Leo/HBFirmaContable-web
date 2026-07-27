@@ -3,6 +3,7 @@ import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import AccionesFlotantes from "../components/shared/AccionesFlotantes.astro";
 import { site } from "../config/site";
+import { withBase } from "../utils/paths";
 import "../styles/global.css";
 
 interface Props {
@@ -26,8 +27,9 @@ const pageTitle = title === site.nombre ? title : `${title} | ${site.nombreCorto
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
+    <link rel="icon" href={withBase("/favicon.ico")} />
+    <link rel="manifest" href={withBase("/site.webmanifest")} />
     <title>{pageTitle}</title>
     <noscript>
       <style>

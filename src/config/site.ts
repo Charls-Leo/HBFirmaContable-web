@@ -1,9 +1,11 @@
+import { withBase } from "../utils/paths";
+
 export const site = {
   nombre: "HB Presentar Firma Contable by H & B",
   nombreCorto: "HB Presentar",
   descripcion:
     "Firma contable enfocada en brindar claridad y seguridad financiera a través de procesos organizados y acompañamiento humano cercano.",
-  url: "https://hb-presentar.com",
+  url: "https://charls-leo.github.io/HBFirmaContable-web/",
   anio: 2026,
   whatsapp: "573186057841",
   whatsappDisplay: "+57 318 605 7841",
@@ -12,14 +14,14 @@ export const site = {
 };
 
 export const rutas = {
-  inicio: "/",
-  servicios: "/servicios/",
-  declaracionRenta: "/declaracion-de-renta/",
-  nosotros: "/nosotros/",
-  comoTrabajamos: "/como-trabajamos/",
-  contacto: "/contacto/",
-  preguntasFrecuentes: "/preguntas-frecuentes/",
-  privacidad: "/privacidad/",
-  tratamientoDatos: "/tratamiento-datos/",
-  terminos: "/terminos/",
+  inicio: withBase("/"),
+  servicios: withBase("/servicios/"),
+  declaracionRenta: withBase("/declaracion-de-renta/"),
+  nosotros: withBase("/nosotros/"),
+  comoTrabajamos: withBase("/como-trabajamos/"),
+  contacto: withBase("/contacto/"),
+  preguntasFrecuentes: withBase("/preguntas-frecuentes/"),
+  privacidad: withBase("/privacidad/"),
+  tratamientoDatos: withBase("/tratamiento-datos/"),
+  terminos: withBase("/terminos/"),
 };

@@ -41,3 +41,17 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Despliegue temporal
+
+Este proyecto usa GitHub Pages temporalmente para pruebas con:
+
+- `site: https://charls-leo.github.io`
+- `base: /HBFirmaContable-web`
+
+Al migrar a un dominio propio o hosting definitivo:
+
+1. Cambiar `site` en `astro.config.mjs`.
+2. Eliminar `base` en `astro.config.mjs`.
+3. Verificar enlaces internos y assets.
+4. Desactivar o eliminar `.github/workflows/deploy.yml` si GitHub Pages deja de utilizarse.
