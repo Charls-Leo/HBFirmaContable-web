@@ -1,12 +1,12 @@
 ---
-import { rutas } from "../../config/site";
+import { rutas, site } from "../../config/site";
 import { getEnlaceWhatsapp } from "../../utils/whatsapp";
 import Icono from "./Icono.astro";
 import IconoWhatsapp from "./IconoWhatsapp.astro";
 ---
 
 <div class="floating-actions" aria-label="Acciones rápidas">
-  <a href={rutas.contacto} class="floating-actions__item" aria-label="Contactar con HB Presentar">
+  <a href={rutas.contacto} class="floating-actions__item" aria-label={`Contactar con ${site.nombre}`}>
     <span>Contacto</span>
     <Icono name="mail" />
   </a>

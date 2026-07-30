@@ -12,6 +12,12 @@ export const perfiles = [
     icono: "briefcase",
   },
   {
+    titulo: "Creadores de contenido",
+    descripcion:
+      "Orientación contable, tributaria y financiera para organizar ingresos, contratos, gastos, obligaciones y el crecimiento de su marca personal.",
+    icono: "camera",
+  },
+  {
     titulo: "Empresas",
     descripcion:
       "Servicios contables, tributarios, laborales y financieros adaptados a la operación y necesidades de cada empresa.",

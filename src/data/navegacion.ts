@@ -6,6 +6,7 @@ export const navegacionPrincipal = [
   { etiqueta: "Nosotros", href: rutas.nosotros },
   { etiqueta: "Cómo trabajamos", href: rutas.comoTrabajamos },
   { etiqueta: "Preguntas frecuentes", href: rutas.preguntasFrecuentes },
+  { etiqueta: "Contacto", href: rutas.contacto },
 ];
 
 export const navegacionFooter = [

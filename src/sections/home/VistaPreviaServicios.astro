@@ -2,6 +2,8 @@
 import { servicios } from "../../data/servicios";
 import TituloSeccion from "../../components/shared/TituloSeccion.astro";
 import TarjetaServicio from "../../components/shared/TarjetaServicio.astro";
+import Boton from "../../components/shared/Boton.astro";
+import { rutas } from "../../config/site";
 ---
 
 <section class="section services" id="servicios" aria-labelledby="servicios-title">
@@ -13,10 +15,13 @@ import TarjetaServicio from "../../components/shared/TarjetaServicio.astro";
     />
     <div class="services__grid stagger">
       {
-        servicios.slice(0, 3).map((servicio) => (
+        servicios.map(({ id, href, tituloFooter, ...servicio }) => (
           <TarjetaServicio class="reveal reveal--scale" {...servicio} />
         ))
       }
+    </div>
+    <div class="services__actions reveal">
+      <Boton href={rutas.servicios}>Conocer todos nuestros servicios</Boton>
     </div>
   </div>
 </section>
@@ -37,7 +42,13 @@ import TarjetaServicio from "../../components/shared/TarjetaServicio.astro";
   .services__grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
+    gap: clamp(1rem, 2vw, 1.35rem);
+  }
+
+  .services__actions {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(1.75rem, 4vw, 2.5rem);
   }
 
   @media (max-width: 920px) {

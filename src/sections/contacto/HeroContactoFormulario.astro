@@ -4,17 +4,13 @@ import Icono from "../../components/shared/Icono.astro";
 import IconoWhatsapp from "../../components/shared/IconoWhatsapp.astro";
 import Boton from "../../components/shared/Boton.astro";
 import { site, rutas } from "../../config/site";
+import { servicios as serviciosDisponibles } from "../../data/servicios";
 
-const servicios = [
-  "Declaración de renta",
-  "Contabilidad para negocios y empresas",
-  "Nómina y seguridad social",
-  "Otro",
-];
+const serviciosInteres = serviciosDisponibles.map((servicio) => servicio.titulo);
 ---
 
 <section class="hero-contacto" aria-labelledby="hero-contacto-title">
-  <img class="hero-contacto__image" src={contactoImage.src} alt="Oficina de HB Presentar" loading="eager" decoding="async" />
+  <img class="hero-contacto__image" src={contactoImage.src} alt={`Oficina de ${site.nombre}`} loading="eager" decoding="async" />
   <div class="hero-contacto__overlay"></div>
   <div class="hero-contacto__content">
     <div class="hero-contacto__copy">
@@ -62,7 +58,8 @@ const servicios = [
           <label for="servicio">Servicio de interés</label>
           <select id="servicio" name="servicio" required>
             <option value="" selected disabled>Seleccione una opción</option>
-            {servicios.map((servicio) => <option value={servicio}>{servicio}</option>)}
+            {serviciosInteres.map((servicio) => <option value={servicio}>{servicio}</option>)}
+            <option value="Otro">Otro</option>
           </select>
         </div>
         <div class="campo">
@@ -107,7 +104,7 @@ const servicios = [
     );
 
     if (nota) {
-      nota.textContent = "Abriendo su cliente de correo para enviar la solicitud a HB Presentar…";
+      nota.textContent = "Abriendo su cliente de correo para enviar la solicitud a Presentar By H&B SAS...";
     }
 
     const destino = form.dataset.destino;

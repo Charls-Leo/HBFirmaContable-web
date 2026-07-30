@@ -1,10 +1,10 @@
 import { withBase } from "../utils/paths";
 
 export const site = {
-  nombre: "HB Presentar Firma Contable by H & B",
-  nombreCorto: "HB Presentar",
+  nombre: "Presentar By H&B SAS",
+  nombreCorto: "Presentar By H&B SAS",
   descripcion:
-    "Firma contable enfocada en brindar claridad y seguridad financiera a través de procesos organizados y acompañamiento humano cercano.",
+    "Somos expertos tributarios y contables. Ayudamos a personas y empresas a cumplir sus obligaciones, optimizar sus procesos y tomar decisiones financieras con confianza.",
   url: "https://charls-leo.github.io/HBFirmaContable-web/",
   anio: 2026,
   whatsapp: "573186057841",

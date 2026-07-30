@@ -1,5 +1,5 @@
 ---
-import { rutas } from "../../config/site";
+import { rutas, site } from "../../config/site";
 import Logo from "../shared/Logo.astro";
 import Icono from "../shared/Icono.astro";
 import NavegacionPrincipal from "./NavegacionPrincipal.astro";
@@ -8,7 +8,7 @@ import MenuMovil from "./MenuMovil.astro";
 
 <header class="site-header" id="site-header">
   <div class="site-header__inner">
-    <a class="site-header__brand" href={rutas.inicio} aria-label="HB Presentar, ir al inicio">
+    <a class="site-header__brand" href={rutas.inicio} aria-label={`${site.nombre}, ir al inicio`}>
       <Logo tone="light" class="site-header__logo site-header__logo--light" />
       <Logo tone="dark" class="site-header__logo site-header__logo--dark" />
     </a>
@@ -163,7 +163,7 @@ import MenuMovil from "./MenuMovil.astro";
     height: 1.15rem;
   }
 
-  @media (max-width: 1040px) {
+  @media (max-width: 1120px) {
     .site-header__desktop {
       display: none;
     }

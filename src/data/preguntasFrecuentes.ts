@@ -4,14 +4,14 @@ export const preguntasFrecuentes = [
     respuesta:
       "Sí. Acompañamos tanto a personas naturales como a personas jurídicas, adaptando el servicio a las obligaciones y necesidades de cada caso.",
     vistaPrevia: true,
-    categoria: "Sobre HB Presentar",
+    categoria: "Sobre Presentar By H&B SAS",
   },
   {
     pregunta: "¿Ofrecen atención virtual en todo el país?",
     respuesta:
       "Sí. El acompañamiento puede realizarse de forma virtual, manteniendo reuniones, revisión documental y seguimiento por canales digitales.",
     vistaPrevia: true,
-    categoria: "Sobre HB Presentar",
+    categoria: "Sobre Presentar By H&B SAS",
   },
   {
     pregunta: "¿Qué incluye el servicio de contabilidad mensual?",
@@ -67,7 +67,7 @@ export const preguntasFrecuentes = [
     pregunta: "¿Los honorarios son fijos o dependen del volumen?",
     respuesta:
       "Los honorarios se definen de acuerdo con el alcance, la complejidad y el volumen de información que requiere cada cliente.",
-    categoria: "Sobre HB Presentar",
+    categoria: "Sobre Presentar By H&B SAS",
   },
   {
     pregunta: "¿Asesoran a personas naturales que no son comerciantes?",
@@ -104,6 +104,6 @@ export const preguntasFrecuentes = [
     respuesta:
       "La información se maneja con reserva, acceso limitado y procesos ordenados para proteger los documentos y datos compartidos por cada cliente.",
     comoTrabajamosPreview: true,
-    categoria: "Sobre HB Presentar",
+    categoria: "Sobre Presentar By H&B SAS",
   },
 ];

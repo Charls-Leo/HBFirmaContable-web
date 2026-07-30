@@ -28,7 +28,7 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
       <nav aria-label="Servicios destacados" class="reveal">
         <h2>Servicios</h2>
         <ul>
-          {servicios.slice(0, 4).map((item) => <li><a href={item.href}>{item.titulo}</a></li>)}
+          {servicios.slice(0, 4).map((item) => <li><a href={item.href}>{item.tituloFooter ?? item.titulo}</a></li>)}
         </ul>
       </nav>
 
@@ -65,7 +65,7 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
     </div>
 
     <div class="footer__bottom">
-      <p>© {site.anio} {site.nombreCorto} | Todos los derechos reservados</p>
+      <p>© {site.anio} {site.nombre} | Todos los derechos reservados</p>
     </div>
   </div>
 </footer>
@@ -79,7 +79,7 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
 
   .footer__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) repeat(4, minmax(7.5rem, 1fr));
+    grid-template-columns: minmax(15rem, 1.35fr) repeat(4, minmax(7.5rem, 1fr));
     gap: clamp(2rem, 5vw, 4rem);
     margin-bottom: clamp(3rem, 7vw, 5rem);
   }
@@ -90,7 +90,7 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
   }
 
   .footer__brand p {
-    max-width: 18rem;
+    max-width: 23rem;
     margin: 0;
     font-size: 0.92rem;
     font-weight: 300;

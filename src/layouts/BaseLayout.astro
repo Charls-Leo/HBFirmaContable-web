@@ -18,6 +18,20 @@ const {
   showFloatingActions = true,
 } = Astro.props;
 const pageTitle = title === site.nombre ? title : `${title} | ${site.nombreCorto}`;
+const canonicalUrl = new URL(Astro.url.pathname, site.url).toString();
+const ogImage = new URL(withBase("/images/social/open-graph.webp"), site.url).toString();
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "AccountingService",
+  name: site.nombre,
+  url: site.url,
+  email: site.correo,
+  telephone: site.whatsappDisplay,
+  description: site.descripcion,
+  image: ogImage,
+  areaServed: "Colombia",
+  sameAs: [],
+};
 ---
 
 <!doctype html>
@@ -27,10 +41,22 @@ const pageTitle = title === site.nombre ? title : `${title} | ${site.nombreCorto
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={site.nombre} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <link rel="icon" href={withBase("/favicon.ico")} />
     <link rel="manifest" href={withBase("/site.webmanifest")} />
     <title>{pageTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
     <noscript>
       <style>
         .reveal,

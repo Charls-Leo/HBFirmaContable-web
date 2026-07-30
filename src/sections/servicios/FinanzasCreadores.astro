@@ -1,0 +1,507 @@
+---
+import creadoresImage from "../../assets/images/servicios/servicios5.png";
+import { servicios } from "../../data/servicios";
+
+const servicio = servicios.find((item) => item.id === "creadores-contenido") ?? servicios[2];
+
+const puntosDiagnostico = [
+  "Nivel y estabilidad de los ingresos.",
+  "Ingresos de marcas, plataformas, afiliados o productos propios.",
+  "Gastos relacionados con equipos, producción, edición, viajes o estudio.",
+  "Facturación, soportes y contratos.",
+  "Riesgos sobre el patrimonio personal.",
+  "Proyección hacia marca, agencia, equipo o productos propios.",
+];
+
+const alternativas = [
+  {
+    numero: "01",
+    titulo: "Persona natural",
+    descripcion:
+      "Para actividades en consolidación o con una operación todavía sencilla, cuando la situación puede manejarse correctamente como persona natural.",
+  },
+  {
+    numero: "02",
+    titulo: "Régimen Simple de Tributación",
+    descripcion:
+      "Alternativa que puede evaluarse cuando se cumplen sus requisitos y la actividad requiere mayor simplicidad en el cumplimiento tributario.",
+  },
+  {
+    numero: "03",
+    titulo: "SAS / persona jurídica",
+    descripcion:
+      "Puede analizarse cuando existen ingresos sostenidos, contratos más amplios, equipo de trabajo, necesidad de formalización o separación patrimonial.",
+  },
+];
+
+const niveles = [
+  {
+    etiqueta: "Nivel 1",
+    titulo: "Diagnóstico inicial",
+    puntos: [
+      "Revisión de variables principales.",
+      "Identificación de necesidades.",
+      "Recomendación preliminar de estructura.",
+    ],
+  },
+  {
+    etiqueta: "Nivel 2",
+    titulo: "Plan de implementación",
+    puntos: [
+      "Organización de cuentas y documentación.",
+      "Facturación y calendario tributario.",
+      "Formalización cuando corresponda.",
+    ],
+  },
+  {
+    etiqueta: "Nivel 3",
+    titulo: "Acompañamiento periódico",
+    puntos: [
+      "Contabilidad y declaraciones.",
+      "Seguimiento mensual o trimestral.",
+      "Revisión continua de la operación.",
+    ],
+  },
+];
+---
+
+<section class="creadores" id="creadores-contenido" aria-labelledby="creadores-title">
+  <div class="creadores__hero" style={`--creadores-bg: url(${creadoresImage.src});`}>
+    <div class="container creadores__hero-inner">
+      <div class="creadores__hero-copy">
+        <span class="creadores__eyebrow reveal">Servicio especializado</span>
+        <h2 class="creadores__title reveal" id="creadores-title">{servicio.titulo}</h2>
+        <p class="creadores__intro reveal">
+          Acompañamos a creadores de contenido y marcas personales a organizar sus ingresos, obligaciones y decisiones financieras de acuerdo con la etapa y proyección de su actividad.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="creadores__body">
+    <div class="container">
+      <section class="creadores__block creadores__block--diagnostico" aria-labelledby="diagnostico-creadores-title">
+        <div class="creadores__block-copy reveal reveal--left">
+          <span class="eyebrow">Diagnóstico inicial sin costo</span>
+          <h3 class="heading" id="diagnostico-creadores-title">Diagnóstico financiero y tributario inicial</h3>
+          <p class="lead">
+            Realizamos una evaluación inicial para conocer la actividad, sus fuentes de ingreso, gastos, obligaciones y proyección antes de recomendar una estructura.
+          </p>
+        </div>
+
+        <ul class="creadores__checks stagger" aria-label="Puntos evaluados en el diagnóstico">
+          {
+            puntosDiagnostico.map((punto) => (
+              <li class="reveal reveal--scale">
+                <span class="creadores__check-mark" aria-hidden="true">✓</span>
+                <span>{punto}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="creadores__block creadores__block--estructura" aria-labelledby="estructura-creadores-title">
+        <div class="creadores__sequence stagger">
+          {
+            alternativas.map((alternativa) => (
+              <article class="creadores__alternative reveal reveal--left">
+                <span>{alternativa.numero}</span>
+                <div>
+                  <h4>{alternativa.titulo}</h4>
+                  <p>{alternativa.descripcion}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+
+        <div class="creadores__block-copy creadores__block-copy--right reveal reveal--right">
+          <span class="eyebrow">Evaluación de estructura</span>
+          <h3 class="heading" id="estructura-creadores-title">La alternativa adecuada depende de cada caso</h3>
+          <p class="lead">
+            Revisamos la actividad, los ingresos, los costos, la documentación, los contratos, los riesgos y la proyección antes de recomendar una estructura.
+          </p>
+          <p class="creadores__note">
+            La recomendación es individual y debe revisarse conforme a las condiciones particulares y la normativa vigente.
+          </p>
+        </div>
+      </section>
+
+      <section class="creadores__levels" aria-labelledby="niveles-creadores-title">
+        <div class="creadores__levels-heading reveal">
+          <span class="eyebrow" id="niveles-creadores-title">Niveles de acompañamiento</span>
+          <p class="lead">
+            El acompañamiento puede comenzar con una evaluación inicial y ampliarse según las necesidades de la actividad.
+          </p>
+        </div>
+
+        <div class="creadores__cards stagger">
+          {
+            niveles.map((nivel) => (
+              <article class="creadores__card reveal reveal--scale">
+                <span>{nivel.etiqueta}</span>
+                <h4>{nivel.titulo}</h4>
+                <ul>
+                  {nivel.puntos.map((punto) => <li>{punto}</li>)}
+                </ul>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<style>
+  .creadores {
+    background: color-mix(in srgb, var(--color-ivory) 76%, white);
+  }
+
+  .creadores__hero {
+    position: relative;
+    min-height: clamp(25rem, 48vw, 34rem);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-image:
+      linear-gradient(90deg, rgba(8, 14, 28, 0.94) 0%, rgba(8, 14, 28, 0.82) 42%, rgba(8, 14, 28, 0.44) 100%),
+      linear-gradient(180deg, rgba(8, 14, 28, 0.2) 0%, rgba(8, 14, 28, 0.5) 100%),
+      var(--creadores-bg);
+    background-position: center;
+    background-size: cover;
+    color: var(--color-white);
+  }
+
+  .creadores__hero-inner {
+    width: min(var(--container), calc(100% - clamp(1.5rem, 5vw, 5.5rem)));
+    padding-block: clamp(4rem, 7vw, 6rem);
+  }
+
+  .creadores__hero-copy {
+    max-width: 48rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .creadores__eyebrow {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--color-gold);
+    font-family: var(--font-body);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .creadores__title {
+    margin: 0;
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 4.5vw, 4.3rem);
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.02;
+  }
+
+  .creadores__intro {
+    max-width: 46rem;
+    margin: 1.15rem auto 0;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: clamp(0.98rem, 1.3vw, 1.08rem);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .creadores__body {
+    padding-block: clamp(3.75rem, 7vw, 5.5rem);
+  }
+
+  .creadores__block {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .creadores__block + .creadores__block,
+  .creadores__levels {
+    margin-top: clamp(3.25rem, 6vw, 4.75rem);
+  }
+
+  .creadores__block--estructura {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+
+  .creadores__block-copy {
+    max-width: 31rem;
+  }
+
+  .creadores__block-copy--right {
+    justify-self: end;
+  }
+
+  .heading {
+    margin: 0;
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.08;
+  }
+
+  .lead {
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.68;
+  }
+
+  .creadores__checks {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .creadores__checks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    min-height: 3.45rem;
+    border: 1px solid rgba(7, 21, 47, 0.08);
+    border-radius: 0.55rem;
+    background: var(--color-white);
+    padding: 0.72rem 0.85rem;
+    color: color-mix(in srgb, var(--color-navy) 78%, transparent);
+    font-size: 0.86rem;
+    line-height: 1.42;
+  }
+
+  .creadores__check-mark {
+    display: inline-grid;
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    place-items: center;
+    margin-top: 0.12rem;
+    border-radius: 999px;
+    color: var(--color-gold);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .creadores__checks :global(svg) {
+    width: 1rem !important;
+    height: 1rem !important;
+    max-width: 1rem;
+    max-height: 1rem;
+    flex: 0 0 1rem;
+  }
+
+  .creadores__sequence {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .creadores__alternative {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 0.95rem;
+    align-items: start;
+    border-left: 1px solid rgba(191, 145, 73, 0.32);
+    background: rgba(255, 255, 255, 0.56);
+    padding: 1rem 1rem 1rem 1.2rem;
+  }
+
+  .creadores__alternative > span {
+    color: var(--color-gold);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .creadores__alternative h4,
+  .creadores__card h4 {
+    margin: 0;
+    color: var(--color-navy);
+    font-family: var(--font-heading);
+    font-size: 1.08rem;
+    font-weight: 600;
+    line-height: 1.16;
+  }
+
+  .creadores__alternative p {
+    margin: 0.38rem 0 0;
+    color: color-mix(in srgb, var(--color-navy) 66%, transparent);
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  .creadores__note {
+    margin: 1rem 0 0;
+    border-left: 2px solid rgba(191, 145, 73, 0.55);
+    padding-left: 1rem;
+    color: color-mix(in srgb, var(--color-navy) 62%, transparent);
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .creadores__levels {
+    text-align: center;
+  }
+
+  .creadores__levels-heading {
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  .creadores__levels-heading .lead {
+    max-width: 38rem;
+    margin-inline: auto;
+    margin-top: 0.65rem;
+  }
+
+  .creadores__cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: clamp(1.35rem, 3vw, 2rem);
+  }
+
+  .creadores__card {
+    display: flex;
+    min-height: 11rem;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid rgba(7, 21, 47, 0.08);
+    border-radius: 0.8rem;
+    background: color-mix(in srgb, var(--color-ivory) 54%, white);
+    padding: 1.05rem 1.15rem;
+    text-align: left;
+  }
+
+  .creadores__card > span {
+    margin-bottom: 0.42rem;
+    color: var(--color-gold);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .creadores__card ul {
+    display: grid;
+    gap: 0.32rem;
+    margin: 0.65rem 0 0;
+    padding-left: 1rem;
+    color: color-mix(in srgb, var(--color-navy) 68%, transparent);
+    font-size: 0.84rem;
+    font-weight: 300;
+    line-height: 1.42;
+  }
+
+  .creadores__hero-copy > .reveal:nth-child(1) {
+    transition-delay: 0ms;
+  }
+
+  .creadores__hero-copy > .reveal:nth-child(2) {
+    transition-delay: 90ms;
+  }
+
+  .creadores__hero-copy > .reveal:nth-child(3) {
+    transition-delay: 180ms;
+  }
+
+  .creadores__sequence .reveal:nth-child(1),
+  .creadores__checks .reveal:nth-child(1),
+  .creadores__cards .reveal:nth-child(1) {
+    transition-delay: 80ms;
+  }
+
+  .creadores__sequence .reveal:nth-child(2),
+  .creadores__checks .reveal:nth-child(2),
+  .creadores__cards .reveal:nth-child(2) {
+    transition-delay: 160ms;
+  }
+
+  .creadores__sequence .reveal:nth-child(3),
+  .creadores__checks .reveal:nth-child(3),
+  .creadores__cards .reveal:nth-child(3) {
+    transition-delay: 240ms;
+  }
+
+  .creadores__checks .reveal:nth-child(4) {
+    transition-delay: 320ms;
+  }
+
+  .creadores__checks .reveal:nth-child(5) {
+    transition-delay: 400ms;
+  }
+
+  .creadores__checks .reveal:nth-child(6) {
+    transition-delay: 480ms;
+  }
+
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .creadores__hero {
+      background-attachment: fixed;
+    }
+  }
+
+  @media (max-width: 980px) {
+    .creadores__block,
+    .creadores__block--estructura {
+      grid-template-columns: 1fr;
+    }
+
+    .creadores__block--estructura .creadores__block-copy {
+      order: -1;
+      justify-self: start;
+    }
+
+    .creadores__block-copy {
+      max-width: 42rem;
+    }
+
+    .creadores__cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .creadores__hero {
+      min-height: 28rem;
+      background-attachment: scroll;
+      background-position: 58% center;
+    }
+
+    .creadores__hero-inner {
+      padding-block: 4.75rem;
+    }
+
+    .creadores__title {
+      font-size: clamp(2.25rem, 11vw, 3.1rem);
+    }
+
+    .creadores__checks,
+    .creadores__cards {
+      grid-template-columns: 1fr;
+      overflow: visible;
+    }
+
+    .creadores__card {
+      min-height: auto;
+    }
+
+    .creadores__alternative {
+      grid-template-columns: 2.55rem minmax(0, 1fr);
+    }
+  }
+</style>
