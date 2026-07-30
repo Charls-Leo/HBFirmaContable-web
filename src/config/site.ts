@@ -5,7 +5,8 @@ export const site = {
   nombreCorto: "Presentar By H&B SAS",
   descripcion:
     "Somos expertos tributarios y contables. Ayudamos a personas y empresas a cumplir sus obligaciones, optimizar sus procesos y tomar decisiones financieras con confianza.",
-  url: "https://charls-leo.github.io/HBFirmaContable-web/",
+  // Actualizar cuando Netlify entregue la URL temporal o cuando se conecte el dominio final.
+  url: import.meta.env.PUBLIC_SITE_URL ?? "https://presentarhb.netlify.app/",
   anio: 2026,
   whatsapp: "573186057841",
   whatsappDisplay: "+57 318 605 7841",

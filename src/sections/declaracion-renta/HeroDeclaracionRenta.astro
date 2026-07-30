@@ -1,11 +1,19 @@
 ---
+import { getImage } from "astro:assets";
 import heroImage from "../../assets/images/declaracion-renta/declaracion-1.png";
 import HeroInterno from "../../components/shared/HeroInterno.astro";
 import { rutas } from "../../config/site";
+
+const heroImageOptimizada = await getImage({
+  src: heroImage,
+  width: 1800,
+  format: "webp",
+  quality: 76,
+});
 ---
 
 <HeroInterno
-  imageSrc={heroImage.src}
+  imageSrc={heroImageOptimizada.src}
   imageAlt="Documentos y proceso de declaración de renta en Presentar By H&B SAS"
   eyebrow="Declaración de renta 2026 · Año gravable 2025"
   titulo="Su declaración de renta, clara y bien preparada"

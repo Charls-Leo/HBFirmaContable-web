@@ -1,11 +1,19 @@
 ---
+import { getImage } from "astro:assets";
 import heroImage from "../../assets/images/nosotros/nosotros1.png";
 import HeroInterno from "../../components/shared/HeroInterno.astro";
 import { rutas } from "../../config/site";
+
+const heroImageOptimizada = await getImage({
+  src: heroImage,
+  width: 1800,
+  format: "webp",
+  quality: 76,
+});
 ---
 
 <HeroInterno
-  imageSrc={heroImage.src}
+  imageSrc={heroImageOptimizada.src}
   imageAlt="Equipo de Presentar By H&B SAS en su oficina"
   eyebrow="Nosotros"
   titulo="Una firma cercana para decisiones más claras"

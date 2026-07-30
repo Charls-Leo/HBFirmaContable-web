@@ -1,6 +1,14 @@
 ---
+import { getImage } from "astro:assets";
 import asesoriaImage from "../../assets/images/declaracion-renta/declaracion2.png";
 import Icono from "../../components/shared/Icono.astro";
+
+const asesoriaImageOptimizada = await getImage({
+  src: asesoriaImage,
+  width: 960,
+  format: "webp",
+  quality: 76,
+});
 
 const beneficios = [
   "Escuchamos y conocemos su situación",
@@ -15,7 +23,7 @@ const beneficios = [
   <div class="container asesoria__grid">
     <div class="asesoria__media reveal reveal--image">
       <div class="asesoria__frame">
-        <img src={asesoriaImage.src} alt="Asesor de Presentar By H&B SAS revisando la declaración de renta de un cliente" loading="lazy" decoding="async" />
+        <img src={asesoriaImageOptimizada.src} alt="Asesor de Presentar By H&B SAS revisando la declaración de renta de un cliente" loading="lazy" decoding="async" />
       </div>
     </div>
     <div class="asesoria__copy">

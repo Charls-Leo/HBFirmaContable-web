@@ -1,4 +1,5 @@
 ---
+import { getImage } from "astro:assets";
 import logoClaro from "../../assets/images/brand/Logoblancolineal.png";
 import logoOscuro from "../../assets/images/brand/logonegrolineal.png";
 import { site } from "../../config/site";
@@ -9,7 +10,19 @@ interface Props {
 }
 
 const { tone = "dark", class: className = "" } = Astro.props;
-const logo = tone === "light" ? logoClaro : logoOscuro;
+const logoClaroOptimizado = await getImage({
+  src: logoClaro,
+  width: 360,
+  format: "webp",
+  quality: 90,
+});
+const logoOscuroOptimizado = await getImage({
+  src: logoOscuro,
+  width: 360,
+  format: "webp",
+  quality: 90,
+});
+const logo = tone === "light" ? logoClaroOptimizado : logoOscuroOptimizado;
 ---
 
 <img class={`logo ${className}`} src={logo.src} alt={site.nombre} loading="eager" decoding="async" />

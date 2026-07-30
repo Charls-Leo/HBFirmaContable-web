@@ -1,8 +1,16 @@
 ---
+import { getImage } from "astro:assets";
 import { serviciosEmpresas } from "../../data/serviciosEmpresas";
 import TituloSeccion from "../../components/shared/TituloSeccion.astro";
 import Icono from "../../components/shared/Icono.astro";
 import logoBloque from "../../assets/images/brand/logoblancobloque.png";
+
+const logoBloqueOptimizado = await getImage({
+  src: logoBloque,
+  width: 220,
+  format: "webp",
+  quality: 84,
+});
 
 const angulos = [-90, -30, 30, 90, 150, 210];
 const items = serviciosEmpresas.map((servicio, index) => ({
@@ -23,7 +31,7 @@ const items = serviciosEmpresas.map((servicio, index) => ({
     <div class="orbit reveal reveal--scale" aria-hidden="true">
       <div class="orbit__ring"></div>
       <div class="orbit__hub">
-        <img src={logoBloque.src} alt="" />
+        <img src={logoBloqueOptimizado.src} alt="" />
       </div>
       {
         items.map((item, index) => (
