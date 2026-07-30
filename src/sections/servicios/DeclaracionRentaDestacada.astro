@@ -1,8 +1,16 @@
 ---
+import { getImage } from "astro:assets";
 import rentaImage from "../../assets/images/servicios/servicios2.png";
 import Icono from "../../components/shared/Icono.astro";
 import Boton from "../../components/shared/Boton.astro";
 import { rutas } from "../../config/site";
+
+const rentaImageOptimizada = await getImage({
+  src: rentaImage,
+  width: 960,
+  format: "webp",
+  quality: 76,
+});
 
 const puntos = [
   {
@@ -43,7 +51,7 @@ const puntos = [
     </div>
     <div class="renta-destacada__media reveal reveal--image">
       <div class="renta-destacada__frame">
-        <img src={rentaImage.src} alt="Documentos y proceso de declaración de renta en Presentar By H&B SAS" loading="lazy" decoding="async" />
+        <img src={rentaImageOptimizada.src} alt="Documentos y proceso de declaración de renta en Presentar By H&B SAS" loading="lazy" decoding="async" />
       </div>
     </div>
   </div>

@@ -1,6 +1,14 @@
 ---
+import { getImage } from "astro:assets";
 import creadoresImage from "../../assets/images/servicios/servicios5.png";
 import { servicios } from "../../data/servicios";
+
+const creadoresImageOptimizada = await getImage({
+  src: creadoresImage,
+  width: 1800,
+  format: "webp",
+  quality: 76,
+});
 
 const servicio = servicios.find((item) => item.id === "creadores-contenido") ?? servicios[2];
 
@@ -66,7 +74,7 @@ const niveles = [
 ---
 
 <section class="creadores" id="creadores-contenido" aria-labelledby="creadores-title">
-  <div class="creadores__hero" style={`--creadores-bg: url(${creadoresImage.src});`}>
+  <div class="creadores__hero" style={`--creadores-bg: url(${creadoresImageOptimizada.src});`}>
     <div class="container creadores__hero-inner">
       <div class="creadores__hero-copy">
         <span class="creadores__eyebrow reveal">Servicio especializado</span>

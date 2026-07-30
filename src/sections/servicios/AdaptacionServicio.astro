@@ -1,6 +1,14 @@
 ---
+import { getImage } from "astro:assets";
 import comoTrabajamosImage from "../../assets/images/servicios/servicios3.png";
 import Icono from "../../components/shared/Icono.astro";
+
+const comoTrabajamosImageOptimizada = await getImage({
+  src: comoTrabajamosImage,
+  width: 960,
+  format: "webp",
+  quality: 76,
+});
 
 const criterios = [
   { texto: "Volumen de transacciones", icono: "chart" },
@@ -14,7 +22,7 @@ const criterios = [
   <div class="container adaptacion__grid">
     <div class="adaptacion__media reveal reveal--image">
       <div class="adaptacion__frame">
-        <img src={comoTrabajamosImage.src} alt="Equipo de Presentar By H&B SAS definiendo el alcance de un servicio a la medida" loading="lazy" decoding="async" />
+        <img src={comoTrabajamosImageOptimizada.src} alt="Equipo de Presentar By H&B SAS definiendo el alcance de un servicio a la medida" loading="lazy" decoding="async" />
       </div>
     </div>
     <div class="adaptacion__copy">

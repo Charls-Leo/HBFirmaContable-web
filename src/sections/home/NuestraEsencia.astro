@@ -1,13 +1,21 @@
 ---
+import { getImage } from "astro:assets";
 import esenciaImage from "../../assets/images/home/home-esencia2.png";
 import Icono from "../../components/shared/Icono.astro";
+
+const esenciaImageOptimizada = await getImage({
+  src: esenciaImage,
+  width: 960,
+  format: "webp",
+  quality: 76,
+});
 ---
 
 <section class="section essence" id="nosotros" aria-labelledby="essence-title">
   <div class="container essence__grid">
     <div class="essence__media reveal reveal--image">
       <div class="essence__frame">
-        <img src={esenciaImage.src} alt="Oficina profesional de Presentar By H&B SAS con equipo de trabajo" loading="lazy" decoding="async" />
+        <img src={esenciaImageOptimizada.src} alt="Oficina profesional de Presentar By H&B SAS con equipo de trabajo" loading="lazy" decoding="async" />
       </div>
     </div>
     <div class="essence__copy">

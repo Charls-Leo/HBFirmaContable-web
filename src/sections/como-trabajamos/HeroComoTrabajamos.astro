@@ -1,11 +1,19 @@
 ---
+import { getImage } from "astro:assets";
 import heroImage from "../../assets/images/como-trabajamos/como-trabajamos.png";
 import HeroInterno from "../../components/shared/HeroInterno.astro";
 import { rutas } from "../../config/site";
+
+const heroImageOptimizada = await getImage({
+  src: heroImage,
+  width: 1800,
+  format: "webp",
+  quality: 76,
+});
 ---
 
 <HeroInterno
-  imageSrc={heroImage.src}
+  imageSrc={heroImageOptimizada.src}
   imageAlt="Equipo de Presentar By H&B SAS definiendo el plan de trabajo con un cliente"
   eyebrow="Cómo trabajamos"
   titulo="Un proceso claro desde el primer contacto"

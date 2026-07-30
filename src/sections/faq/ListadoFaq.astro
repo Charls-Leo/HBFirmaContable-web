@@ -23,7 +23,13 @@ const grupos = ordenCategorias.map((categoria) => ({
         <div class="listado-faq__grupo reveal">
           <div class="listado-faq__grupo-header">
             <Icono name={grupo.icono} />
-            <h2>{grupo.nombre}</h2>
+            {
+              grupo.nombre === "Sobre Presentar By H&B SAS" ? (
+                <h2>Sobre Presentar By H<span class="listado-faq__amp">&amp;</span>B SAS</h2>
+              ) : (
+                <h2>{grupo.nombre}</h2>
+              )
+            }
           </div>
           <div class="listado-faq__lista">
             {grupo.preguntas.map((item, index) => (
@@ -71,6 +77,16 @@ const grupos = ordenCategorias.map((categoria) => ({
     margin: 0;
     font-family: var(--font-heading);
     font-size: 1.375rem;
+  }
+
+  .listado-faq__amp {
+    display: inline-block;
+    margin-inline: 0.03em;
+    font-family: var(--font-body);
+    font-size: 0.88em;
+    font-weight: 700;
+    line-height: 1;
+    transform: translateY(-0.03em);
   }
 
   .listado-faq__lista {

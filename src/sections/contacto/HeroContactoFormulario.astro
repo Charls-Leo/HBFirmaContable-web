@@ -1,16 +1,25 @@
 ---
+import { getImage } from "astro:assets";
 import contactoImage from "../../assets/images/contacto/contacto.png";
 import Icono from "../../components/shared/Icono.astro";
 import IconoWhatsapp from "../../components/shared/IconoWhatsapp.astro";
 import Boton from "../../components/shared/Boton.astro";
 import { site, rutas } from "../../config/site";
 import { servicios as serviciosDisponibles } from "../../data/servicios";
+import { getEnlaceWhatsapp } from "../../utils/whatsapp";
+
+const contactoImageOptimizada = await getImage({
+  src: contactoImage,
+  width: 1800,
+  format: "webp",
+  quality: 76,
+});
 
 const serviciosInteres = serviciosDisponibles.map((servicio) => servicio.titulo);
 ---
 
 <section class="hero-contacto" aria-labelledby="hero-contacto-title">
-  <img class="hero-contacto__image" src={contactoImage.src} alt={`Oficina de ${site.nombre}`} loading="eager" decoding="async" />
+  <img class="hero-contacto__image" src={contactoImageOptimizada.src} alt={`Oficina de ${site.nombre}`} loading="eager" decoding="async" fetchpriority="high" />
   <div class="hero-contacto__overlay"></div>
   <div class="hero-contacto__content">
     <div class="hero-contacto__copy">
@@ -39,7 +48,15 @@ const serviciosInteres = serviciosDisponibles.map((servicio) => servicio.titulo)
     <div class="hero-contacto__form-card">
       <h2>Solicite una cita</h2>
       <p class="hero-contacto__form-intro">Complete sus datos y cuéntenos brevemente cómo podemos ayudarle.</p>
-      <form id="form-contacto" novalidate data-destino={site.correo}>
+      <form id="form-contacto" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="contacto" />
+        <input type="hidden" name="subject" value="Nueva solicitud web | Presentar By H&B SAS" />
+        <p class="campo-oculto" aria-hidden="true">
+          <label>
+            No llenar este campo
+            <input name="bot-field" tabindex="-1" autocomplete="off" />
+          </label>
+        </p>
         <div class="campo">
           <label for="nombre">Nombre completo</label>
           <input type="text" id="nombre" name="nombre" autocomplete="name" required />
@@ -47,7 +64,7 @@ const serviciosInteres = serviciosDisponibles.map((servicio) => servicio.titulo)
         <div class="campo-grupo">
           <div class="campo">
             <label for="correo">Correo electrónico</label>
-            <input type="email" id="correo" name="correo" autocomplete="email" required />
+            <input type="email" id="correo" name="email" autocomplete="email" required />
           </div>
           <div class="campo">
             <label for="telefono">Teléfono / WhatsApp</label>
@@ -74,6 +91,15 @@ const serviciosInteres = serviciosDisponibles.map((servicio) => servicio.titulo)
         </label>
         <Boton type="submit" size="lg" class="hero-contacto__submit">Solicitar cita</Boton>
         <p class="hero-contacto__form-nota" role="status" aria-live="polite"></p>
+        <a
+          class="hero-contacto__whatsapp-confirmacion"
+          href={getEnlaceWhatsapp("Hola, envié una solicitud de cita desde la página web de Presentar By H&B SAS y quisiera confirmar la recepción.")}
+          target="_blank"
+          rel="noopener noreferrer"
+          hidden
+        >
+          Comunicarse por WhatsApp
+        </a>
       </form>
     </div>
   </div>
@@ -82,8 +108,10 @@ const serviciosInteres = serviciosDisponibles.map((servicio) => servicio.titulo)
 <script>
   const form = document.querySelector<HTMLFormElement>("#form-contacto");
   const nota = form?.querySelector<HTMLParagraphElement>(".hero-contacto__form-nota");
+  const submitButton = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+  const whatsappLink = form?.querySelector<HTMLAnchorElement>(".hero-contacto__whatsapp-confirmacion");
 
-  form?.addEventListener("submit", (event) => {
+  form?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     if (!form.checkValidity()) {
@@ -91,24 +119,56 @@ const serviciosInteres = serviciosDisponibles.map((servicio) => servicio.titulo)
       return;
     }
 
-    const datos = new FormData(form);
-    const nombre = String(datos.get("nombre") ?? "");
-    const correo = String(datos.get("correo") ?? "");
-    const telefono = String(datos.get("telefono") ?? "");
-    const servicio = String(datos.get("servicio") ?? "");
-    const mensaje = String(datos.get("mensaje") ?? "");
-
-    const asunto = encodeURIComponent(`Solicitud de cita — ${nombre}`);
-    const cuerpo = encodeURIComponent(
-      `Nombre: ${nombre}\nCorreo: ${correo}\nTeléfono / WhatsApp: ${telefono}\nServicio de interés: ${servicio}\n\nMensaje:\n${mensaje}`,
-    );
-
     if (nota) {
-      nota.textContent = "Abriendo su cliente de correo para enviar la solicitud a Presentar By H&B SAS...";
+      nota.dataset.estado = "enviando";
+      nota.textContent = "Enviando su solicitud...";
     }
 
-    const destino = form.dataset.destino;
-    window.location.href = `mailto:${destino}?subject=${asunto}&body=${cuerpo}`;
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
+
+    if (whatsappLink) {
+      whatsappLink.hidden = true;
+    }
+
+    try {
+      const respuesta = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString(),
+      });
+
+      if (!respuesta.ok) {
+        throw new Error("No se pudo enviar el formulario.");
+      }
+
+      form.reset();
+
+      if (nota) {
+        nota.dataset.estado = "exito";
+        nota.textContent =
+          "Muchas gracias por su confianza. Nos estaremos comunicando con usted. Si no recibe respuesta, puede comunicarse via WhatsApp.";
+      }
+
+      if (whatsappLink) {
+        whatsappLink.hidden = false;
+      }
+    } catch {
+      if (nota) {
+        nota.dataset.estado = "error";
+        nota.textContent =
+          "No pudimos enviar la solicitud en este momento. Por favor intente de nuevo o comuniquese via WhatsApp.";
+      }
+
+      if (whatsappLink) {
+        whatsappLink.hidden = false;
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
+    }
   });
 </script>
 
@@ -256,6 +316,10 @@ const serviciosInteres = serviciosDisponibles.map((servicio) => servicio.titulo)
     gap: 1.1rem;
   }
 
+  .campo-oculto {
+    display: none;
+  }
+
   .campo-grupo {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -344,6 +408,29 @@ const serviciosInteres = serviciosDisponibles.map((servicio) => servicio.titulo)
     font-size: 0.8125rem;
     font-weight: 500;
     text-align: center;
+  }
+
+  .hero-contacto__form-nota[data-estado="exito"] {
+    color: #1f7a4d;
+  }
+
+  .hero-contacto__form-nota[data-estado="error"] {
+    color: #9f2f2f;
+  }
+
+  .hero-contacto__whatsapp-confirmacion {
+    justify-self: center;
+    color: var(--color-navy);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  :global(.hero-contacto__submit[disabled]) {
+    cursor: wait;
+    opacity: 0.72;
+    transform: none;
   }
 
   @media (max-width: 960px) {
