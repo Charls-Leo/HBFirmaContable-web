@@ -4,7 +4,7 @@ export const atributos = [
   { titulo: "Confidencialidad", icono: "lock" },
   { titulo: "Cumplimiento responsable", icono: "check" },
   { titulo: "Procesos organizados", icono: "folder" },
-  { titulo: "Acompañamiento cercano", icono: "handshake" },
+  { titulo: "Acompañamiento cercano", icono: "heart" },
   { titulo: "Decisiones más seguras", icono: "shield" },
   { titulo: "Visión estratégica", icono: "target" },
 ];

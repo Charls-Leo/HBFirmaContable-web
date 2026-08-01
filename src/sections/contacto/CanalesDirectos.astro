@@ -1,8 +1,6 @@
 ---
 import Boton from "../../components/shared/Boton.astro";
 import IconoWhatsapp from "../../components/shared/IconoWhatsapp.astro";
-import Icono from "../../components/shared/Icono.astro";
-import { site } from "../../config/site";
 import { getEnlaceWhatsapp } from "../../utils/whatsapp";
 ---
 
@@ -10,15 +8,11 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
   <div class="container canales__inner">
     <span class="eyebrow reveal">Otra opción</span>
     <h2 class="heading reveal" id="canales-title">También puede comunicarse directamente</h2>
-    <p class="reveal">Seleccione el canal que le resulte más cómodo para iniciar la conversación con nuestro equipo.</p>
+    <p class="reveal">Escríbanos por WhatsApp para iniciar la conversación con nuestro equipo.</p>
     <div class="canales__actions reveal">
       <Boton href={getEnlaceWhatsapp()} target="_blank" ariaLabel="Contactar por WhatsApp (se abre en una pestaña nueva)">
         <IconoWhatsapp class="canales__icon" />
         Contactar por WhatsApp
-      </Boton>
-      <Boton href={`mailto:${site.correo}`} variant="outline">
-        <Icono name="mail" class="canales__icon" />
-        Enviar correo electrónico
       </Boton>
     </div>
   </div>

@@ -22,7 +22,7 @@ export const serviciosEmpresas = [
   {
     titulo: "Asesoría financiera y empresarial",
     descripcion: "Evaluación de indicadores y recursos para crecer con orden.",
-    icono: "handshake",
+    icono: "target",
   },
   {
     titulo: "Constitución y formalización",

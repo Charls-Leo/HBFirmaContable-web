@@ -109,6 +109,17 @@ const serviciosInteres = serviciosDisponibles.map((servicio) => servicio.titulo)
   const nota = form?.querySelector<HTMLParagraphElement>(".hero-contacto__form-nota");
   const submitButton = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
   const whatsappLink = form?.querySelector<HTMLAnchorElement>(".hero-contacto__whatsapp-confirmacion");
+  const mensaje = form?.querySelector<HTMLTextAreaElement>("#mensaje");
+
+  const ajustarAlturaMensaje = () => {
+    if (!mensaje) return;
+
+    mensaje.style.height = "auto";
+    mensaje.style.height = `${mensaje.scrollHeight}px`;
+  };
+
+  mensaje?.addEventListener("input", ajustarAlturaMensaje);
+  ajustarAlturaMensaje();
 
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -143,6 +154,7 @@ const serviciosInteres = serviciosDisponibles.map((servicio) => servicio.titulo)
       }
 
       form.reset();
+      ajustarAlturaMensaje();
 
       if (nota) {
         nota.dataset.estado = "exito";
@@ -361,8 +373,9 @@ const serviciosInteres = serviciosDisponibles.map((servicio) => servicio.titulo)
   }
 
   textarea {
-    resize: vertical;
+    resize: none;
     min-height: 6rem;
+    overflow: hidden;
   }
 
   .campo-check {

@@ -44,6 +44,10 @@ const Tag = href ? "a" : "article";
     box-shadow: var(--shadow-card);
   }
 
+  .service-card.reveal.reveal--scale.is-visible:hover {
+    transform: translateY(-7px) scale(1);
+  }
+
   :global(.service-card__icon) {
     width: 3rem;
     height: 3rem;
