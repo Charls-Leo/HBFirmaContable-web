@@ -42,16 +42,15 @@ All commands are run from the root of the project, from a terminal:
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
 
-## Despliegue temporal
+## Despliegue en producción
 
-Este proyecto usa GitHub Pages temporalmente para pruebas con:
+Este proyecto se publica en Netlify con el dominio definitivo:
 
-- `site: https://charls-leo.github.io`
-- `base: /HBFirmaContable-web`
+- `site: https://presentarhb.com`
+- sin `base`, porque el sitio se sirve desde la raíz del dominio.
 
-Al migrar a un dominio propio o hosting definitivo:
+Para desplegar:
 
-1. Cambiar `site` en `astro.config.mjs`.
-2. Eliminar `base` en `astro.config.mjs`.
-3. Verificar enlaces internos y assets.
-4. Desactivar o eliminar `.github/workflows/deploy.yml` si GitHub Pages deja de utilizarse.
+1. Subir los cambios a Git.
+2. Netlify ejecuta `npm run build`.
+3. Netlify publica la carpeta `dist`.
