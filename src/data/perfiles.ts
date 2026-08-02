@@ -1,15 +1,15 @@
 export const perfiles = [
   {
+    titulo: "Empresas",
+    descripcion:
+      "Servicios contables, tributarios, laborales y financieros adaptados a la operación y necesidades de cada empresa.",
+    icono: "bank",
+  },
+  {
     titulo: "Emprendedores",
     descripcion:
       "Acompañamiento para organizar sus procesos contables, tributarios y financieros desde las primeras etapas del negocio.",
     icono: "rocket",
-  },
-  {
-    titulo: "Profesionales independientes",
-    descripcion:
-      "Apoyo en obligaciones tributarias, seguridad social, facturación, ingresos y organización financiera.",
-    icono: "briefcase",
   },
   {
     titulo: "Creadores de contenido",
@@ -18,10 +18,10 @@ export const perfiles = [
     icono: "camera",
   },
   {
-    titulo: "Empresas",
+    titulo: "Profesionales independientes",
     descripcion:
-      "Servicios contables, tributarios, laborales y financieros adaptados a la operación y necesidades de cada empresa.",
-    icono: "bank",
+      "Apoyo en obligaciones tributarias, seguridad social, facturación, ingresos y organización financiera.",
+    icono: "briefcase",
   },
   {
     titulo: "Empleados",
