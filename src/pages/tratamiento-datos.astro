@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroLegal from "../components/shared/HeroLegal.astro";
 import DocumentoLegal from "../components/shared/DocumentoLegal.astro";
 import { site } from "../config/site";
-import { getEnlaceWhatsapp } from "../utils/whatsapp";
 
 const indice = [
   { id: "marco", etiqueta: "Marco normativo" },
@@ -40,13 +39,8 @@ const indice = [
       El responsable del tratamiento de los datos personales es <strong>{site.nombre}</strong>. Los canales dispuestos para ejercer sus derechos o resolver dudas son:
     </p>
     <ul>
-      <li>Correo electrónico: <a href={`mailto:${site.correo}`}>{site.correo}</a></li>
-      <li>
-        WhatsApp:{" "}
-        <a href={getEnlaceWhatsapp()} target="_blank" rel="noopener noreferrer">
-          {site.whatsappDisplay}
-        </a>
-      </li>
+      <li>Correo electrónico: {site.correo}</li>
+      <li>WhatsApp: {site.whatsappDisplay}</li>
     </ul>
 
     <h2 id="datos">Datos que recopilamos y su finalidad</h2>
@@ -71,7 +65,7 @@ const indice = [
       <li>Revocar la autorización otorgada para el tratamiento de sus datos.</li>
     </ul>
     <p>
-      Puede ejercer estos derechos escribiendo a <a href={`mailto:${site.correo}`}>{site.correo}</a> o por WhatsApp al {site.whatsappDisplay}.
+      Puede ejercer estos derechos escribiendo a {site.correo} o por WhatsApp al {site.whatsappDisplay}.
     </p>
 
     <h2 id="vigencia">Vigencia y modificaciones</h2>
