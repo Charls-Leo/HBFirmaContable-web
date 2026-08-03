@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroLegal from "../components/shared/HeroLegal.astro";
 import DocumentoLegal from "../components/shared/DocumentoLegal.astro";
 import { site, rutas } from "../config/site";
-import { getEnlaceWhatsapp } from "../utils/whatsapp";
 
 const indice = [
   { id: "objeto", etiqueta: "Objeto" },
@@ -13,7 +12,6 @@ const indice = [
   { id: "canales", etiqueta: "Canales de contacto externos" },
   { id: "responsabilidad", etiqueta: "Limitación de responsabilidad" },
   { id: "modificaciones", etiqueta: "Modificaciones" },
-  { id: "contacto", etiqueta: "Contacto" },
 ];
 ---
 
@@ -64,11 +62,5 @@ const indice = [
 
     <h2 id="modificaciones">Modificaciones</h2>
     <p>{site.nombreCorto} podrá actualizar estos términos en cualquier momento para reflejar cambios en sus servicios o canales de atención. Le recomendamos revisarlos periódicamente.</p>
-
-    <h2 id="contacto">Contacto</h2>
-    <p>
-      Para dudas sobre estos términos, escríbanos a <a href={`mailto:${site.correo}`}>{site.correo}</a> o por{" "}
-      <a href={getEnlaceWhatsapp()} target="_blank" rel="noopener noreferrer">WhatsApp</a>.
-    </p>
   </DocumentoLegal>
 </BaseLayout>

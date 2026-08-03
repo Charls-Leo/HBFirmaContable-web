@@ -5,7 +5,6 @@ import { servicios } from "../../data/servicios";
 import Logo from "../shared/Logo.astro";
 import Icono from "../shared/Icono.astro";
 import IconoWhatsapp from "../shared/IconoWhatsapp.astro";
-import { getEnlaceWhatsapp } from "../../utils/whatsapp";
 ---
 
 <footer class="footer">
@@ -43,16 +42,16 @@ import { getEnlaceWhatsapp } from "../../utils/whatsapp";
         <h2>Contacto</h2>
         <ul>
           <li>
-            <a href={getEnlaceWhatsapp()} target="_blank" rel="noopener noreferrer">
+            <span class="footer__contact-static">
               <IconoWhatsapp />
               <span>{site.whatsappDisplay}</span>
-            </a>
+            </span>
           </li>
           <li>
-            <a href={`mailto:${site.correo}`}>
+            <span class="footer__contact-static">
               <Icono name="mail" />
               <span>{site.correo}</span>
-            </a>
+            </span>
           </li>
           <li>
             <span class="footer__contact-static">

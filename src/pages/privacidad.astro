@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroLegal from "../components/shared/HeroLegal.astro";
 import DocumentoLegal from "../components/shared/DocumentoLegal.astro";
 import { site, rutas } from "../config/site";
-import { getEnlaceWhatsapp } from "../utils/whatsapp";
 
 const indice = [
   { id: "responsable", etiqueta: "Responsable del tratamiento" },
@@ -36,13 +35,8 @@ const indice = [
       El responsable del tratamiento de los datos personales recopilados a través de este sitio es <strong>{site.nombre}</strong>. Puede comunicarse con nosotros a través de los siguientes canales:
     </p>
     <ul>
-      <li>Correo electrónico: <a href={`mailto:${site.correo}`}>{site.correo}</a></li>
-      <li>
-        WhatsApp:{" "}
-        <a href={getEnlaceWhatsapp()} target="_blank" rel="noopener noreferrer">
-          {site.whatsappDisplay}
-        </a>
-      </li>
+      <li>Correo electrónico: {site.correo}</li>
+      <li>WhatsApp: {site.whatsappDisplay}</li>
     </ul>
 
     <h2 id="informacion">Información que recopilamos</h2>
@@ -76,7 +70,7 @@ const indice = [
       Conforme a la normativa colombiana de protección de datos personales (artículo 15 de la Constitución Política y Ley 1581 de 2012), usted tiene derecho a conocer, actualizar, rectificar y solicitar la supresión de sus datos personales, así como a revocar la autorización otorgada para su tratamiento.
     </p>
     <p>
-      Para ejercer estos derechos, puede escribirnos a <a href={`mailto:${site.correo}`}>{site.correo}</a> o por WhatsApp. Encontrará más detalle sobre el tratamiento de sus datos en nuestra <a href={rutas.tratamientoDatos}>política de tratamiento de datos</a>.
+      Para ejercer estos derechos, puede escribirnos a {site.correo} o por WhatsApp al {site.whatsappDisplay}. Encontrará más detalle sobre el tratamiento de sus datos en nuestra <a href={rutas.tratamientoDatos}>política de tratamiento de datos</a>.
     </p>
 
     <h2 id="cambios">Cambios a esta política</h2>
